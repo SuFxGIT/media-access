@@ -1,0 +1,104 @@
+/* General Reset */
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
+  color: #fff;
+  background: radial-gradient(circle at top left, #111 0%, #1a1a1a 80%);
+  scroll-behavior: smooth;
+}
+
+/* Hero Section */
+.hero {
+  height: 100vh;
+  background: url('https://images.unsplash.com/photo-1606813902913-0a45f7c68584?auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.overlay {
+  background: rgba(0, 0, 0, 0.6);
+  padding: 40px;
+  border-radius: 20px;
+  text-align: center;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+}
+
+h1 {
+  font-size: 3rem;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  color: #ccc;
+}
+
+.scroll-btn {
+  margin-top: 20px;
+  display: inline-block;
+  padding: 10px 25px;
+  border-radius: 25px;
+  background: linear-gradient(90deg, #ffb347, #ffcc33);
+  color: #000;
+  text-decoration: none;
+  transition: transform 0.2s;
+}
+.scroll-btn:hover { transform: scale(1.05); }
+
+/* Sections */
+.section {
+  padding: 80px 20px;
+  text-align: center;
+  background: #121212;
+  margin-top: 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.section h2 {
+  font-size: 2rem;
+  margin-bottom: 15px;
+  color: #ffd166;
+}
+
+.section p {
+  max-width: 600px;
+  margin: 0 auto 25px auto;
+  color: #ddd;
+  line-height: 1.6;
+}
+
+/* Buttons */
+.btn, .paypal-btn {
+  display: inline-block;
+  padding: 12px 30px;
+  border-radius: 30px;
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  transition: all 0.3s;
+}
+
+.btn {
+  background: linear-gradient(90deg, #06beb6, #48b1bf);
+}
+.btn:hover { transform: scale(1.05); }
+
+.paypal-btn {
+  background: linear-gradient(90deg, #0070ba, #1546a0);
+}
+.paypal-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px #0070ba;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 30px;
+  background: #0a0a0a;
+  font-size: 0.9rem;
+  color: #777;
+}

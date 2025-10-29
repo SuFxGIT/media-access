@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Media Access - Plex & Overseerr</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="hero">
+    <div class="overlay">
+      <h1>Welcome to Media Access</h1>
+      <p class="subtitle">Your private gateway to movies and shows — powered by <strong>Plex</strong>.</p>
+      <a href="#about" class="scroll-btn">Learn More ↓</a>
+    </div>
+  </div>
+
+  <section id="about" class="section">
+    <h2>What is Plex?</h2>
+    <p>Plex is your personal streaming service where you can watch movies, shows, and more — all hosted privately for members only.</p>
+  </section>
+
+  <section id="overseerr" class="section">
+    <h2>What is Overseerr?</h2>
+    <p>Overseerr lets you request movies and shows you want added to Plex. It’s easy, quick, and directly connected to our media library.</p>
+    <a href="https://YOUR-OVERSEERR-LINK" target="_blank" class="btn">Go to Overseerr</a>
+  </section>
+
+  <section id="join" class="section">
+    <h2>Join the Server</h2>
+    <p>Subscribe to get access to the full media library and enjoy streaming anytime.</p>
+    <a href="https://www.paypal.com/webapps/billing/plans/subscribe?plan_id=P-7N620619SF510053PND7T7RY"
+       target="_blank" class="paypal-btn">Subscribe with PayPal</a>
+  </section>
+
+  <footer>
+    <p>© 2025 Media Access | Powered by Plex</p>
+  </footer>
+
+  <script>
+    document.querySelector('.scroll-btn').addEventListener('click', () => {
+      document.querySelector('#about').scrollIntoView({ behavior: 'smooth' });
+    });
+  </script>
+</body>
+</html>
