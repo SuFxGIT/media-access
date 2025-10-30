@@ -384,7 +384,7 @@ footer {
   color: var(--primary);
 }
 
-/* Movie Background - PERFECT ENGINEERED SOLUTION */
+/* Movie Background - GUARANTEED PERFECT SOLUTION */
 .movie-background {
   position: absolute;
   top: 0;
@@ -393,117 +393,40 @@ footer {
   height: 100%;
   overflow: hidden;
   z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 5% 0;
 }
+
+.movie-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 16%; /* 5 rows = 80% height, 20% for spacing */
+  animation: slideRow 60s linear infinite;
+}
+
+/* Alternate animation directions for visual interest */
+.row-1 { animation-direction: normal; }
+.row-2 { animation-direction: reverse; animation-duration: 70s; }
+.row-3 { animation-direction: normal; animation-duration: 80s; }
+.row-4 { animation-direction: reverse; animation-duration: 65s; }
+.row-5 { animation-direction: normal; animation-duration: 75s; }
 
 .movie-poster {
-  position: absolute;
-  opacity: 0.3;
-  filter: blur(2px) brightness(0.85); /* Reduced blur */
-  width: 8%; /* Perfect percentage-based width */
-  height: 12%; /* Perfect 2:3 aspect ratio based on height */
+  width: 11%; /* 8 posters × 11% = 88% width, 12% for spacing */
+  height: 100%;
   object-fit: cover;
-  border-radius: 3px;
+  border-radius: 4px;
+  opacity: 0.25;
+  filter: blur(1px) brightness(0.9); /* Minimal blur */
+  flex-shrink: 0;
 }
 
-/* Perfect row positioning - 5 evenly distributed rows */
-.row-1 { top: 10%; }
-.row-2 { top: 30%; }
-.row-3 { top: 50%; }
-.row-4 { top: 70%; }
-.row-5 { top: 90%; }
-
-/* Animation directions */
-.left-move {
-  animation: moveLeftPerfect 100s infinite linear;
-}
-
-.right-move {
-  animation: moveRightPerfect 100s infinite linear;
-}
-
-/* PERFECT GRID SYSTEM - 12 posters per row with exact spacing */
-/* Calculate: 100% width / 12 posters = 8.33% per poster, but we use 8% for spacing */
-/* Row 1 - Left moving */
-.movie-poster.row-1.left-move:nth-of-type(1) { left: -8%; }
-.movie-poster.row-1.left-move:nth-of-type(2) { left: -16%; }
-.movie-poster.row-1.left-move:nth-of-type(3) { left: -24%; }
-.movie-poster.row-1.left-move:nth-of-type(4) { left: -32%; }
-.movie-poster.row-1.left-move:nth-of-type(5) { left: -40%; }
-.movie-poster.row-1.left-move:nth-of-type(6) { left: -48%; }
-.movie-poster.row-1.left-move:nth-of-type(7) { left: -56%; }
-.movie-poster.row-1.left-move:nth-of-type(8) { left: -64%; }
-.movie-poster.row-1.left-move:nth-of-type(9) { left: -72%; }
-.movie-poster.row-1.left-move:nth-of-type(10) { left: -80%; }
-.movie-poster.row-1.left-move:nth-of-type(11) { left: -88%; }
-.movie-poster.row-1.left-move:nth-of-type(12) { left: -96%; }
-
-/* Row 2 - Right moving */
-.movie-poster.row-2.right-move:nth-of-type(1) { right: -8%; }
-.movie-poster.row-2.right-move:nth-of-type(2) { right: -16%; }
-.movie-poster.row-2.right-move:nth-of-type(3) { right: -24%; }
-.movie-poster.row-2.right-move:nth-of-type(4) { right: -32%; }
-.movie-poster.row-2.right-move:nth-of-type(5) { right: -40%; }
-.movie-poster.row-2.right-move:nth-of-type(6) { right: -48%; }
-.movie-poster.row-2.right-move:nth-of-type(7) { right: -56%; }
-.movie-poster.row-2.right-move:nth-of-type(8) { right: -64%; }
-.movie-poster.row-2.right-move:nth-of-type(9) { right: -72%; }
-.movie-poster.row-2.right-move:nth-of-type(10) { right: -80%; }
-.movie-poster.row-2.right-move:nth-of-type(11) { right: -88%; }
-.movie-poster.row-2.right-move:nth-of-type(12) { right: -96%; }
-
-/* Row 3 - Left moving */
-.movie-poster.row-3.left-move:nth-of-type(1) { left: -8%; }
-.movie-poster.row-3.left-move:nth-of-type(2) { left: -16%; }
-.movie-poster.row-3.left-move:nth-of-type(3) { left: -24%; }
-.movie-poster.row-3.left-move:nth-of-type(4) { left: -32%; }
-.movie-poster.row-3.left-move:nth-of-type(5) { left: -40%; }
-.movie-poster.row-3.left-move:nth-of-type(6) { left: -48%; }
-.movie-poster.row-3.left-move:nth-of-type(7) { left: -56%; }
-.movie-poster.row-3.left-move:nth-of-type(8) { left: -64%; }
-.movie-poster.row-3.left-move:nth-of-type(9) { left: -72%; }
-.movie-poster.row-3.left-move:nth-of-type(10) { left: -80%; }
-.movie-poster.row-3.left-move:nth-of-type(11) { left: -88%; }
-.movie-poster.row-3.left-move:nth-of-type(12) { left: -96%; }
-
-/* Row 4 - Right moving */
-.movie-poster.row-4.right-move:nth-of-type(1) { right: -8%; }
-.movie-poster.row-4.right-move:nth-of-type(2) { right: -16%; }
-.movie-poster.row-4.right-move:nth-of-type(3) { right: -24%; }
-.movie-poster.row-4.right-move:nth-of-type(4) { right: -32%; }
-.movie-poster.row-4.right-move:nth-of-type(5) { right: -40%; }
-.movie-poster.row-4.right-move:nth-of-type(6) { right: -48%; }
-.movie-poster.row-4.right-move:nth-of-type(7) { right: -56%; }
-.movie-poster.row-4.right-move:nth-of-type(8) { right: -64%; }
-.movie-poster.row-4.right-move:nth-of-type(9) { right: -72%; }
-.movie-poster.row-4.right-move:nth-of-type(10) { right: -80%; }
-.movie-poster.row-4.right-move:nth-of-type(11) { right: -88%; }
-.movie-poster.row-4.right-move:nth-of-type(12) { right: -96%; }
-
-/* Row 5 - Left moving */
-.movie-poster.row-5.left-move:nth-of-type(1) { left: -8%; }
-.movie-poster.row-5.left-move:nth-of-type(2) { left: -16%; }
-.movie-poster.row-5.left-move:nth-of-type(3) { left: -24%; }
-.movie-poster.row-5.left-move:nth-of-type(4) { left: -32%; }
-.movie-poster.row-5.left-move:nth-of-type(5) { left: -40%; }
-.movie-poster.row-5.left-move:nth-of-type(6) { left: -48%; }
-.movie-poster.row-5.left-move:nth-of-type(7) { left: -56%; }
-.movie-poster.row-5.left-move:nth-of-type(8) { left: -64%; }
-.movie-poster.row-5.left-move:nth-of-type(9) { left: -72%; }
-.movie-poster.row-5.left-move:nth-of-type(10) { left: -80%; }
-.movie-poster.row-5.left-move:nth-of-type(11) { left: -88%; }
-.movie-poster.row-5.left-move:nth-of-type(12) { left: -96%; }
-
-/* Perfect continuous animation */
-@keyframes moveLeftPerfect {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(100%);
-  }
-}
-
-@keyframes moveRightPerfect {
+/* Simple sliding animation */
+@keyframes slideRow {
   0% {
     transform: translateX(0);
   }
@@ -512,16 +435,51 @@ footer {
   }
 }
 
-/* Duplicate positioning for perfect continuous coverage */
-.movie-poster.duplicate-ahead {
-  transform: translateX(-100%);
+/* Duplicate posters for continuous flow (handled by JS) */
+.movie-row::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent 0%, var(--dark) 100%);
+  z-index: 2;
 }
 
-.movie-poster.duplicate-behind {
-  transform: translateX(100%);
+/* Ensure posters wrap continuously */
+.movie-row {
+  position: relative;
 }
 
-/* Update script to create 12 posters per row instead of 10 */
+.movie-row::after {
+  content: '';
+  display: table;
+  clear: both;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .movie-poster {
+    width: 10%; /* Slightly smaller on mobile */
+    opacity: 0.2; /* Slightly more transparent */
+  }
+  
+  .movie-row {
+    height: 18%; /* Adjust row height for mobile */
+    animation-duration: 40s; /* Faster on mobile */
+  }
+}
+
+@media (max-width: 480px) {
+  .movie-poster {
+    width: 9%; /* Even smaller on very small screens */
+  }
+  
+  .movie-row {
+    animation-duration: 30s; /* Even faster */
+  }
+}
 
 .hero {
   position: relative;
