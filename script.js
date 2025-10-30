@@ -52,7 +52,7 @@ async function loadMovieBackground() {
     // Filter movies that have posters and get 60 unique ones
     const moviesWithPosters = allMovies
       .filter(movie => movie.poster_path)
-      .slice(0, 60);
+      .slice(0, 50);
     
     console.log(`Loaded ${moviesWithPosters.length} movies with posters from TMDB`);
     
@@ -62,7 +62,6 @@ async function loadMovieBackground() {
     createMovieRow(container, moviesWithPosters.slice(20, 30), 'row-3', 'left');
     createMovieRow(container, moviesWithPosters.slice(30, 40), 'row-4', 'right');
     createMovieRow(container, moviesWithPosters.slice(40, 50), 'row-5', 'left');
-    createMovieRow(container, moviesWithPosters.slice(50, 60), 'row-6', 'right');
     
     // Create multiple duplicates for instant full coverage
     createContinuousCoverage(container);
@@ -145,7 +144,7 @@ function useFallbackPosters(container) {
   ];
   
   // Create multiple rows with fallback posters
-  for (let i = 1; i <= 6; i++) {
+  for (let i = 1; i <= 5; i++) {
     const direction = i % 2 === 0 ? 'right' : 'left';
     createMovieRow(container, 
       fallbackPosters.map(poster => ({ poster_path: poster, title: 'Fallback Movie' })), 

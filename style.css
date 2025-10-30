@@ -410,12 +410,11 @@ footer {
 }
 
 /* Row positioning - More rows for better coverage */
-.row-1 { top: 5%; }
-.row-2 { top: 20%; }
-.row-3 { top: 35%; }
-.row-4 { top: 50%; }
-.row-5 { top: 65%; }
-.row-6 { top: 80%; }
+.row-1 { top: 10%; }
+.row-2 { top: 30%; }
+.row-3 { top: 50%; }
+.row-4 { top: 70%; }
+.row-5 { top: 90%; }
 
 /* Animation directions - Slower for continuous feel */
 .left-move {
@@ -481,17 +480,6 @@ footer {
 .movie-poster:nth-child(48) { left: -80vw; }
 .movie-poster:nth-child(49) { left: -90vw; }
 .movie-poster:nth-child(50) { left: -100vw; }
-
-.movie-poster:nth-child(51) { right: -10vw; }
-.movie-poster:nth-child(52) { right: -20vw; }
-.movie-poster:nth-child(53) { right: -30vw; }
-.movie-poster:nth-child(54) { right: -40vw; }
-.movie-poster:nth-child(55) { right: -50vw; }
-.movie-poster:nth-child(56) { right: -60vw; }
-.movie-poster:nth-child(57) { right: -70vw; }
-.movie-poster:nth-child(58) { right: -80vw; }
-.movie-poster:nth-child(59) { right: -90vw; }
-.movie-poster:nth-child(60) { right: -100vw; }
 
 /* Continuous animation keyframes - Seamless looping */
 @keyframes moveLeftContinuous {
