@@ -22,7 +22,7 @@ window.addEventListener('scroll', () => {
   }
 });
 
-// Movie background animation - GUARANTEED WORKING VERSION
+// Movie background animation - FIXED SIZE GUARANTEED VERSION
 async function loadMovieBackground() {
   console.log('Loading movie background from TMDB...');
   
@@ -56,55 +56,69 @@ async function loadMovieBackground() {
     
     console.log(`Loaded ${moviesWithPosters.length} movies with posters from TMDB`);
     
-    // Create the movie grid
-    createMovieGrid(container, moviesWithPosters);
+    // Create the movie grid with fixed sizes
+    createFixedSizeMovieGrid(container, moviesWithPosters);
     
   } catch (error) {
     console.error('TMDB API failed:', error);
-    useFallbackGrid(container);
+    useFallbackFixedGrid(container);
   }
 }
 
-function createMovieGrid(container, movies) {
+function createFixedSizeMovieGrid(container, movies) {
   // Clear container
   container.innerHTML = '';
   
-  // Create 5 rows with 8 posters each
+  // Create 5 rows
   for (let row = 0; row < 5; row++) {
     const rowDiv = document.createElement('div');
     rowDiv.className = `movie-row row-${row + 1}`;
     
-    // Add 8 posters to this row
+    // Add 8 posters to this row (original set)
     for (let i = 0; i < 8; i++) {
       const movieIndex = row * 8 + i;
       if (movieIndex < movies.length) {
-        const movie = movies[movieIndex];
-        const img = document.createElement('img');
-        img.src = TMDB_IMAGE_BASE + movie.poster_path;
-        img.alt = movie.title + ' Poster';
-        img.className = 'movie-poster';
-        
-        img.onload = function() {
-          console.log(`Loaded: ${movie.title}`);
-        };
-        
-        img.onerror = function() {
-          console.error(`Failed to load: ${movie.title}`);
-          this.style.display = 'none';
-        };
-        
-        rowDiv.appendChild(img);
+        addPosterToRow(rowDiv, movies[movieIndex]);
+      }
+    }
+    
+    // DUPLICATE the same 8 posters 3 more times for continuous coverage
+    // This ensures wide screens are always filled
+    for (let duplicateSet = 0; duplicateSet < 3; duplicateSet++) {
+      for (let i = 0; i < 8; i++) {
+        const movieIndex = row * 8 + i;
+        if (movieIndex < movies.length) {
+          addPosterToRow(rowDiv, movies[movieIndex]);
+        }
       }
     }
     
     container.appendChild(rowDiv);
   }
   
-  console.log('Created movie grid with perfect spacing');
+  console.log('Created fixed-size movie grid with continuous coverage');
 }
 
-function useFallbackGrid(container) {
-  console.log('Using fallback grid');
+function addPosterToRow(rowDiv, movie) {
+  const img = document.createElement('img');
+  img.src = TMDB_IMAGE_BASE + movie.poster_path;
+  img.alt = movie.title + ' Poster';
+  img.className = 'movie-poster';
+  
+  img.onload = function() {
+    console.log(`Loaded: ${movie.title}`);
+  };
+  
+  img.onerror = function() {
+    console.error(`Failed to load: ${movie.title}`);
+    this.style.display = 'none';
+  };
+  
+  rowDiv.appendChild(img);
+}
+
+function useFallbackFixedGrid(container) {
+  console.log('Using fallback fixed grid');
   const fallbackPosters = [
     '/iuFNMS8U5cb6xfzi51Dbkovj7vM.jpg',
     '/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg',
@@ -121,8 +135,5 @@ function useFallbackGrid(container) {
     title: 'Fallback Movie' 
   }));
   
-  createMovieGrid(container, movies);
+  createFixedSizeMovieGrid(container, movies);
 }
-
-// Call when page loads
-document.addEventListener('DOMContentLoaded', loadMovieBackground);

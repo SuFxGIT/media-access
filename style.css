@@ -384,7 +384,7 @@ footer {
   color: var(--primary);
 }
 
-/* Movie Background - GUARANTEED PERFECT SOLUTION */
+/* Movie Background - GUARANTEED FIXED SIZE SOLUTION */
 .movie-background {
   position: absolute;
   top: 0;
@@ -393,91 +393,92 @@ footer {
   height: 100%;
   overflow: hidden;
   z-index: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 5% 0;
+  display: grid;
+  grid-template-rows: repeat(5, 1fr);
+  gap: 2vh;
+  padding: 5vh 0;
 }
 
 .movie-row {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
-  width: 100%;
-  height: 16%; /* 5 rows = 80% height, 20% for spacing */
-  animation: slideRow 60s linear infinite;
+  width: max-content; /* Allow row to be wider than screen */
+  animation: slideRow 40s linear infinite;
+  will-change: transform;
 }
 
-/* Alternate animation directions for visual interest */
-.row-1 { animation-direction: normal; }
-.row-2 { animation-direction: reverse; animation-duration: 70s; }
-.row-3 { animation-direction: normal; animation-duration: 80s; }
-.row-4 { animation-direction: reverse; animation-duration: 65s; }
-.row-5 { animation-direction: normal; animation-duration: 75s; }
+/* Alternate animation speeds for variety */
+.row-1 { animation-duration: 45s; }
+.row-2 { animation-duration: 50s; }
+.row-3 { animation-duration: 55s; }
+.row-4 { animation-duration: 60s; }
+.row-5 { animation-duration: 65s; }
 
 .movie-poster {
-  width: 11%; /* 8 posters × 11% = 88% width, 12% for spacing */
-  height: 100%;
+  width: 120px; /* FIXED SIZE - won't change on resize */
+  height: 180px; /* FIXED SIZE - maintains 2:3 ratio */
   object-fit: cover;
   border-radius: 4px;
   opacity: 0.25;
-  filter: blur(1px) brightness(0.9); /* Minimal blur */
+  filter: blur(1px) brightness(0.9);
   flex-shrink: 0;
+  margin: 0 15px; /* Fixed spacing between posters */
 }
 
-/* Simple sliding animation */
+/* Continuous sliding animation */
 @keyframes slideRow {
   0% {
     transform: translateX(0);
   }
   100% {
-    transform: translateX(-100%);
+    transform: translateX(calc(-120px * 8 - 15px * 8)); /* Move by exactly one set of posters */
   }
 }
 
-/* Duplicate posters for continuous flow (handled by JS) */
+/* Duplicate posters for seamless looping (handled by JS) */
 .movie-row::before {
   content: '';
   position: absolute;
-  top: 0;
   left: 100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent 0%, var(--dark) 100%);
+  background: transparent;
   z-index: 2;
-}
-
-/* Ensure posters wrap continuously */
-.movie-row {
-  position: relative;
-}
-
-.movie-row::after {
-  content: '';
-  display: table;
-  clear: both;
 }
 
 /* Mobile responsiveness */
 @media (max-width: 768px) {
   .movie-poster {
-    width: 10%; /* Slightly smaller on mobile */
-    opacity: 0.2; /* Slightly more transparent */
+    width: 100px; /* Slightly smaller on mobile */
+    height: 150px;
+    margin: 0 10px;
   }
   
-  .movie-row {
-    height: 18%; /* Adjust row height for mobile */
-    animation-duration: 40s; /* Faster on mobile */
+  @keyframes slideRow {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(calc(-100px * 8 - 10px * 8));
+    }
   }
 }
 
 @media (max-width: 480px) {
   .movie-poster {
-    width: 9%; /* Even smaller on very small screens */
+    width: 80px;
+    height: 120px;
+    margin: 0 8px;
   }
   
-  .movie-row {
-    animation-duration: 30s; /* Even faster */
+  @keyframes slideRow {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(calc(-80px * 8 - 8px * 8));
+    }
   }
 }
 
