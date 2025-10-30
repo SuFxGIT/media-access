@@ -358,6 +358,52 @@ footer {
   color: var(--text);
 }
 
+/* Movie Background */
+.movie-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: -1;
+}
+
+.movie-poster {
+  position: absolute;
+  opacity: 0.15;
+  filter: blur(8px);
+  width: 300px;
+  height: 450px;
+  object-fit: cover;
+  border-radius: 8px;
+  animation: floatPoster 60s infinite linear;
+}
+
+/* Different animations for variety */
+.movie-poster:nth-child(1) { animation-duration: 80s; top: 10%; }
+.movie-poster:nth-child(2) { animation-duration: 70s; top: 30%; }
+.movie-poster:nth-child(3) { animation-duration: 90s; top: 60%; }
+.movie-poster:nth-child(4) { animation-duration: 65s; top: 20%; }
+.movie-poster:nth-child(5) { animation-duration: 85s; top: 70%; }
+
+@keyframes floatPoster {
+  0% {
+    transform: translateX(-100px) rotate(-5deg);
+  }
+  50% {
+    transform: translateX(calc(100vw + 100px)) rotate(5deg);
+  }
+  100% {
+    transform: translateX(-100px) rotate(-5deg);
+  }
+}
+
+.hero {
+  position: relative;
+  overflow: hidden;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
   .nav-links {

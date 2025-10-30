@@ -7,6 +7,14 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="style.css">
 </head>
+
+<script>
+  // TMDB API configuration
+  const TMDB_API_KEY = '763f72be39eca42c43698dcc48088276'; // Get from https://www.themoviedb.org/settings/api
+  const TMDB_BASE_URL = 'https://api.themoviedb.org/3';
+  const TMDB_IMAGE_BASE = 'https://image.tmdb.org/t/p/w780';
+</script>
+
 <body>
   <!-- Header -->
   <header>
@@ -26,6 +34,7 @@
 
   <!-- Hero Section -->
   <section class="hero">
+    <div class="movie-background" id="movieBackground"></div>
     <div class="container">
       <div class="hero-content">
         <h1>Welcome to Media Access</h1>
