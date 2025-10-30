@@ -427,24 +427,24 @@ footer {
   animation: moveRight 120s infinite linear;
 }
 
-/* Individual poster positioning within rows */
+/* Individual poster positioning within rows - FIXED SPACING */
 .movie-poster:nth-child(1) { left: -200px; animation-delay: 0s; }
-.movie-poster:nth-child(2) { left: -200px; animation-delay: 4s; }
-.movie-poster:nth-child(3) { left: -200px; animation-delay: 8s; }
-.movie-poster:nth-child(4) { left: -200px; animation-delay: 12s; }
-.movie-poster:nth-child(5) { left: -200px; animation-delay: 16s; }
+.movie-poster:nth-child(2) { left: -600px; animation-delay: 0s; }
+.movie-poster:nth-child(3) { left: -1000px; animation-delay: 0s; }
+.movie-poster:nth-child(4) { left: -1400px; animation-delay: 0s; }
+.movie-poster:nth-child(5) { left: -1800px; animation-delay: 0s; }
 
-.movie-poster:nth-child(6) { right: -200px; animation-delay: 2s; }
-.movie-poster:nth-child(7) { right: -200px; animation-delay: 6s; }
-.movie-poster:nth-child(8) { right: -200px; animation-delay: 10s; }
-.movie-poster:nth-child(9) { right: -200px; animation-delay: 14s; }
-.movie-poster:nth-child(10) { right: -200px; animation-delay: 18s; }
+.movie-poster:nth-child(6) { right: -200px; animation-delay: 0s; }
+.movie-poster:nth-child(7) { right: -600px; animation-delay: 0s; }
+.movie-poster:nth-child(8) { right: -1000px; animation-delay: 0s; }
+.movie-poster:nth-child(9) { right: -1400px; animation-delay: 0s; }
+.movie-poster:nth-child(10) { right: -1800px; animation-delay: 0s; }
 
-.movie-poster:nth-child(11) { left: -200px; animation-delay: 1s; }
-.movie-poster:nth-child(12) { left: -200px; animation-delay: 5s; }
-.movie-poster:nth-child(13) { left: -200px; animation-delay: 9s; }
-.movie-poster:nth-child(14) { left: -200px; animation-delay: 13s; }
-.movie-poster:nth-child(15) { left: -200px; animation-delay: 17s; }
+.movie-poster:nth-child(11) { left: -200px; animation-delay: 0s; }
+.movie-poster:nth-child(12) { left: -600px; animation-delay: 0s; }
+.movie-poster:nth-child(13) { left: -1000px; animation-delay: 0s; }
+.movie-poster:nth-child(14) { left: -1400px; animation-delay: 0s; }
+.movie-poster:nth-child(15) { left: -1800px; animation-delay: 0s; }
 
 /* Animation keyframes */
 @keyframes moveLeft {
@@ -452,7 +452,7 @@ footer {
     transform: translateX(0) rotate(-2deg);
   }
   100% {
-    transform: translateX(calc(100vw + 400px)) rotate(2deg);
+    transform: translateX(calc(100vw + 2000px)) rotate(2deg);
   }
 }
 
@@ -461,7 +461,7 @@ footer {
     transform: translateX(0) rotate(2deg);
   }
   100% {
-    transform: translateX(calc(-100vw - 400px)) rotate(-2deg);
+    transform: translateX(calc(-100vw - 2000px)) rotate(-2deg);
   }
 }
 
