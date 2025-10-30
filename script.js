@@ -22,9 +22,9 @@ window.addEventListener('scroll', () => {
   }
 });
 
-// Movie background animation - PERFECT SPACING VERSION
-function loadMovieBackground() {
-  console.log('Loading movie background...');
+// Movie background animation - TMDB API VERSION
+async function loadMovieBackground() {
+  console.log('Loading movie background from TMDB...');
   
   const container = document.getElementById('movieBackground');
   
@@ -33,73 +33,80 @@ function loadMovieBackground() {
     return;
   }
 
-  // 40 unique movie posters
-  const posters = [
-    'https://image.tmdb.org/t/p/w780/iuFNMS8U5cb6xfzi51Dbkovj7vM.jpg',
-    'https://image.tmdb.org/t/p/w780/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg',
-    'https://image.tmdb.org/t/p/w780/q6y0Go1tsGEsmtFryDOJo3dEmqu.jpg',
-    'https://image.tmdb.org/t/p/w780/7RyHsO4yDXtBv1zUU3mTpHeQ0d5.jpg',
-    'https://image.tmdb.org/t/p/w780/vZloFAK7NmvMGKE7VkF5UHaz0I.jpg',
-    'https://image.tmdb.org/t/p/w780/6oomZYQh4JYLo2C47gV8auMHW42.jpg',
-    'https://image.tmdb.org/t/p/w780/8Vt6mWEReuy4Of61Lnj5Xj704m8.jpg',
-    'https://image.tmdb.org/t/p/w780/7g7JQyZL1gJhdf1QjJzAUXiK4pS.jpg',
-    'https://image.tmdb.org/t/p/w780/gavyCu1UaTaTNPsVaGXT6pe5u24.jpg',
-    'https://image.tmdb.org/t/p/w780/t79ozwSzTn1AU8NkFpHpRPHr3ai.jpg',
-    'https://image.tmdb.org/t/p/w780/8GJZECZfgPlLOfG2bKkfQw6Gtqi.jpg',
-    'https://image.tmdb.org/t/p/w780/8UlWHLMpgZm9bx6QYh0NFoq67TZ.jpg',
-    'https://image.tmdb.org/t/p/w780/v28T5F1IygM8vXWZIycfNEm3xcL.jpg',
-    'https://image.tmdb.org/t/p/w780/9dTO2RygcDT0cQkawABw4QkDegN.jpg',
-    'https://image.tmdb.org/t/p/w780/fiVW06jE7z9YnO4trhaMEdclSiC.jpg',
-    'https://image.tmdb.org/t/p/w780/5M7oN3sznp99hWYQ9sX0xheswHX.jpg',
-    'https://image.tmdb.org/t/p/w780/6FfCtAuVAW8XJjZ7eWeLibRLWTw.jpg',
-    'https://image.tmdb.org/t/p/w780/zCjZfevTb85scn2vqXhR3c6olf2.jpg',
-    'https://image.tmdb.org/t/p/w780/8x21f7GCA1cFCTSE6LxgRgcJNuZ.jpg',
-    'https://image.tmdb.org/t/p/w780/5mzr6JZbrqnqD8rCEvPhuCE5Fw2.jpg',
-    'https://image.tmdb.org/t/p/w780/1pdfLvkbY9ohJlCjQH2CZjjYVvJ.jpg',
-    'https://image.tmdb.org/t/p/w780/fm6KqXpk3M2HVveHwCrBSSBaO0V.jpg',
-    'https://image.tmdb.org/t/p/w780/tFRdoLhm7TrtG1a7cs1w1q1Q3WW.jpg',
-    'https://image.tmdb.org/t/p/w780/p69QzIBbN04fx2eN2N6wKXaCewT.jpg',
-    'https://image.tmdb.org/t/p/w780/8riQeSTU9V7gZKgv4yg4pV7n2h.jpg',
-    'https://image.tmdb.org/t/p/w780/5M7oN3sznp99hWYQ9sX0xheswHX.jpg',
-    'https://image.tmdb.org/t/p/w780/6FfCtAuVAW8XJjZ7eWeLibRLWTw.jpg',
-    'https://image.tmdb.org/t/p/w780/zCjZfevTb85scn2vqXhR3c6olf2.jpg',
-    'https://image.tmdb.org/t/p/w780/8x21f7GCA1cFCTSE6LxgRgcJNuZ.jpg',
-    'https://image.tmdb.org/t/p/w780/5mzr6JZbrqnqD8rCEvPhuCE5Fw2.jpg',
-    'https://image.tmdb.org/t/p/w780/1pdfLvkbY9ohJlCjQH2CZjjYVvJ.jpg',
-    'https://image.tmdb.org/t/p/w780/fm6KqXpk3M2HVveHwCrBSSBaO0V.jpg',
-    'https://image.tmdb.org/t/p/w780/tFRdoLhm7TrtG1a7cs1w1q1Q3WW.jpg',
-    'https://image.tmdb.org/t/p/w780/p69QzIBbN04fx2eN2N6wKXaCewT.jpg',
-    'https://image.tmdb.org/t/p/w780/8riQeSTU9V7gZKgv4yg4pV7n2h.jpg',
-    'https://image.tmdb.org/t/p/w780/5M7oN3sznp99hWYQ9sX0xheswHX.jpg',
-    'https://image.tmdb.org/t/p/w780/6FfCtAuVAW8XJjZ7eWeLibRLWTw.jpg',
-    'https://image.tmdb.org/t/p/w780/zCjZfevTb85scn2vqXhR3c6olf2.jpg',
-    'https://image.tmdb.org/t/p/w780/8x21f7GCA1cFCTSE6LxgRgcJNuZ.jpg',
-    'https://image.tmdb.org/t/p/w780/5mzr6JZbrqnqD8rCEvPhuCE5Fw2.jpg'
-  ];
-  
-  // Create 5 rows with 8 posters each (40 total)
-  createRow(container, posters.slice(0, 8), 'row-1', 'left');
-  createRow(container, posters.slice(8, 16), 'row-2', 'right');
-  createRow(container, posters.slice(16, 24), 'row-3', 'left');
-  createRow(container, posters.slice(24, 32), 'row-4', 'right');
-  createRow(container, posters.slice(32, 40), 'row-5', 'left');
-  
-  console.log('Movie background loaded with 40 posters');
+  try {
+    // Fetch multiple pages to get enough movies
+    const pagesToFetch = 3;
+    const fetchPromises = [];
+    
+    for (let i = 1; i <= pagesToFetch; i++) {
+      fetchPromises.push(
+        fetch(`${TMDB_BASE_URL}/movie/popular?api_key=${TMDB_API_KEY}&page=${i}`)
+          .then(response => response.json())
+          .then(data => data.results)
+      );
+    }
+    
+    const allResults = await Promise.all(fetchPromises);
+    const allMovies = allResults.flat();
+    
+    // Filter movies that have posters and get 40 unique ones
+    const moviesWithPosters = allMovies
+      .filter(movie => movie.poster_path)
+      .slice(0, 40);
+    
+    console.log(`Loaded ${moviesWithPosters.length} movies with posters from TMDB`);
+    
+    // Create 5 rows with 8 posters each
+    createMovieRow(container, moviesWithPosters.slice(0, 8), 'row-1', 'left');
+    createMovieRow(container, moviesWithPosters.slice(8, 16), 'row-2', 'right');
+    createMovieRow(container, moviesWithPosters.slice(16, 24), 'row-3', 'left');
+    createMovieRow(container, moviesWithPosters.slice(24, 32), 'row-4', 'right');
+    createMovieRow(container, moviesWithPosters.slice(32, 40), 'row-5', 'left');
+    
+  } catch (error) {
+    console.error('TMDB API failed:', error);
+    useFallbackPosters(container);
+  }
 }
 
-function createRow(container, posters, rowClass, direction) {
-  posters.forEach((posterUrl, index) => {
+function createMovieRow(container, movies, rowClass, direction) {
+  movies.forEach((movie, index) => {
     const img = new Image();
-    img.src = posterUrl;
-    img.alt = 'Movie Poster';
+    img.src = TMDB_IMAGE_BASE + movie.poster_path;
+    img.alt = movie.title + ' Poster';
     img.className = `movie-poster ${rowClass} ${direction}-move`;
     
     img.onload = function() {
-      console.log(`Loaded poster ${index + 1}`);
+      console.log(`Loaded: ${movie.title}`);
+    };
+    
+    img.onerror = function() {
+      console.error(`Failed to load: ${movie.title}`);
+      this.style.display = 'none';
     };
     
     container.appendChild(img);
   });
+}
+
+function useFallbackPosters(container) {
+  console.log('Using fallback posters');
+  // Simple fallback with a few popular movies
+  const fallbackPosters = [
+    '/iuFNMS8U5cb6xfzi51Dbkovj7vM.jpg',
+    '/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg',
+    '/q6y0Go1tsGEsmtFryDOJo3dEmqu.jpg',
+    '/7RyHsO4yDXtBv1zUU3mTpHeQ0d5.jpg',
+    '/vZloFAK7NmvMGKE7VkF5UHaz0I.jpg',
+    '/6oomZYQh4JYLo2C47gV8auMHW42.jpg'
+  ];
+  
+  // Create at least one row with fallback posters
+  createMovieRow(container, 
+    fallbackPosters.map(poster => ({ poster_path: poster, title: 'Fallback Movie' })), 
+    'row-1', 
+    'left'
+  );
 }
 
 // Call when page loads
