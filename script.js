@@ -76,13 +76,10 @@ function createSmoothMovieRows(container, movies) {
   const postersPerScreen = Math.ceil(viewportWidth / (posterWidth + gap));
   const postersPerRow = postersPerScreen * 4; // 4 screens worth for seamless looping
   
-  // Create 5 rows with alternating directions
+  // Create 5 rows
   for (let row = 0; row < 5; row++) {
     const rowDiv = document.createElement('div');
-    
-    // Set direction class based on row number (1,3,5 = left, 2,4 = right)
-    const directionClass = (row + 1) % 2 === 0 ? 'right-move' : 'left-move';
-    rowDiv.className = `movie-row row-${row + 1} ${directionClass}`;
+    rowDiv.className = `movie-row row-${row + 1}`;
     
     // Create unique sequence for this row to avoid same movies next to each other
     const rowMovies = [];
@@ -135,7 +132,7 @@ function createSmoothMovieRows(container, movies) {
     container.appendChild(rowDiv);
   }
   
-  console.log(`Created smooth rows with ${postersPerRow} posters each, alternating directions`);
+  console.log(`Created smooth rows with ${postersPerRow} posters each`);
 }
 
 function useSmoothFallback(container) {
