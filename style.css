@@ -384,7 +384,7 @@ footer {
   color: var(--primary);
 }
 
-/* Movie Background */
+/* Movie Background - UPDATED FOR TMDB API & ALTERNATING ROWS */
 .movie-background {
   position: absolute;
   top: 0;
@@ -397,53 +397,71 @@ footer {
 
 .movie-poster {
   position: absolute;
-  opacity: 0.25;
-  filter: blur(12px) brightness(0.8);
-  width: 300px;
-  height: 450px;
+  opacity: 0.2;
+  filter: blur(8px) brightness(0.7);
+  width: 200px;
+  height: 300px;
   object-fit: cover;
-  border-radius: 12px;
-  animation: floatPoster 120s infinite linear;
+  border-radius: 8px;
 }
 
-/* Different animations for variety */
-.movie-poster:nth-child(1) { 
-  top: 10%; 
-  left: -200px;
-  animation-duration: 140s;
-  animation-delay: 0s;
-}
-.movie-poster:nth-child(2) { 
-  top: 30%; 
-  left: -200px;
-  animation-duration: 130s;
-  animation-delay: 10s;
-}
-.movie-poster:nth-child(3) { 
-  top: 60%; 
-  left: -200px;
-  animation-duration: 150s;
-  animation-delay: 20s;
-}
-.movie-poster:nth-child(4) { 
-  top: 20%; 
-  left: -200px;
-  animation-duration: 125s;
-  animation-delay: 30s;
-}
-.movie-poster:nth-child(5) { 
-  top: 70%; 
-  left: -200px;
-  animation-duration: 160s;
-  animation-delay: 40s;
+/* Row positioning */
+.top-row {
+  top: 5%;
 }
 
-@keyframes floatPoster {
+.middle-row {
+  top: 40%;
+}
+
+.bottom-row {
+  top: 75%;
+}
+
+/* Animation directions */
+.left-move {
+  animation: moveLeft 120s infinite linear;
+}
+
+.right-move {
+  animation: moveRight 120s infinite linear;
+}
+
+/* Individual poster positioning within rows */
+.movie-poster:nth-child(1) { left: -200px; animation-delay: 0s; }
+.movie-poster:nth-child(2) { left: -200px; animation-delay: 4s; }
+.movie-poster:nth-child(3) { left: -200px; animation-delay: 8s; }
+.movie-poster:nth-child(4) { left: -200px; animation-delay: 12s; }
+.movie-poster:nth-child(5) { left: -200px; animation-delay: 16s; }
+
+.movie-poster:nth-child(6) { right: -200px; animation-delay: 2s; }
+.movie-poster:nth-child(7) { right: -200px; animation-delay: 6s; }
+.movie-poster:nth-child(8) { right: -200px; animation-delay: 10s; }
+.movie-poster:nth-child(9) { right: -200px; animation-delay: 14s; }
+.movie-poster:nth-child(10) { right: -200px; animation-delay: 18s; }
+
+.movie-poster:nth-child(11) { left: -200px; animation-delay: 1s; }
+.movie-poster:nth-child(12) { left: -200px; animation-delay: 5s; }
+.movie-poster:nth-child(13) { left: -200px; animation-delay: 9s; }
+.movie-poster:nth-child(14) { left: -200px; animation-delay: 13s; }
+.movie-poster:nth-child(15) { left: -200px; animation-delay: 17s; }
+
+/* Animation keyframes */
+@keyframes moveLeft {
   0% {
     transform: translateX(0) rotate(-2deg);
   }
   100% {
     transform: translateX(calc(100vw + 400px)) rotate(2deg);
+  }
+}
+
+@keyframes moveRight {
+  0% {
+    transform: translateX(0) rotate(2deg);
+  }
+  100% {
+    transform: translateX(calc(-100vw - 400px)) rotate(-2deg);
   }
 }
 
@@ -461,16 +479,8 @@ footer {
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  .nav-center {
+  .nav-links {
     display: none;
-  }
-  
-  .nav-spacer {
-    display: none;
-  }
-  
-  .logo {
-    width: auto;
   }
   
   h1 {
@@ -506,8 +516,20 @@ footer {
   }
   
   .movie-poster {
-    width: 200px;
-    height: 300px;
+    width: 150px;
+    height: 225px;
+  }
+  
+  .top-row {
+    top: 8%;
+  }
+  
+  .middle-row {
+    top: 45%;
+  }
+  
+  .bottom-row {
+    top: 82%;
   }
 }
 
@@ -529,7 +551,7 @@ footer {
   }
   
   .movie-poster {
-    width: 150px;
-    height: 225px;
+    width: 120px;
+    height: 180px;
   }
 }
