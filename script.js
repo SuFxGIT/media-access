@@ -22,45 +22,37 @@ window.addEventListener('scroll', () => {
   }
 });
 
-// Movie background animation
-async function loadMovieBackground() {
-  // Fallback posters if TMDB API fails
-  const fallbackPosters = [
-    'https://image.tmdb.org/t/p/w780/iuFNMS8U5cb6xfzi51Dbkovj7vM.jpg',
-    'https://image.tmdb.org/t/p/w780/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg',
-    'https://image.tmdb.org/t/p/w780/q6y0Go1tsGEsmtFryDOJo3dEmqu.jpg',
-    'https://image.tmdb.org/t/p/w780/7RyHsO4yDXtBv1zUU3mTpHeQ0d5.jpg',
-    'https://image.tmdb.org/t/p/w780/vZloFAK7NmvMGKE7VkF5UHaz0I.jpg'
-  ];
+// Movie background animation - SIMPLIFIED VERSION
+function loadMovieBackground() {
+  console.log('Loading movie background...');
   
   const container = document.getElementById('movieBackground');
   
-  try {
-    // TMDB API call to get popular movies
-    const response = await fetch(`${TMDB_BASE_URL}/movie/popular?api_key=${TMDB_API_KEY}`);
-    const data = await response.json();
-    const posters = data.results.slice(0, 5).map(movie => TMDB_IMAGE_BASE + movie.poster_path);
-    
-    posters.forEach((posterUrl, index) => {
-      const img = document.createElement('img');
-      img.src = posterUrl;
-      img.alt = 'Movie Poster';
-      img.className = 'movie-poster';
-      img.style.animationDelay = `${index * 3}s`;
-      container.appendChild(img);
-    });
-    
-  } catch (error) {
-    console.log('TMDB API failed, using fallback posters');
-    fallbackPosters.forEach((posterUrl, index) => {
-      const img = document.createElement('img');
-      img.src = posterUrl;
-      img.alt = 'Movie Poster';
-      img.className = 'movie-poster';
-      img.style.animationDelay = `${index * 3}s`;
-      container.appendChild(img);
-    });
+  if (!container) {
+    console.error('movieBackground container not found!');
+    return;
   }
+
+  // Use direct image URLs (no API)
+  const posters = [
+    'https://image.tmdb.org/t/p/w780/iuFNMS8U5cb6xfzi51Dbkovj7vM.jpg', // Avengers
+    'https://image.tmdb.org/t/p/w780/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg', // Batman
+    'https://image.tmdb.org/t/p/w780/q6y0Go1tsGEsmtFryDOJo3dEmqu.jpg', // Titanic
+    'https://image.tmdb.org/t/p/w780/7RyHsO4yDXtBv1zUU3mTpHeQ0d5.jpg', // Avatar
+    'https://image.tmdb.org/t/p/w780/vZloFAK7NmvMGKE7VkF5UHaz0I.jpg'   // Matrix
+  ];
+  
+  posters.forEach((posterUrl, index) => {
+    const img = document.createElement('img');
+    img.src = posterUrl;
+    img.alt = 'Movie Poster';
+    img.className = 'movie-poster';
+    img.style.animationDelay = `${index * 3}s`;
+    container.appendChild(img);
+    console.log(`Added poster ${index + 1}`);
+  });
+  
+  console.log('All posters added');
 }
 
 // Call this when page loads
