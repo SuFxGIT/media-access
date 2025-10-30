@@ -22,7 +22,7 @@ window.addEventListener('scroll', () => {
   }
 });
 
-// Movie background animation - FIXED SIZE GUARANTEED VERSION
+// Movie background animation - GUARANTEED WORKING VERSION
 async function loadMovieBackground() {
   console.log('Loading movie background from TMDB...');
   
@@ -49,76 +49,67 @@ async function loadMovieBackground() {
     const allResults = await Promise.all(fetchPromises);
     const allMovies = allResults.flat();
     
-    // Filter movies that have posters and get 40 unique ones
+    // Filter movies that have posters
     const moviesWithPosters = allMovies
       .filter(movie => movie.poster_path)
       .slice(0, 40);
     
     console.log(`Loaded ${moviesWithPosters.length} movies with posters from TMDB`);
     
-    // Create the movie grid with fixed sizes
-    createFixedSizeMovieGrid(container, moviesWithPosters);
+    // Create perfect movie rows
+    createPerfectMovieRows(container, moviesWithPosters);
     
   } catch (error) {
     console.error('TMDB API failed:', error);
-    useFallbackFixedGrid(container);
+    useFallbackPosters(container);
   }
 }
 
-function createFixedSizeMovieGrid(container, movies) {
+function createPerfectMovieRows(container, movies) {
   // Clear container
   container.innerHTML = '';
+  
+  // Calculate how many posters we need to fill any screen width
+  const viewportWidth = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+  const posterWidth = 140; // Match CSS width
+  const gap = 20; // Match CSS gap
+  const postersPerRow = Math.ceil(viewportWidth / (posterWidth + gap)) * 2; // Double for seamless loop
   
   // Create 5 rows
   for (let row = 0; row < 5; row++) {
     const rowDiv = document.createElement('div');
     rowDiv.className = `movie-row row-${row + 1}`;
     
-    // Add 8 posters to this row (original set)
-    for (let i = 0; i < 8; i++) {
-      const movieIndex = row * 8 + i;
-      if (movieIndex < movies.length) {
-        addPosterToRow(rowDiv, movies[movieIndex]);
-      }
-    }
-    
-    // DUPLICATE the same 8 posters 3 more times for continuous coverage
-    // This ensures wide screens are always filled
-    for (let duplicateSet = 0; duplicateSet < 3; duplicateSet++) {
-      for (let i = 0; i < 8; i++) {
-        const movieIndex = row * 8 + i;
-        if (movieIndex < movies.length) {
-          addPosterToRow(rowDiv, movies[movieIndex]);
-        }
-      }
+    // Add enough posters to fill the screen and loop seamlessly
+    for (let i = 0; i < postersPerRow; i++) {
+      const movieIndex = (row * 8 + i) % movies.length; // Cycle through movies
+      const movie = movies[movieIndex];
+      
+      const img = document.createElement('img');
+      img.src = TMDB_IMAGE_BASE + movie.poster_path;
+      img.alt = movie.title + ' Poster';
+      img.className = 'movie-poster';
+      
+      img.onload = function() {
+        console.log(`Loaded: ${movie.title}`);
+      };
+      
+      img.onerror = function() {
+        console.error(`Failed to load: ${movie.title}`);
+        this.style.display = 'none';
+      };
+      
+      rowDiv.appendChild(img);
     }
     
     container.appendChild(rowDiv);
   }
   
-  console.log('Created fixed-size movie grid with continuous coverage');
+  console.log(`Created ${postersPerRow} posters per row for perfect coverage`);
 }
 
-function addPosterToRow(rowDiv, movie) {
-  const img = document.createElement('img');
-  img.src = TMDB_IMAGE_BASE + movie.poster_path;
-  img.alt = movie.title + ' Poster';
-  img.className = 'movie-poster';
-  
-  img.onload = function() {
-    console.log(`Loaded: ${movie.title}`);
-  };
-  
-  img.onerror = function() {
-    console.error(`Failed to load: ${movie.title}`);
-    this.style.display = 'none';
-  };
-  
-  rowDiv.appendChild(img);
-}
-
-function useFallbackFixedGrid(container) {
-  console.log('Using fallback fixed grid');
+function useFallbackPosters(container) {
+  console.log('Using fallback posters');
   const fallbackPosters = [
     '/iuFNMS8U5cb6xfzi51Dbkovj7vM.jpg',
     '/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg',
@@ -135,5 +126,8 @@ function useFallbackFixedGrid(container) {
     title: 'Fallback Movie' 
   }));
   
-  createFixedSizeMovieGrid(container, movies);
+  createPerfectMovieRows(container, movies);
 }
+
+// Call when page loads
+document.addEventListener('DOMContentLoaded', loadMovieBackground);
