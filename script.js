@@ -22,7 +22,7 @@ window.addEventListener('scroll', () => {
   }
 });
 
-// Movie background animation - PERFECT 5-ROW VERSION
+// Movie background animation - PERFECT ENGINEERED VERSION
 async function loadMovieBackground() {
   console.log('Loading movie background from TMDB...');
   
@@ -97,27 +97,11 @@ function createPerfectDuplicates(container) {
   
   // Create 2 sets of duplicates for perfect continuous coverage
   posters.forEach((poster) => {
-    // Duplicate set 1: Positioned one screen width ahead
     const duplicate1 = poster.cloneNode(true);
-    duplicate1.className += ' duplicate-ahead';
-    
-    // Duplicate set 2: Positioned one screen width behind
     const duplicate2 = poster.cloneNode(true);
+    
+    duplicate1.className += ' duplicate-ahead';
     duplicate2.className += ' duplicate-behind';
-    
-    const computedStyle = getComputedStyle(poster);
-    const currentLeft = computedStyle.left;
-    const currentRight = computedStyle.right;
-    
-    // Use percentage-based positioning for perfect scaling
-    if (currentLeft && currentLeft !== 'auto') {
-      duplicate1.style.left = `calc(${currentLeft} - 100vw)`;
-      duplicate2.style.left = `calc(${currentLeft} + 100vw)`;
-    }
-    if (currentRight && currentRight !== 'auto') {
-      duplicate1.style.right = `calc(${currentRight} - 100vw)`;
-      duplicate2.style.right = `calc(${currentRight} + 100vw)`;
-    }
     
     container.appendChild(duplicate1);
     container.appendChild(duplicate2);
