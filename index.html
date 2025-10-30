@@ -6,11 +6,13 @@
   <title>Media Access - Plex & Jellyseerr</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="style.css">
+  <!-- PayPal SDK -->
+  <script src="https://www.paypal.com/sdk/js?client-id=Aau2Hnpz_AgIB5hL1psZUY6gjLbCs8gzgtbcRxgf95CYWVz3P-ggnkBFPtesiqEiQWmOoJM-BAEMw28o&vault=true&intent=subscription" data-sdk-integration-source="button-factory"></script>
 </head>
 
 <script>
   // TMDB API configuration
-  const TMDB_API_KEY = '763f72be39eca42c43698dcc48088276'; // Get from https://www.themoviedb.org/settings/api
+  const TMDB_API_KEY = '763f72be39eca42c43698dcc48088276';
   const TMDB_BASE_URL = 'https://api.themoviedb.org/3';
   const TMDB_IMAGE_BASE = 'https://image.tmdb.org/t/p/w780';
 </script>
@@ -177,10 +179,10 @@
       <p class="section-subtitle">Subscribe to get access to the full media library</p>
       <p>Enjoy streaming anytime, anywhere with our private Plex server.</p>
       
-      <a href="https://www.paypal.com/webapps/billing/plans/subscribe?plan_id=P-7N620619SF510053PND7T7RY"
-        target="_blank" class="paypal-btn">
-        <i class="fab fa-paypal"></i> Subscribe with PayPal
-      </a>
+      <!-- PayPal Smart Button Container -->
+      <div class="paypal-button-container">
+        <div id="paypal-button-container-P-64300123FU728791NNEB5RSI"></div>
+      </div>
       
       <div class="email-section">
         <p class="email-note">After payment, Email your Plex username and email: to "sufxlive@gmail.com"</p>
@@ -190,20 +192,30 @@
     </div>
   </section>
 
-  <!-- Footer -->
-  <footer>
-    <div class="container">
-      <div class="footer-links">
-        <a href="#about">About</a>
-        <a href="#overseerr">Jellyseerr</a>
-        <a href="#clients">Clients</a>
-        <a href="#quality">Quality Tips</a>
-        <a href="#join">Subscribe</a>
-      </div>
-      <p>© 2025 Media Access | Powered by Plex</p>
-    </div>
-  </footer>
+  <!-- Rest of your HTML remains the same -->
 
   <script src="script.js"></script>
+  
+  <!-- PayPal Button Script -->
+  <script>
+    paypal.Buttons({
+      style: {
+        shape: 'pill',
+        color: 'gold',
+        layout: 'vertical',
+        label: 'subscribe'
+      },
+      createSubscription: function(data, actions) {
+        return actions.subscription.create({
+          plan_id: 'P-64300123FU728791NNEB5RSI'
+        });
+      },
+      onApprove: function(data, actions) {
+        // Optional: Show success message or redirect
+        alert('Subscription successful! ID: ' + data.subscriptionID);
+        // You can also redirect to a thank you page
+      }
+    }).render('#paypal-button-container-P-64300123FU728791NNEB5RSI');
+  </script>
 </body>
 </html>

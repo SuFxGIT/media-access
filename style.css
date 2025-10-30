@@ -552,3 +552,15 @@ footer {
     height: 180px;
   }
 }
+
+/* PayPal Button Container */
+.paypal-button-container {
+    margin: 25px 0;
+    text-align: center;
+    min-height: 50px;
+}
+
+#paypal-button-container-P-64300123FU728791NNEB5RSI {
+    display: inline-block;
+    margin: 0 auto;
+}
