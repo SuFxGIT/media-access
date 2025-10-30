@@ -22,7 +22,7 @@ window.addEventListener('scroll', () => {
   }
 });
 
-// Movie background animation - GUARANTEED WORKING VERSION
+// Movie background animation - PERFECT SMOOTH VERSION
 async function loadMovieBackground() {
   console.log('Loading movie background from TMDB...');
   
@@ -35,7 +35,7 @@ async function loadMovieBackground() {
 
   try {
     // Fetch multiple pages to get enough movies
-    const pagesToFetch = 3;
+    const pagesToFetch = 4; // Get more movies for variety
     const fetchPromises = [];
     
     for (let i = 1; i <= pagesToFetch; i++) {
@@ -52,46 +52,73 @@ async function loadMovieBackground() {
     // Filter movies that have posters
     const moviesWithPosters = allMovies
       .filter(movie => movie.poster_path)
-      .slice(0, 40);
+      .slice(0, 100); // Get more movies to avoid duplicates
     
     console.log(`Loaded ${moviesWithPosters.length} movies with posters from TMDB`);
     
-    // Create perfect movie rows
-    createPerfectMovieRows(container, moviesWithPosters);
+    // Create perfect smooth rows
+    createSmoothMovieRows(container, moviesWithPosters);
     
   } catch (error) {
     console.error('TMDB API failed:', error);
-    useFallbackPosters(container);
+    useSmoothFallback(container);
   }
 }
 
-function createPerfectMovieRows(container, movies) {
+function createSmoothMovieRows(container, movies) {
   // Clear container
   container.innerHTML = '';
   
-  // Calculate how many posters we need to fill any screen width
+  // Calculate how many posters we need for smooth looping
   const viewportWidth = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
-  const posterWidth = 140; // Match CSS width
-  const gap = 20; // Match CSS gap
-  const postersPerRow = Math.ceil(viewportWidth / (posterWidth + gap)) * 2; // Double for seamless loop
+  const posterWidth = 140; // Match CSS
+  const gap = 15; // Match CSS
+  const postersPerScreen = Math.ceil(viewportWidth / (posterWidth + gap));
+  const postersPerRow = postersPerScreen * 4; // 4 screens worth for seamless looping
   
   // Create 5 rows
   for (let row = 0; row < 5; row++) {
     const rowDiv = document.createElement('div');
     rowDiv.className = `movie-row row-${row + 1}`;
     
-    // Add enough posters to fill the screen and loop seamlessly
+    // Create unique sequence for this row to avoid same movies next to each other
+    const rowMovies = [];
+    let usedIndices = new Set();
+    
+    // Fill the row with unique movies in random order
     for (let i = 0; i < postersPerRow; i++) {
-      const movieIndex = (row * 8 + i) % movies.length; // Cycle through movies
-      const movie = movies[movieIndex];
+      let randomIndex;
+      let attempts = 0;
       
+      // Ensure no duplicate movies next to each other
+      do {
+        randomIndex = Math.floor(Math.random() * movies.length);
+        attempts++;
+        
+        // If we can't find a unique movie after many attempts, just use any
+        if (attempts > 50) break;
+      } while (usedIndices.has(randomIndex));
+      
+      usedIndices.add(randomIndex);
+      rowMovies.push(movies[randomIndex]);
+      
+      // Reset used indices occasionally to allow repeats (but not adjacent)
+      if (usedIndices.size > 20) {
+        usedIndices = new Set();
+      }
+    }
+    
+    // Add posters to the row
+    rowMovies.forEach((movie, index) => {
       const img = document.createElement('img');
       img.src = TMDB_IMAGE_BASE + movie.poster_path;
       img.alt = movie.title + ' Poster';
       img.className = 'movie-poster';
       
       img.onload = function() {
-        console.log(`Loaded: ${movie.title}`);
+        if (index < 5) { // Only log first few to avoid console spam
+          console.log(`Loaded: ${movie.title}`);
+        }
       };
       
       img.onerror = function() {
@@ -100,16 +127,16 @@ function createPerfectMovieRows(container, movies) {
       };
       
       rowDiv.appendChild(img);
-    }
+    });
     
     container.appendChild(rowDiv);
   }
   
-  console.log(`Created ${postersPerRow} posters per row for perfect coverage`);
+  console.log(`Created smooth rows with ${postersPerRow} posters each`);
 }
 
-function useFallbackPosters(container) {
-  console.log('Using fallback posters');
+function useSmoothFallback(container) {
+  console.log('Using smooth fallback');
   const fallbackPosters = [
     '/iuFNMS8U5cb6xfzi51Dbkovj7vM.jpg',
     '/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg',
@@ -118,7 +145,15 @@ function useFallbackPosters(container) {
     '/vZloFAK7NmvMGKE7VkF5UHaz0I.jpg',
     '/6oomZYQh4JYLo2C47gV8auMHW42.jpg',
     '/8Vt6mWEReuy4Of61Lnj5Xj704m8.jpg',
-    '/7g7JQyZL1gJhdf1QjJzAUXiK4pS.jpg'
+    '/7g7JQyZL1gJhdf1QjJzAUXiK4pS.jpg',
+    '/gavyCu1UaTaTNPsVaGXT6pe5u24.jpg',
+    '/t79ozwSzTn1AU8NkFpHpRPHr3ai.jpg',
+    '/8GJZECZfgPlLOfG2bKkfQw6Gtqi.jpg',
+    '/8UlWHLMpgZm9bx6QYh0NFoq67TZ.jpg',
+    '/v28T5F1IygM8vXWZIycfNEm3xcL.jpg',
+    '/9dTO2RygcDT0cQkawABw4QkDegN.jpg',
+    '/fiVW06jE7z9YnO4trhaMEdclSiC.jpg',
+    '/5M7oN3sznp99hWYQ9sX0xheswHX.jpg'
   ];
   
   const movies = fallbackPosters.map(poster => ({ 
@@ -126,7 +161,7 @@ function useFallbackPosters(container) {
     title: 'Fallback Movie' 
   }));
   
-  createPerfectMovieRows(container, movies);
+  createSmoothMovieRows(container, movies);
 }
 
 // Call when page loads

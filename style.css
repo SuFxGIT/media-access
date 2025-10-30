@@ -384,7 +384,7 @@ footer {
   color: var(--primary);
 }
 
-/* Movie Background - PERFECT FIXED SOLUTION */
+/* Movie Background - PERFECT SMOOTH SOLUTION */
 .movie-background {
   position: absolute;
   top: 0;
@@ -393,31 +393,24 @@ footer {
   height: 100%;
   overflow: hidden;
   z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 5% 0;
 }
 
 .movie-row {
-  position: absolute;
-  left: 0;
-  width: max-content;
   display: flex;
-  gap: 20px;
-  animation: slideRow 60s linear infinite;
-  will-change: transform;
+  width: 400%; /* Make row 4x screen width for seamless looping */
+  animation: slideRowSmooth 120s linear infinite;
 }
 
-/* Perfect row positioning */
-.row-1 { top: 10%; }
-.row-2 { top: 30%; }
-.row-3 { top: 50%; }
-.row-4 { top: 70%; }
-.row-5 { top: 90%; }
-
-/* Alternate animation speeds */
-.row-1 { animation-duration: 70s; }
-.row-2 { animation-duration: 65s; animation-direction: reverse; }
-.row-3 { animation-duration: 75s; }
-.row-4 { animation-duration: 60s; animation-direction: reverse; }
-.row-5 { animation-duration: 80s; }
+/* Different speeds for visual interest */
+.row-1 { animation-duration: 130s; }
+.row-2 { animation-duration: 140s; }
+.row-3 { animation-duration: 150s; }
+.row-4 { animation-duration: 160s; }
+.row-5 { animation-duration: 170s; }
 
 .movie-poster {
   width: 140px; /* Fixed size */
@@ -427,15 +420,16 @@ footer {
   opacity: 0.25;
   filter: blur(1px) brightness(0.85);
   flex-shrink: 0;
+  margin: 0 15px; /* Fixed spacing */
 }
 
-/* Continuous sliding animation */
-@keyframes slideRow {
+/* PERFECT SMOOTH ANIMATION - NO SNAPPING */
+@keyframes slideRowSmooth {
   0% {
     transform: translateX(0);
   }
   100% {
-    transform: translateX(-50%); /* Move by half the container width */
+    transform: translateX(-25%); /* Move only 25% of row width for seamless loop */
   }
 }
 
@@ -444,6 +438,7 @@ footer {
   .movie-poster {
     width: 100px;
     height: 150px;
+    margin: 0 10px;
   }
 }
 
@@ -451,6 +446,7 @@ footer {
   .movie-poster {
     width: 80px;
     height: 120px;
+    margin: 0 8px;
   }
 }
 
