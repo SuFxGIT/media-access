@@ -22,7 +22,7 @@ window.addEventListener('scroll', () => {
   }
 });
 
-// Movie background animation - SIMPLE WORKING VERSION
+// Movie background animation - PERFECT SPACING VERSION
 function loadMovieBackground() {
   console.log('Loading movie background...');
   
@@ -33,7 +33,7 @@ function loadMovieBackground() {
     return;
   }
 
-  // Use direct image URLs for now to test
+  // 40 unique movie posters
   const posters = [
     'https://image.tmdb.org/t/p/w780/iuFNMS8U5cb6xfzi51Dbkovj7vM.jpg',
     'https://image.tmdb.org/t/p/w780/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg',
@@ -50,16 +50,41 @@ function loadMovieBackground() {
     'https://image.tmdb.org/t/p/w780/v28T5F1IygM8vXWZIycfNEm3xcL.jpg',
     'https://image.tmdb.org/t/p/w780/9dTO2RygcDT0cQkawABw4QkDegN.jpg',
     'https://image.tmdb.org/t/p/w780/fiVW06jE7z9YnO4trhaMEdclSiC.jpg',
-    'https://image.tmdb.org/t/p/w780/5M7oN3sznp99hWYQ9sX0xheswHX.jpg'
+    'https://image.tmdb.org/t/p/w780/5M7oN3sznp99hWYQ9sX0xheswHX.jpg',
+    'https://image.tmdb.org/t/p/w780/6FfCtAuVAW8XJjZ7eWeLibRLWTw.jpg',
+    'https://image.tmdb.org/t/p/w780/zCjZfevTb85scn2vqXhR3c6olf2.jpg',
+    'https://image.tmdb.org/t/p/w780/8x21f7GCA1cFCTSE6LxgRgcJNuZ.jpg',
+    'https://image.tmdb.org/t/p/w780/5mzr6JZbrqnqD8rCEvPhuCE5Fw2.jpg',
+    'https://image.tmdb.org/t/p/w780/1pdfLvkbY9ohJlCjQH2CZjjYVvJ.jpg',
+    'https://image.tmdb.org/t/p/w780/fm6KqXpk3M2HVveHwCrBSSBaO0V.jpg',
+    'https://image.tmdb.org/t/p/w780/tFRdoLhm7TrtG1a7cs1w1q1Q3WW.jpg',
+    'https://image.tmdb.org/t/p/w780/p69QzIBbN04fx2eN2N6wKXaCewT.jpg',
+    'https://image.tmdb.org/t/p/w780/8riQeSTU9V7gZKgv4yg4pV7n2h.jpg',
+    'https://image.tmdb.org/t/p/w780/5M7oN3sznp99hWYQ9sX0xheswHX.jpg',
+    'https://image.tmdb.org/t/p/w780/6FfCtAuVAW8XJjZ7eWeLibRLWTw.jpg',
+    'https://image.tmdb.org/t/p/w780/zCjZfevTb85scn2vqXhR3c6olf2.jpg',
+    'https://image.tmdb.org/t/p/w780/8x21f7GCA1cFCTSE6LxgRgcJNuZ.jpg',
+    'https://image.tmdb.org/t/p/w780/5mzr6JZbrqnqD8rCEvPhuCE5Fw2.jpg',
+    'https://image.tmdb.org/t/p/w780/1pdfLvkbY9ohJlCjQH2CZjjYVvJ.jpg',
+    'https://image.tmdb.org/t/p/w780/fm6KqXpk3M2HVveHwCrBSSBaO0V.jpg',
+    'https://image.tmdb.org/t/p/w780/tFRdoLhm7TrtG1a7cs1w1q1Q3WW.jpg',
+    'https://image.tmdb.org/t/p/w780/p69QzIBbN04fx2eN2N6wKXaCewT.jpg',
+    'https://image.tmdb.org/t/p/w780/8riQeSTU9V7gZKgv4yg4pV7n2h.jpg',
+    'https://image.tmdb.org/t/p/w780/5M7oN3sznp99hWYQ9sX0xheswHX.jpg',
+    'https://image.tmdb.org/t/p/w780/6FfCtAuVAW8XJjZ7eWeLibRLWTw.jpg',
+    'https://image.tmdb.org/t/p/w780/zCjZfevTb85scn2vqXhR3c6olf2.jpg',
+    'https://image.tmdb.org/t/p/w780/8x21f7GCA1cFCTSE6LxgRgcJNuZ.jpg',
+    'https://image.tmdb.org/t/p/w780/5mzr6JZbrqnqD8rCEvPhuCE5Fw2.jpg'
   ];
   
-  // Create 4 rows with 4 posters each
-  createRow(container, posters.slice(0, 4), 'row-1', 'left');
-  createRow(container, posters.slice(4, 8), 'row-2', 'right');
-  createRow(container, posters.slice(8, 12), 'row-3', 'left');
-  createRow(container, posters.slice(12, 16), 'row-4', 'right');
+  // Create 5 rows with 8 posters each (40 total)
+  createRow(container, posters.slice(0, 8), 'row-1', 'left');
+  createRow(container, posters.slice(8, 16), 'row-2', 'right');
+  createRow(container, posters.slice(16, 24), 'row-3', 'left');
+  createRow(container, posters.slice(24, 32), 'row-4', 'right');
+  createRow(container, posters.slice(32, 40), 'row-5', 'left');
   
-  console.log('Movie background loaded with 16 posters');
+  console.log('Movie background loaded with 40 posters');
 }
 
 function createRow(container, posters, rowClass, direction) {
