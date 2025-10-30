@@ -1,8 +1,3 @@
-// Mobile menu toggle
-document.querySelector('.mobile-menu').addEventListener('click', () => {
-  document.querySelector('.nav-links').classList.toggle('active');
-});
-
 // Smooth scrolling for navigation links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', function (e) {
@@ -13,9 +8,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         behavior: 'smooth',
         block: 'start'
       });
-      
-      // Close mobile menu if open
-      document.querySelector('.nav-links').classList.remove('active');
     }
   });
 });
@@ -23,9 +15,9 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 // Header background on scroll
 window.addEventListener('scroll', () => {
   const header = document.querySelector('header');
-  if (window.scrollY > 100) {
-    header.style.background = 'rgba(10, 10, 10, 0.95)';
+  if (window.scrollY > 50) {
+    header.style.background = 'rgba(10, 10, 10, 0.98)';
   } else {
-    header.style.background = 'rgba(10, 10, 10, 0.9)';
+    header.style.background = 'rgba(10, 10, 10, 0.95)';
   }
 });
