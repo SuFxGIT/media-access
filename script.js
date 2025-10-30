@@ -22,7 +22,7 @@ window.addEventListener('scroll', () => {
   }
 });
 
-// Movie background animation - PERFECT LOOPING VERSION
+// Movie background animation - CONTINUOUS COVERAGE VERSION
 async function loadMovieBackground() {
   console.log('Loading movie background from TMDB...');
   
@@ -35,7 +35,7 @@ async function loadMovieBackground() {
 
   try {
     // Fetch multiple pages to get enough movies
-    const pagesToFetch = 4; // Get more pages for variety
+    const pagesToFetch = 4;
     const fetchPromises = [];
     
     for (let i = 1; i <= pagesToFetch; i++) {
@@ -49,22 +49,23 @@ async function loadMovieBackground() {
     const allResults = await Promise.all(fetchPromises);
     const allMovies = allResults.flat();
     
-    // Filter movies that have posters and get 50 unique ones
+    // Filter movies that have posters and get 60 unique ones
     const moviesWithPosters = allMovies
       .filter(movie => movie.poster_path)
-      .slice(0, 50);
+      .slice(0, 60);
     
     console.log(`Loaded ${moviesWithPosters.length} movies with posters from TMDB`);
     
-    // Create 5 rows with 10 posters each for denser coverage
+    // Create 6 rows with 10 posters each for maximum coverage
     createMovieRow(container, moviesWithPosters.slice(0, 10), 'row-1', 'left');
     createMovieRow(container, moviesWithPosters.slice(10, 20), 'row-2', 'right');
     createMovieRow(container, moviesWithPosters.slice(20, 30), 'row-3', 'left');
     createMovieRow(container, moviesWithPosters.slice(30, 40), 'row-4', 'right');
     createMovieRow(container, moviesWithPosters.slice(40, 50), 'row-5', 'left');
+    createMovieRow(container, moviesWithPosters.slice(50, 60), 'row-6', 'right');
     
-    // Create duplicates for seamless looping
-    createDuplicatePosters(container);
+    // Create multiple duplicates for instant full coverage
+    createContinuousCoverage(container);
     
   } catch (error) {
     console.error('TMDB API failed:', error);
@@ -92,36 +93,44 @@ function createMovieRow(container, movies, rowClass, direction) {
   });
 }
 
-function createDuplicatePosters(container) {
+function createContinuousCoverage(container) {
   // Get all existing posters
   const posters = container.querySelectorAll('.movie-poster');
   
-  // Create duplicates for seamless looping
+  // Create 3 sets of duplicates for instant full coverage
   posters.forEach((poster, index) => {
-    const duplicate = poster.cloneNode(true);
-    duplicate.className += ' duplicate';
+    // Duplicate set 1: One screen width ahead
+    const duplicate1 = poster.cloneNode(true);
+    duplicate1.className += ' duplicate-set-1';
     
-    // Position duplicates exactly one screen width ahead
-    const currentLeft = poster.style.left;
-    const currentRight = poster.style.right;
+    // Duplicate set 2: One screen width behind  
+    const duplicate2 = poster.cloneNode(true);
+    duplicate2.className += ' duplicate-set-2';
     
-    if (currentLeft) {
-      duplicate.style.left = `calc(${currentLeft} - 100vw)`;
+    const currentLeft = getComputedStyle(poster).left;
+    const currentRight = getComputedStyle(poster).right;
+    
+    if (currentLeft && currentLeft !== 'auto') {
+      duplicate1.style.left = `calc(${currentLeft} - 100vw)`;
+      duplicate2.style.left = `calc(${currentLeft} + 100vw)`;
     }
-    if (currentRight) {
-      duplicate.style.right = `calc(${currentRight} - 100vw)`;
+    if (currentRight && currentRight !== 'auto') {
+      duplicate1.style.right = `calc(${currentRight} - 100vw)`;
+      duplicate2.style.right = `calc(${currentRight} + 100vw)`;
     }
     
-    duplicate.style.display = 'block';
-    container.appendChild(duplicate);
+    duplicate1.style.display = 'block';
+    duplicate2.style.display = 'block';
+    
+    container.appendChild(duplicate1);
+    container.appendChild(duplicate2);
   });
   
-  console.log('Created duplicate posters for seamless looping');
+  console.log('Created continuous coverage with duplicate posters');
 }
 
 function useFallbackPosters(container) {
   console.log('Using fallback posters');
-  // Simple fallback with a few popular movies
   const fallbackPosters = [
     '/iuFNMS8U5cb6xfzi51Dbkovj7vM.jpg',
     '/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg',
@@ -135,20 +144,18 @@ function useFallbackPosters(container) {
     '/t79ozwSzTn1AU8NkFpHpRPHr3ai.jpg'
   ];
   
-  // Create rows with fallback posters
-  createMovieRow(container, 
-    fallbackPosters.slice(0, 10).map(poster => ({ poster_path: poster, title: 'Fallback Movie' })), 
-    'row-1', 
-    'left'
-  );
-  createMovieRow(container, 
-    fallbackPosters.slice(0, 10).map(poster => ({ poster_path: poster, title: 'Fallback Movie' })), 
-    'row-2', 
-    'right'
-  );
+  // Create multiple rows with fallback posters
+  for (let i = 1; i <= 6; i++) {
+    const direction = i % 2 === 0 ? 'right' : 'left';
+    createMovieRow(container, 
+      fallbackPosters.map(poster => ({ poster_path: poster, title: 'Fallback Movie' })), 
+      `row-${i}`, 
+      direction
+    );
+  }
   
-  // Create duplicates for fallback too
-  createDuplicatePosters(container);
+  // Create continuous coverage for fallback too
+  createContinuousCoverage(container);
 }
 
 // Call when page loads

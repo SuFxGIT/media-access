@@ -384,7 +384,7 @@ footer {
   color: var(--primary);
 }
 
-/* Movie Background - PERFECT PERCENTAGE SPACING WITH LOOP */
+/* Movie Background - CONTINUOUS COVERAGE */
 .movie-background {
   position: absolute;
   top: 0;
@@ -399,8 +399,8 @@ footer {
   position: absolute;
   opacity: 0.25;
   filter: blur(4px) brightness(0.8);
-  width: 10vw; /* Smaller for closer spacing */
-  height: 15vw; /* Maintain 2:3 aspect ratio */
+  width: 10vw;
+  height: 15vw;
   min-width: 120px;
   min-height: 180px;
   max-width: 160px;
@@ -409,23 +409,24 @@ footer {
   border-radius: 4px;
 }
 
-/* Row positioning - Perfect percentage spacing */
-.row-1 { top: 8%; }
-.row-2 { top: 26%; }
-.row-3 { top: 44%; }
-.row-4 { top: 62%; }
-.row-5 { top: 80%; }
+/* Row positioning - More rows for better coverage */
+.row-1 { top: 5%; }
+.row-2 { top: 20%; }
+.row-3 { top: 35%; }
+.row-4 { top: 50%; }
+.row-5 { top: 65%; }
+.row-6 { top: 80%; }
 
-/* Animation directions */
+/* Animation directions - Slower for continuous feel */
 .left-move {
-  animation: moveLeft 80s infinite linear;
+  animation: moveLeftContinuous 120s infinite linear;
 }
 
 .right-move {
-  animation: moveRight 80s infinite linear;
+  animation: moveRightContinuous 120s infinite linear;
 }
 
-/* Perfect percentage-based spacing - 10 posters per row for denser coverage */
+/* Initial positioning - Cover entire screen width */
 .movie-poster:nth-child(1) { left: -10vw; }
 .movie-poster:nth-child(2) { left: -20vw; }
 .movie-poster:nth-child(3) { left: -30vw; }
@@ -481,33 +482,43 @@ footer {
 .movie-poster:nth-child(49) { left: -90vw; }
 .movie-poster:nth-child(50) { left: -100vw; }
 
-/* Animation keyframes - PERFECT CONTINUOUS LOOP */
-@keyframes moveLeft {
+.movie-poster:nth-child(51) { right: -10vw; }
+.movie-poster:nth-child(52) { right: -20vw; }
+.movie-poster:nth-child(53) { right: -30vw; }
+.movie-poster:nth-child(54) { right: -40vw; }
+.movie-poster:nth-child(55) { right: -50vw; }
+.movie-poster:nth-child(56) { right: -60vw; }
+.movie-poster:nth-child(57) { right: -70vw; }
+.movie-poster:nth-child(58) { right: -80vw; }
+.movie-poster:nth-child(59) { right: -90vw; }
+.movie-poster:nth-child(60) { right: -100vw; }
+
+/* Continuous animation keyframes - Seamless looping */
+@keyframes moveLeftContinuous {
   0% {
     transform: translateX(0) rotate(-1deg);
   }
   100% {
-    transform: translateX(calc(100vw + 100vw)) rotate(1deg);
+    transform: translateX(100vw) rotate(1deg);
   }
 }
 
-@keyframes moveRight {
+@keyframes moveRightContinuous {
   0% {
     transform: translateX(0) rotate(1deg);
   }
   100% {
-    transform: translateX(calc(-100vw - 100vw)) rotate(-1deg);
+    transform: translateX(-100vw) rotate(-1deg);
   }
 }
 
-/* Duplicate posters for seamless looping */
-.movie-poster.duplicate {
-  animation-delay: -40s !important; /* Half the animation duration */
+/* Duplicate sets for instant coverage */
+.movie-poster.duplicate-set-1 {
+  transform: translateX(-100vw);
 }
 
-/* Create duplicate posters for continuous flow */
-.movie-poster:nth-child(n+51):nth-child(-n+100) {
-  display: none; /* Hidden by default, will be shown via JS */
+.movie-poster.duplicate-set-2 {
+  transform: translateX(100vw);
 }
 
 .hero {
