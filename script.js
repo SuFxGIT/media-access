@@ -22,9 +22,9 @@ window.addEventListener('scroll', () => {
   }
 });
 
-// Movie background animation with TMDB API - FIXED VERSION
-async function loadMovieBackground() {
-  console.log('Loading movie background from TMDB...');
+// Movie background animation - SIMPLE WORKING VERSION
+function loadMovieBackground() {
+  console.log('Loading movie background...');
   
   const container = document.getElementById('movieBackground');
   
@@ -33,53 +33,49 @@ async function loadMovieBackground() {
     return;
   }
 
-  try {
-    // Get multiple pages to get enough movies
-    const [page1, page2, page3] = await Promise.all([
-      fetch(`${TMDB_BASE_URL}/movie/popular?api_key=${TMDB_API_KEY}&page=1`),
-      fetch(`${TMDB_BASE_URL}/movie/popular?api_key=${TMDB_API_KEY}&page=2`),
-      fetch(`${TMDB_BASE_URL}/movie/popular?api_key=${TMDB_API_KEY}&page=3`)
-    ]);
-    
-    const data1 = await page1.json();
-    const data2 = await page2.json();
-    const data3 = await page3.json();
-    
-    // Combine movies from all pages and filter out ones without posters
-    const allMovies = [...data1.results, ...data2.results, ...data3.results];
-    const moviesWithPosters = allMovies.filter(movie => movie.poster_path).slice(0, 32);
-    
-    console.log(`Loaded ${moviesWithPosters.length} movies with posters`);
-    
-    // Create 4 rows with 8 posters each
-    createMovieRow(container, moviesWithPosters.slice(0, 8), 'row-1', 'left');
-    createMovieRow(container, moviesWithPosters.slice(8, 16), 'row-2', 'right');
-    createMovieRow(container, moviesWithPosters.slice(16, 24), 'row-3', 'left');
-    createMovieRow(container, moviesWithPosters.slice(24, 32), 'row-4', 'right');
-    
-  } catch (error) {
-    console.error('TMDB API failed:', error);
-    useFallbackPosters(container);
-  }
+  // Use direct image URLs for now to test
+  const posters = [
+    'https://image.tmdb.org/t/p/w780/iuFNMS8U5cb6xfzi51Dbkovj7vM.jpg',
+    'https://image.tmdb.org/t/p/w780/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg',
+    'https://image.tmdb.org/t/p/w780/q6y0Go1tsGEsmtFryDOJo3dEmqu.jpg',
+    'https://image.tmdb.org/t/p/w780/7RyHsO4yDXtBv1zUU3mTpHeQ0d5.jpg',
+    'https://image.tmdb.org/t/p/w780/vZloFAK7NmvMGKE7VkF5UHaz0I.jpg',
+    'https://image.tmdb.org/t/p/w780/6oomZYQh4JYLo2C47gV8auMHW42.jpg',
+    'https://image.tmdb.org/t/p/w780/8Vt6mWEReuy4Of61Lnj5Xj704m8.jpg',
+    'https://image.tmdb.org/t/p/w780/7g7JQyZL1gJhdf1QjJzAUXiK4pS.jpg',
+    'https://image.tmdb.org/t/p/w780/gavyCu1UaTaTNPsVaGXT6pe5u24.jpg',
+    'https://image.tmdb.org/t/p/w780/t79ozwSzTn1AU8NkFpHpRPHr3ai.jpg',
+    'https://image.tmdb.org/t/p/w780/8GJZECZfgPlLOfG2bKkfQw6Gtqi.jpg',
+    'https://image.tmdb.org/t/p/w780/8UlWHLMpgZm9bx6QYh0NFoq67TZ.jpg',
+    'https://image.tmdb.org/t/p/w780/v28T5F1IygM8vXWZIycfNEm3xcL.jpg',
+    'https://image.tmdb.org/t/p/w780/9dTO2RygcDT0cQkawABw4QkDegN.jpg',
+    'https://image.tmdb.org/t/p/w780/fiVW06jE7z9YnO4trhaMEdclSiC.jpg',
+    'https://image.tmdb.org/t/p/w780/5M7oN3sznp99hWYQ9sX0xheswHX.jpg'
+  ];
+  
+  // Create 4 rows with 4 posters each
+  createRow(container, posters.slice(0, 4), 'row-1', 'left');
+  createRow(container, posters.slice(4, 8), 'row-2', 'right');
+  createRow(container, posters.slice(8, 12), 'row-3', 'left');
+  createRow(container, posters.slice(12, 16), 'row-4', 'right');
+  
+  console.log('Movie background loaded with 16 posters');
 }
 
-function createMovieRow(container, movies, rowPosition, direction) {
-  movies.forEach((movie, index) => {
+function createRow(container, posters, rowClass, direction) {
+  posters.forEach((posterUrl, index) => {
     const img = new Image();
-    img.src = TMDB_IMAGE_BASE + movie.poster_path;
-    img.alt = movie.title + ' Poster';
-    img.className = `movie-poster ${rowPosition} ${direction}-move`;
+    img.src = posterUrl;
+    img.alt = 'Movie Poster';
+    img.className = `movie-poster ${rowClass} ${direction}-move`;
     
     img.onload = function() {
-      console.log(`Loaded: ${movie.title}`);
+      console.log(`Loaded poster ${index + 1}`);
     };
     
     container.appendChild(img);
   });
 }
 
-function useFallbackPosters(container) {
-  console.log('Using fallback posters');
-  // Fallback implementation here...
-}
-
+// Call when page loads
+document.addEventListener('DOMContentLoaded', loadMovieBackground);

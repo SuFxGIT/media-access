@@ -531,17 +531,10 @@ footer {
     height: 225px;
   }
   
-  .top-row {
-    top: 8%;
-  }
-  
-  .middle-row {
-    top: 45%;
-  }
-  
-  .bottom-row {
-    top: 82%;
-  }
+  .row-1 { top: 10%; }
+  .row-2 { top: 40%; }
+  .row-3 { top: 70%; }
+  .row-4 { top: 95%; }
 }
 
 @media (max-width: 480px) {
