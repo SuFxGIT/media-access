@@ -6,10 +6,6 @@
   <title>Media Access - Plex & Jellyseerr</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="style.css">
-  <!-- PayPal SDK MUST be in head -->
-  <script 
-    src="https://www.paypal.com/sdk/js?client-id=BAAh0xXaZaHOErbiDbwg1A3fsOh9mkf8Vgy90ZMtF6HB06RdqB_1uyeap1uQ6FE6GEG79UGCIwjcCkG0ow&components=hosted-buttons&disable-funding=venmo&currency=USD">
-  </script>
 </head>
 
 <script>
@@ -21,20 +17,20 @@
 
 <body>
   <!-- Header -->
-  <header>
-    <div class="container">
-      <nav>
-        <div class="logo">SuFx's Plex</div>
-        <div class="nav-links">
-          <a href="#about">About Plex</a>
-          <a href="#overseerr">Jellyseerr</a>
-          <a href="#clients">Plex Clients</a>
-          <a href="#quality">Quality Tips</a>
-          <a href="#join" class="subscribe-nav">Subscribe</a>
-        </div>
-      </nav>
-    </div>
-  </header>
+<header>
+  <div class="container">
+    <nav>
+      <div class="logo">SuFx's Plex</div>
+      <div class="nav-links">
+        <a href="#about">About Plex</a>
+        <a href="#overseerr">Jellyseerr</a>
+        <a href="#clients">Plex Clients</a>
+        <a href="#quality">Quality Tips</a>
+        <a href="#join" class="subscribe-nav">Subscribe</a>
+      </div>
+    </nav>
+  </div>
+</header>
 
   <!-- Hero Section -->
   <section class="hero">
@@ -181,10 +177,10 @@
       <p class="section-subtitle">Subscribe to get access to the full media library</p>
       <p>Enjoy streaming anytime, anywhere with our private Plex server.</p>
       
-      <!-- PayPal Smart Button Container -->
-      <div class="paypal-button-container">
-        <div id="paypal-container-FCP2DKF5ZCFCN"></div>
-      </div>
+      <a href="https://www.paypal.com/webapps/billing/plans/subscribe?plan_id=P-7N620619SF510053PND7T7RY"
+        target="_blank" class="paypal-btn">
+        <i class="fab fa-paypal"></i> Subscribe with PayPal
+      </a>
       
       <div class="email-section">
         <p class="email-note">After payment, Email your Plex username and email: to "sufxlive@gmail.com"</p>
@@ -209,13 +205,5 @@
   </footer>
 
   <script src="script.js"></script>
-  
-  <!-- PayPal Button Render Script - MUST be after the container element -->
-  <script>
-    // Render the PayPal button - this must come AFTER the container exists
-    paypal.HostedButtons({
-      hostedButtonId: "FCP2DKF5ZCFCN",
-    }).render("#paypal-container-FCP2DKF5ZCFCN")
-  </script>
 </body>
 </html>
