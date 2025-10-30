@@ -22,7 +22,7 @@ window.addEventListener('scroll', () => {
   }
 });
 
-// Movie background animation with TMDB API - PROFESSIONAL VERSION
+// Movie background animation with TMDB API - FIXED VERSION
 async function loadMovieBackground() {
   console.log('Loading movie background from TMDB...');
   
@@ -34,35 +34,37 @@ async function loadMovieBackground() {
   }
 
   try {
-    // TMDB API call to get popular movies - get 60 movies
-    const response = await fetch(`${TMDB_BASE_URL}/movie/popular?api_key=${TMDB_API_KEY}`);
-    const data = await response.json();
+    // Get multiple pages to get enough movies
+    const [page1, page2, page3] = await Promise.all([
+      fetch(`${TMDB_BASE_URL}/movie/popular?api_key=${TMDB_API_KEY}&page=1`),
+      fetch(`${TMDB_BASE_URL}/movie/popular?api_key=${TMDB_API_KEY}&page=2`),
+      fetch(`${TMDB_BASE_URL}/movie/popular?api_key=${TMDB_API_KEY}&page=3`)
+    ]);
     
-    // Get 60 movies for 6 rows of 10 posters each
-    const movies = data.results.slice(0, 60);
+    const data1 = await page1.json();
+    const data2 = await page2.json();
+    const data3 = await page3.json();
     
-    // Create 6 dense rows with alternating directions
-    createMovieRow(container, movies.slice(0, 10), 'row-1', 'left');
-    createMovieRow(container, movies.slice(10, 20), 'row-2', 'right');
-    createMovieRow(container, movies.slice(20, 30), 'row-3', 'left');
-    createMovieRow(container, movies.slice(30, 40), 'row-4', 'right');
-    createMovieRow(container, movies.slice(40, 50), 'row-5', 'left');
-    createMovieRow(container, movies.slice(50, 60), 'row-6', 'right');
+    // Combine movies from all pages and filter out ones without posters
+    const allMovies = [...data1.results, ...data2.results, ...data3.results];
+    const moviesWithPosters = allMovies.filter(movie => movie.poster_path).slice(0, 32);
     
-    console.log('Movie background loaded successfully with 60 TMDB movies');
+    console.log(`Loaded ${moviesWithPosters.length} movies with posters`);
+    
+    // Create 4 rows with 8 posters each
+    createMovieRow(container, moviesWithPosters.slice(0, 8), 'row-1', 'left');
+    createMovieRow(container, moviesWithPosters.slice(8, 16), 'row-2', 'right');
+    createMovieRow(container, moviesWithPosters.slice(16, 24), 'row-3', 'left');
+    createMovieRow(container, moviesWithPosters.slice(24, 32), 'row-4', 'right');
     
   } catch (error) {
     console.error('TMDB API failed:', error);
-    // Fallback to fixed images
     useFallbackPosters(container);
   }
 }
 
 function createMovieRow(container, movies, rowPosition, direction) {
   movies.forEach((movie, index) => {
-    // Skip if no poster path
-    if (!movie.poster_path) return;
-    
     const img = new Image();
     img.src = TMDB_IMAGE_BASE + movie.poster_path;
     img.alt = movie.title + ' Poster';
@@ -72,16 +74,12 @@ function createMovieRow(container, movies, rowPosition, direction) {
       console.log(`Loaded: ${movie.title}`);
     };
     
-    img.onerror = function() {
-      console.error(`Failed to load: ${movie.title}`);
-      this.style.display = 'none';
-    };
-    
     container.appendChild(img);
   });
 }
 
-// Call when page loads
-document.addEventListener('DOMContentLoaded', function() {
-  loadMovieBackground();
-});
+function useFallbackPosters(container) {
+  console.log('Using fallback posters');
+  // Fallback implementation here...
+}
+
