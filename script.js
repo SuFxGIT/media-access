@@ -22,7 +22,7 @@ window.addEventListener('scroll', () => {
   }
 });
 
-// Movie background animation - TMDB API VERSION
+// Movie background animation - PERFECT LOOPING VERSION
 async function loadMovieBackground() {
   console.log('Loading movie background from TMDB...');
   
@@ -35,7 +35,7 @@ async function loadMovieBackground() {
 
   try {
     // Fetch multiple pages to get enough movies
-    const pagesToFetch = 3;
+    const pagesToFetch = 4; // Get more pages for variety
     const fetchPromises = [];
     
     for (let i = 1; i <= pagesToFetch; i++) {
@@ -49,19 +49,22 @@ async function loadMovieBackground() {
     const allResults = await Promise.all(fetchPromises);
     const allMovies = allResults.flat();
     
-    // Filter movies that have posters and get 40 unique ones
+    // Filter movies that have posters and get 50 unique ones
     const moviesWithPosters = allMovies
       .filter(movie => movie.poster_path)
-      .slice(0, 40);
+      .slice(0, 50);
     
     console.log(`Loaded ${moviesWithPosters.length} movies with posters from TMDB`);
     
-    // Create 5 rows with 8 posters each
-    createMovieRow(container, moviesWithPosters.slice(0, 8), 'row-1', 'left');
-    createMovieRow(container, moviesWithPosters.slice(8, 16), 'row-2', 'right');
-    createMovieRow(container, moviesWithPosters.slice(16, 24), 'row-3', 'left');
-    createMovieRow(container, moviesWithPosters.slice(24, 32), 'row-4', 'right');
-    createMovieRow(container, moviesWithPosters.slice(32, 40), 'row-5', 'left');
+    // Create 5 rows with 10 posters each for denser coverage
+    createMovieRow(container, moviesWithPosters.slice(0, 10), 'row-1', 'left');
+    createMovieRow(container, moviesWithPosters.slice(10, 20), 'row-2', 'right');
+    createMovieRow(container, moviesWithPosters.slice(20, 30), 'row-3', 'left');
+    createMovieRow(container, moviesWithPosters.slice(30, 40), 'row-4', 'right');
+    createMovieRow(container, moviesWithPosters.slice(40, 50), 'row-5', 'left');
+    
+    // Create duplicates for seamless looping
+    createDuplicatePosters(container);
     
   } catch (error) {
     console.error('TMDB API failed:', error);
@@ -89,6 +92,33 @@ function createMovieRow(container, movies, rowClass, direction) {
   });
 }
 
+function createDuplicatePosters(container) {
+  // Get all existing posters
+  const posters = container.querySelectorAll('.movie-poster');
+  
+  // Create duplicates for seamless looping
+  posters.forEach((poster, index) => {
+    const duplicate = poster.cloneNode(true);
+    duplicate.className += ' duplicate';
+    
+    // Position duplicates exactly one screen width ahead
+    const currentLeft = poster.style.left;
+    const currentRight = poster.style.right;
+    
+    if (currentLeft) {
+      duplicate.style.left = `calc(${currentLeft} - 100vw)`;
+    }
+    if (currentRight) {
+      duplicate.style.right = `calc(${currentRight} - 100vw)`;
+    }
+    
+    duplicate.style.display = 'block';
+    container.appendChild(duplicate);
+  });
+  
+  console.log('Created duplicate posters for seamless looping');
+}
+
 function useFallbackPosters(container) {
   console.log('Using fallback posters');
   // Simple fallback with a few popular movies
@@ -98,15 +128,27 @@ function useFallbackPosters(container) {
     '/q6y0Go1tsGEsmtFryDOJo3dEmqu.jpg',
     '/7RyHsO4yDXtBv1zUU3mTpHeQ0d5.jpg',
     '/vZloFAK7NmvMGKE7VkF5UHaz0I.jpg',
-    '/6oomZYQh4JYLo2C47gV8auMHW42.jpg'
+    '/6oomZYQh4JYLo2C47gV8auMHW42.jpg',
+    '/8Vt6mWEReuy4Of61Lnj5Xj704m8.jpg',
+    '/7g7JQyZL1gJhdf1QjJzAUXiK4pS.jpg',
+    '/gavyCu1UaTaTNPsVaGXT6pe5u24.jpg',
+    '/t79ozwSzTn1AU8NkFpHpRPHr3ai.jpg'
   ];
   
-  // Create at least one row with fallback posters
+  // Create rows with fallback posters
   createMovieRow(container, 
-    fallbackPosters.map(poster => ({ poster_path: poster, title: 'Fallback Movie' })), 
+    fallbackPosters.slice(0, 10).map(poster => ({ poster_path: poster, title: 'Fallback Movie' })), 
     'row-1', 
     'left'
   );
+  createMovieRow(container, 
+    fallbackPosters.slice(0, 10).map(poster => ({ poster_path: poster, title: 'Fallback Movie' })), 
+    'row-2', 
+    'right'
+  );
+  
+  // Create duplicates for fallback too
+  createDuplicatePosters(container);
 }
 
 // Call when page loads

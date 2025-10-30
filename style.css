@@ -384,7 +384,7 @@ footer {
   color: var(--primary);
 }
 
-/* Movie Background - PERFECT PERCENTAGE SPACING */
+/* Movie Background - PERFECT PERCENTAGE SPACING WITH LOOP */
 .movie-background {
   position: absolute;
   top: 0;
@@ -399,95 +399,115 @@ footer {
   position: absolute;
   opacity: 0.25;
   filter: blur(4px) brightness(0.8);
-  width: 12vw;
-  height: 18vw;
-  min-width: 150px;
-  min-height: 225px;
-  max-width: 200px;
-  max-height: 300px;
+  width: 10vw; /* Smaller for closer spacing */
+  height: 15vw; /* Maintain 2:3 aspect ratio */
+  min-width: 120px;
+  min-height: 180px;
+  max-width: 160px;
+  max-height: 240px;
   object-fit: cover;
-  border-radius: 6px;
+  border-radius: 4px;
 }
 
-/* Row positioning - Exact percentage spacing */
-.row-1 { top: 10%; }
-.row-2 { top: 30%; }
-.row-3 { top: 50%; }
-.row-4 { top: 70%; }
-.row-5 { top: 90%; }
+/* Row positioning - Perfect percentage spacing */
+.row-1 { top: 8%; }
+.row-2 { top: 26%; }
+.row-3 { top: 44%; }
+.row-4 { top: 62%; }
+.row-5 { top: 80%; }
 
 /* Animation directions */
 .left-move {
-  animation: moveLeft 100s infinite linear;
+  animation: moveLeft 80s infinite linear;
 }
 
 .right-move {
-  animation: moveRight 100s infinite linear;
+  animation: moveRight 80s infinite linear;
 }
 
-/* Perfect percentage-based spacing - 8 posters per row */
-.movie-poster:nth-child(1) { left: -12vw; }
-.movie-poster:nth-child(2) { left: -24vw; }
-.movie-poster:nth-child(3) { left: -36vw; }
-.movie-poster:nth-child(4) { left: -48vw; }
-.movie-poster:nth-child(5) { left: -60vw; }
-.movie-poster:nth-child(6) { left: -72vw; }
-.movie-poster:nth-child(7) { left: -84vw; }
-.movie-poster:nth-child(8) { left: -96vw; }
+/* Perfect percentage-based spacing - 10 posters per row for denser coverage */
+.movie-poster:nth-child(1) { left: -10vw; }
+.movie-poster:nth-child(2) { left: -20vw; }
+.movie-poster:nth-child(3) { left: -30vw; }
+.movie-poster:nth-child(4) { left: -40vw; }
+.movie-poster:nth-child(5) { left: -50vw; }
+.movie-poster:nth-child(6) { left: -60vw; }
+.movie-poster:nth-child(7) { left: -70vw; }
+.movie-poster:nth-child(8) { left: -80vw; }
+.movie-poster:nth-child(9) { left: -90vw; }
+.movie-poster:nth-child(10) { left: -100vw; }
 
-.movie-poster:nth-child(9) { right: -12vw; }
-.movie-poster:nth-child(10) { right: -24vw; }
-.movie-poster:nth-child(11) { right: -36vw; }
-.movie-poster:nth-child(12) { right: -48vw; }
-.movie-poster:nth-child(13) { right: -60vw; }
-.movie-poster:nth-child(14) { right: -72vw; }
-.movie-poster:nth-child(15) { right: -84vw; }
-.movie-poster:nth-child(16) { right: -96vw; }
+.movie-poster:nth-child(11) { right: -10vw; }
+.movie-poster:nth-child(12) { right: -20vw; }
+.movie-poster:nth-child(13) { right: -30vw; }
+.movie-poster:nth-child(14) { right: -40vw; }
+.movie-poster:nth-child(15) { right: -50vw; }
+.movie-poster:nth-child(16) { right: -60vw; }
+.movie-poster:nth-child(17) { right: -70vw; }
+.movie-poster:nth-child(18) { right: -80vw; }
+.movie-poster:nth-child(19) { right: -90vw; }
+.movie-poster:nth-child(20) { right: -100vw; }
 
-.movie-poster:nth-child(17) { left: -12vw; }
-.movie-poster:nth-child(18) { left: -24vw; }
-.movie-poster:nth-child(19) { left: -36vw; }
-.movie-poster:nth-child(20) { left: -48vw; }
-.movie-poster:nth-child(21) { left: -60vw; }
-.movie-poster:nth-child(22) { left: -72vw; }
-.movie-poster:nth-child(23) { left: -84vw; }
-.movie-poster:nth-child(24) { left: -96vw; }
+.movie-poster:nth-child(21) { left: -10vw; }
+.movie-poster:nth-child(22) { left: -20vw; }
+.movie-poster:nth-child(23) { left: -30vw; }
+.movie-poster:nth-child(24) { left: -40vw; }
+.movie-poster:nth-child(25) { left: -50vw; }
+.movie-poster:nth-child(26) { left: -60vw; }
+.movie-poster:nth-child(27) { left: -70vw; }
+.movie-poster:nth-child(28) { left: -80vw; }
+.movie-poster:nth-child(29) { left: -90vw; }
+.movie-poster:nth-child(30) { left: -100vw; }
 
-.movie-poster:nth-child(25) { right: -12vw; }
-.movie-poster:nth-child(26) { right: -24vw; }
-.movie-poster:nth-child(27) { right: -36vw; }
-.movie-poster:nth-child(28) { right: -48vw; }
-.movie-poster:nth-child(29) { right: -60vw; }
-.movie-poster:nth-child(30) { right: -72vw; }
-.movie-poster:nth-child(31) { right: -84vw; }
-.movie-poster:nth-child(32) { right: -96vw; }
+.movie-poster:nth-child(31) { right: -10vw; }
+.movie-poster:nth-child(32) { right: -20vw; }
+.movie-poster:nth-child(33) { right: -30vw; }
+.movie-poster:nth-child(34) { right: -40vw; }
+.movie-poster:nth-child(35) { right: -50vw; }
+.movie-poster:nth-child(36) { right: -60vw; }
+.movie-poster:nth-child(37) { right: -70vw; }
+.movie-poster:nth-child(38) { right: -80vw; }
+.movie-poster:nth-child(39) { right: -90vw; }
+.movie-poster:nth-child(40) { right: -100vw; }
 
-.movie-poster:nth-child(33) { left: -12vw; }
-.movie-poster:nth-child(34) { left: -24vw; }
-.movie-poster:nth-child(35) { left: -36vw; }
-.movie-poster:nth-child(36) { left: -48vw; }
-.movie-poster:nth-child(37) { left: -60vw; }
-.movie-poster:nth-child(38) { left: -72vw; }
-.movie-poster:nth-child(39) { left: -84vw; }
-.movie-poster:nth-child(40) { left: -96vw; }
+.movie-poster:nth-child(41) { left: -10vw; }
+.movie-poster:nth-child(42) { left: -20vw; }
+.movie-poster:nth-child(43) { left: -30vw; }
+.movie-poster:nth-child(44) { left: -40vw; }
+.movie-poster:nth-child(45) { left: -50vw; }
+.movie-poster:nth-child(46) { left: -60vw; }
+.movie-poster:nth-child(47) { left: -70vw; }
+.movie-poster:nth-child(48) { left: -80vw; }
+.movie-poster:nth-child(49) { left: -90vw; }
+.movie-poster:nth-child(50) { left: -100vw; }
 
-/* Animation keyframes */
+/* Animation keyframes - PERFECT CONTINUOUS LOOP */
 @keyframes moveLeft {
   0% {
-    transform: translateX(0) rotate(-1.5deg);
+    transform: translateX(0) rotate(-1deg);
   }
   100% {
-    transform: translateX(calc(100vw + 100vw)) rotate(1.5deg);
+    transform: translateX(calc(100vw + 100vw)) rotate(1deg);
   }
 }
 
 @keyframes moveRight {
   0% {
-    transform: translateX(0) rotate(1.5deg);
+    transform: translateX(0) rotate(1deg);
   }
   100% {
-    transform: translateX(calc(-100vw - 100vw)) rotate(-1.5deg);
+    transform: translateX(calc(-100vw - 100vw)) rotate(-1deg);
   }
+}
+
+/* Duplicate posters for seamless looping */
+.movie-poster.duplicate {
+  animation-delay: -40s !important; /* Half the animation duration */
+}
+
+/* Create duplicate posters for continuous flow */
+.movie-poster:nth-child(n+51):nth-child(-n+100) {
+  display: none; /* Hidden by default, will be shown via JS */
 }
 
 .hero {
