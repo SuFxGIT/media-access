@@ -384,7 +384,7 @@ footer {
   color: var(--primary);
 }
 
-/* Movie Background - CONTINUOUS COVERAGE */
+/* Movie Background - PERFECT 5-ROW VERSION */
 .movie-background {
   position: absolute;
   top: 0;
@@ -399,90 +399,95 @@ footer {
   position: absolute;
   opacity: 0.25;
   filter: blur(4px) brightness(0.8);
-  width: 10vw;
-  height: 15vw;
-  min-width: 120px;
-  min-height: 180px;
-  max-width: 160px;
-  max-height: 240px;
+  width: 9vw; /* Perfect size for 10 posters across */
+  height: 13.5vw; /* Maintain 2:3 aspect ratio */
+  min-width: 100px;
+  min-height: 150px;
+  max-width: 140px;
+  max-height: 210px;
   object-fit: cover;
   border-radius: 4px;
 }
 
-/* Row positioning - More rows for better coverage */
+/* Perfect row positioning - 5 evenly spaced rows */
 .row-1 { top: 10%; }
 .row-2 { top: 30%; }
 .row-3 { top: 50%; }
 .row-4 { top: 70%; }
 .row-5 { top: 90%; }
 
-/* Animation directions - Slower for continuous feel */
+/* Animation directions */
 .left-move {
-  animation: moveLeftContinuous 120s infinite linear;
+  animation: moveLeftPerfect 100s infinite linear;
 }
 
 .right-move {
-  animation: moveRightContinuous 120s infinite linear;
+  animation: moveRightPerfect 100s infinite linear;
 }
 
-/* Initial positioning - Cover entire screen width */
-.movie-poster:nth-child(1) { left: -10vw; }
-.movie-poster:nth-child(2) { left: -20vw; }
-.movie-poster:nth-child(3) { left: -30vw; }
-.movie-poster:nth-child(4) { left: -40vw; }
-.movie-poster:nth-child(5) { left: -50vw; }
-.movie-poster:nth-child(6) { left: -60vw; }
-.movie-poster:nth-child(7) { left: -70vw; }
-.movie-poster:nth-child(8) { left: -80vw; }
-.movie-poster:nth-child(9) { left: -90vw; }
-.movie-poster:nth-child(10) { left: -100vw; }
+/* PERFECT PERCENTAGE SPACING - 10 posters per row */
+/* Row 1 - Left moving */
+.movie-poster.row-1.left-move:nth-child(1) { left: -9vw; }
+.movie-poster.row-1.left-move:nth-child(2) { left: -18vw; }
+.movie-poster.row-1.left-move:nth-child(3) { left: -27vw; }
+.movie-poster.row-1.left-move:nth-child(4) { left: -36vw; }
+.movie-poster.row-1.left-move:nth-child(5) { left: -45vw; }
+.movie-poster.row-1.left-move:nth-child(6) { left: -54vw; }
+.movie-poster.row-1.left-move:nth-child(7) { left: -63vw; }
+.movie-poster.row-1.left-move:nth-child(8) { left: -72vw; }
+.movie-poster.row-1.left-move:nth-child(9) { left: -81vw; }
+.movie-poster.row-1.left-move:nth-child(10) { left: -90vw; }
 
-.movie-poster:nth-child(11) { right: -10vw; }
-.movie-poster:nth-child(12) { right: -20vw; }
-.movie-poster:nth-child(13) { right: -30vw; }
-.movie-poster:nth-child(14) { right: -40vw; }
-.movie-poster:nth-child(15) { right: -50vw; }
-.movie-poster:nth-child(16) { right: -60vw; }
-.movie-poster:nth-child(17) { right: -70vw; }
-.movie-poster:nth-child(18) { right: -80vw; }
-.movie-poster:nth-child(19) { right: -90vw; }
-.movie-poster:nth-child(20) { right: -100vw; }
+/* Row 2 - Right moving */
+.movie-poster.row-2.right-move:nth-child(1) { right: -9vw; }
+.movie-poster.row-2.right-move:nth-child(2) { right: -18vw; }
+.movie-poster.row-2.right-move:nth-child(3) { right: -27vw; }
+.movie-poster.row-2.right-move:nth-child(4) { right: -36vw; }
+.movie-poster.row-2.right-move:nth-child(5) { right: -45vw; }
+.movie-poster.row-2.right-move:nth-child(6) { right: -54vw; }
+.movie-poster.row-2.right-move:nth-child(7) { right: -63vw; }
+.movie-poster.row-2.right-move:nth-child(8) { right: -72vw; }
+.movie-poster.row-2.right-move:nth-child(9) { right: -81vw; }
+.movie-poster.row-2.right-move:nth-child(10) { right: -90vw; }
 
-.movie-poster:nth-child(21) { left: -10vw; }
-.movie-poster:nth-child(22) { left: -20vw; }
-.movie-poster:nth-child(23) { left: -30vw; }
-.movie-poster:nth-child(24) { left: -40vw; }
-.movie-poster:nth-child(25) { left: -50vw; }
-.movie-poster:nth-child(26) { left: -60vw; }
-.movie-poster:nth-child(27) { left: -70vw; }
-.movie-poster:nth-child(28) { left: -80vw; }
-.movie-poster:nth-child(29) { left: -90vw; }
-.movie-poster:nth-child(30) { left: -100vw; }
+/* Row 3 - Left moving */
+.movie-poster.row-3.left-move:nth-child(1) { left: -9vw; }
+.movie-poster.row-3.left-move:nth-child(2) { left: -18vw; }
+.movie-poster.row-3.left-move:nth-child(3) { left: -27vw; }
+.movie-poster.row-3.left-move:nth-child(4) { left: -36vw; }
+.movie-poster.row-3.left-move:nth-child(5) { left: -45vw; }
+.movie-poster.row-3.left-move:nth-child(6) { left: -54vw; }
+.movie-poster.row-3.left-move:nth-child(7) { left: -63vw; }
+.movie-poster.row-3.left-move:nth-child(8) { left: -72vw; }
+.movie-poster.row-3.left-move:nth-child(9) { left: -81vw; }
+.movie-poster.row-3.left-move:nth-child(10) { left: -90vw; }
 
-.movie-poster:nth-child(31) { right: -10vw; }
-.movie-poster:nth-child(32) { right: -20vw; }
-.movie-poster:nth-child(33) { right: -30vw; }
-.movie-poster:nth-child(34) { right: -40vw; }
-.movie-poster:nth-child(35) { right: -50vw; }
-.movie-poster:nth-child(36) { right: -60vw; }
-.movie-poster:nth-child(37) { right: -70vw; }
-.movie-poster:nth-child(38) { right: -80vw; }
-.movie-poster:nth-child(39) { right: -90vw; }
-.movie-poster:nth-child(40) { right: -100vw; }
+/* Row 4 - Right moving */
+.movie-poster.row-4.right-move:nth-child(1) { right: -9vw; }
+.movie-poster.row-4.right-move:nth-child(2) { right: -18vw; }
+.movie-poster.row-4.right-move:nth-child(3) { right: -27vw; }
+.movie-poster.row-4.right-move:nth-child(4) { right: -36vw; }
+.movie-poster.row-4.right-move:nth-child(5) { right: -45vw; }
+.movie-poster.row-4.right-move:nth-child(6) { right: -54vw; }
+.movie-poster.row-4.right-move:nth-child(7) { right: -63vw; }
+.movie-poster.row-4.right-move:nth-child(8) { right: -72vw; }
+.movie-poster.row-4.right-move:nth-child(9) { right: -81vw; }
+.movie-poster.row-4.right-move:nth-child(10) { right: -90vw; }
 
-.movie-poster:nth-child(41) { left: -10vw; }
-.movie-poster:nth-child(42) { left: -20vw; }
-.movie-poster:nth-child(43) { left: -30vw; }
-.movie-poster:nth-child(44) { left: -40vw; }
-.movie-poster:nth-child(45) { left: -50vw; }
-.movie-poster:nth-child(46) { left: -60vw; }
-.movie-poster:nth-child(47) { left: -70vw; }
-.movie-poster:nth-child(48) { left: -80vw; }
-.movie-poster:nth-child(49) { left: -90vw; }
-.movie-poster:nth-child(50) { left: -100vw; }
+/* Row 5 - Left moving */
+.movie-poster.row-5.left-move:nth-child(1) { left: -9vw; }
+.movie-poster.row-5.left-move:nth-child(2) { left: -18vw; }
+.movie-poster.row-5.left-move:nth-child(3) { left: -27vw; }
+.movie-poster.row-5.left-move:nth-child(4) { left: -36vw; }
+.movie-poster.row-5.left-move:nth-child(5) { left: -45vw; }
+.movie-poster.row-5.left-move:nth-child(6) { left: -54vw; }
+.movie-poster.row-5.left-move:nth-child(7) { left: -63vw; }
+.movie-poster.row-5.left-move:nth-child(8) { left: -72vw; }
+.movie-poster.row-5.left-move:nth-child(9) { left: -81vw; }
+.movie-poster.row-5.left-move:nth-child(10) { left: -90vw; }
 
-/* Continuous animation keyframes - Seamless looping */
-@keyframes moveLeftContinuous {
+/* Perfect continuous animation */
+@keyframes moveLeftPerfect {
   0% {
     transform: translateX(0) rotate(-1deg);
   }
@@ -491,7 +496,7 @@ footer {
   }
 }
 
-@keyframes moveRightContinuous {
+@keyframes moveRightPerfect {
   0% {
     transform: translateX(0) rotate(1deg);
   }
@@ -500,12 +505,12 @@ footer {
   }
 }
 
-/* Duplicate sets for instant coverage */
-.movie-poster.duplicate-set-1 {
+/* Duplicate positioning for perfect continuous coverage */
+.movie-poster.duplicate-ahead {
   transform: translateX(-100vw);
 }
 
-.movie-poster.duplicate-set-2 {
+.movie-poster.duplicate-behind {
   transform: translateX(100vw);
 }
 

@@ -22,7 +22,7 @@ window.addEventListener('scroll', () => {
   }
 });
 
-// Movie background animation - CONTINUOUS COVERAGE VERSION
+// Movie background animation - PERFECT 5-ROW VERSION
 async function loadMovieBackground() {
   console.log('Loading movie background from TMDB...');
   
@@ -49,22 +49,22 @@ async function loadMovieBackground() {
     const allResults = await Promise.all(fetchPromises);
     const allMovies = allResults.flat();
     
-    // Filter movies that have posters and get 60 unique ones
+    // Filter movies that have posters and get 50 unique ones
     const moviesWithPosters = allMovies
       .filter(movie => movie.poster_path)
       .slice(0, 50);
     
     console.log(`Loaded ${moviesWithPosters.length} movies with posters from TMDB`);
     
-    // Create 6 rows with 10 posters each for maximum coverage
+    // Create 5 perfect rows with 10 posters each
     createMovieRow(container, moviesWithPosters.slice(0, 10), 'row-1', 'left');
     createMovieRow(container, moviesWithPosters.slice(10, 20), 'row-2', 'right');
     createMovieRow(container, moviesWithPosters.slice(20, 30), 'row-3', 'left');
     createMovieRow(container, moviesWithPosters.slice(30, 40), 'row-4', 'right');
     createMovieRow(container, moviesWithPosters.slice(40, 50), 'row-5', 'left');
     
-    // Create multiple duplicates for instant full coverage
-    createContinuousCoverage(container);
+    // Create duplicates for continuous coverage
+    createPerfectDuplicates(container);
     
   } catch (error) {
     console.error('TMDB API failed:', error);
@@ -92,23 +92,24 @@ function createMovieRow(container, movies, rowClass, direction) {
   });
 }
 
-function createContinuousCoverage(container) {
-  // Get all existing posters
+function createPerfectDuplicates(container) {
   const posters = container.querySelectorAll('.movie-poster');
   
-  // Create 3 sets of duplicates for instant full coverage
-  posters.forEach((poster, index) => {
-    // Duplicate set 1: One screen width ahead
+  // Create 2 sets of duplicates for perfect continuous coverage
+  posters.forEach((poster) => {
+    // Duplicate set 1: Positioned one screen width ahead
     const duplicate1 = poster.cloneNode(true);
-    duplicate1.className += ' duplicate-set-1';
+    duplicate1.className += ' duplicate-ahead';
     
-    // Duplicate set 2: One screen width behind  
+    // Duplicate set 2: Positioned one screen width behind
     const duplicate2 = poster.cloneNode(true);
-    duplicate2.className += ' duplicate-set-2';
+    duplicate2.className += ' duplicate-behind';
     
-    const currentLeft = getComputedStyle(poster).left;
-    const currentRight = getComputedStyle(poster).right;
+    const computedStyle = getComputedStyle(poster);
+    const currentLeft = computedStyle.left;
+    const currentRight = computedStyle.right;
     
+    // Use percentage-based positioning for perfect scaling
     if (currentLeft && currentLeft !== 'auto') {
       duplicate1.style.left = `calc(${currentLeft} - 100vw)`;
       duplicate2.style.left = `calc(${currentLeft} + 100vw)`;
@@ -118,14 +119,11 @@ function createContinuousCoverage(container) {
       duplicate2.style.right = `calc(${currentRight} + 100vw)`;
     }
     
-    duplicate1.style.display = 'block';
-    duplicate2.style.display = 'block';
-    
     container.appendChild(duplicate1);
     container.appendChild(duplicate2);
   });
   
-  console.log('Created continuous coverage with duplicate posters');
+  console.log('Created perfect duplicate sets for continuous coverage');
 }
 
 function useFallbackPosters(container) {
@@ -143,7 +141,7 @@ function useFallbackPosters(container) {
     '/t79ozwSzTn1AU8NkFpHpRPHr3ai.jpg'
   ];
   
-  // Create multiple rows with fallback posters
+  // Create 5 perfect rows with fallback posters
   for (let i = 1; i <= 5; i++) {
     const direction = i % 2 === 0 ? 'right' : 'left';
     createMovieRow(container, 
@@ -153,8 +151,7 @@ function useFallbackPosters(container) {
     );
   }
   
-  // Create continuous coverage for fallback too
-  createContinuousCoverage(container);
+  createPerfectDuplicates(container);
 }
 
 // Call when page loads
