@@ -344,7 +344,7 @@ footer {
   color: var(--primary);
 }
 
-.discord-section {
+.email-section {
   margin: 25px 0;
   padding: 20px;
   background: rgba(255, 255, 255, 0.05);
@@ -352,25 +352,10 @@ footer {
   border-left: 3px solid #5865F2;
 }
 
-.discord-note {
+.email-note {
   margin-bottom: 15px;
   font-size: 0.95rem;
   color: var(--text);
-}
-
-.discord-btn {
-  display: inline-block;
-  padding: 12px 28px;
-  border-radius: 25px;
-  text-decoration: none;
-  color: white;
-  font-weight: bold;
-  font-size: 0.95rem;
-  background: #5865F2;
-}
-
-.discord-btn:hover {
-  background: #4752c4;
 }
 
 /* Responsive Design */
