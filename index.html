@@ -177,14 +177,14 @@
       <p class="section-subtitle">Subscribe to get access to the full media library</p>
       <p>Enjoy streaming anytime, anywhere with our private Plex server.</p>
       
-      <!-- PayPal Subscription Form with Quantity Selection -->
+      <!-- PayPal Subscription Form - EXACT CODE FROM PAYPAL -->
       <div class="paypal-form-container">
         <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-          <input type="hidden" name="cmd" value="_s-xclick">
-          <input type="hidden" name="hosted_button_id" value="35E3HGWFPH3XE">
+          <input type="hidden" name="cmd" value="_s-xclick" />
+          <input type="hidden" name="hosted_button_id" value="35E3HGWFPH3XE" />
           <div class="quantity-selector">
-            <label for="userQuantity">Select how many users:</label>
-            <select name="os0" id="userQuantity" class="quantity-select">
+            <label>Select how many users:</label>
+            <select name="os0" class="quantity-select">
               <option value="1 user">1 user - 4.99 USD/month</option>
               <option value="2 users">2 users - 9.98 USD/month</option>
               <option value="3 users">3 users - 14.97 USD/month</option>
@@ -192,7 +192,7 @@
               <option value="2 users (yearly)">2 users (yearly) - 119.76 USD/year</option>
             </select>
           </div>
-          <input type="hidden" name="currency_code" value="USD">
+          <input type="hidden" name="currency_code" value="USD" />
           <button type="submit" class="paypal-submit-btn">
             <i class="fab fa-paypal"></i> Subscribe Now
           </button>
