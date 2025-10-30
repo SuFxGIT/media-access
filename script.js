@@ -38,8 +38,8 @@ async function loadMovieBackground() {
     const response = await fetch(`${TMDB_BASE_URL}/movie/popular?api_key=${TMDB_API_KEY}`);
     const data = await response.json();
     
-    // Get 15 movies for 3 rows of 5 posters each
-    const movies = data.results.slice(0, 15);
+    // Get 35 movies for 5 rows of 7 posters each
+    const movies = data.results.slice(0, 35);
     
     // Create 3 rows with alternating directions
     createMovieRow(container, movies.slice(0, 5), 'top', 'left', 0);
@@ -97,10 +97,12 @@ function useFallbackPosters(container) {
     'https://image.tmdb.org/t/p/w780/fiVW06jE7z9YnO4trhaMEdclSiC.jpg'
   ];
   
-  // Create 3 rows with alternating directions using fallback
-  createFallbackRow(container, fallbackPosters.slice(0, 5), 'top', 'left', 0);
-  createFallbackRow(container, fallbackPosters.slice(5, 10), 'middle', 'right', 2);
-  createFallbackRow(container, fallbackPosters.slice(10, 15), 'bottom', 'left', 4);
+  // Create 5 rows with alternating directions
+  createMovieRow(container, movies.slice(0, 7), 'top', 'left', 0);
+  createMovieRow(container, movies.slice(7, 14), 'middle-top', 'right', 0);
+  createMovieRow(container, movies.slice(14, 21), 'middle', 'left', 0);
+  createMovieRow(container, movies.slice(21, 28), 'middle-bottom', 'right', 0);
+  createMovieRow(container, movies.slice(28, 35), 'bottom', 'left', 0);
 }
 
 function createFallbackRow(container, posters, rowPosition, direction, delayMultiplier) {

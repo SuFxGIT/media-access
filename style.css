@@ -397,71 +397,101 @@ footer {
 
 .movie-poster {
   position: absolute;
-  opacity: 0.2;
-  filter: blur(8px) brightness(0.7);
-  width: 200px;
-  height: 300px;
+  opacity: 0.25;
+  filter: blur(4px) brightness(0.8);
+  width: 180px;
+  height: 270px;
   object-fit: cover;
-  border-radius: 8px;
+  border-radius: 6px;
 }
 
-/* Row positioning */
+/* Row positioning - Added more rows */
 .top-row {
-  top: 5%;
+  top: 3%;
+}
+
+.middle-top-row {
+  top: 25%;
 }
 
 .middle-row {
-  top: 40%;
+  top: 47%;
+}
+
+.middle-bottom-row {
+  top: 69%;
 }
 
 .bottom-row {
-  top: 75%;
+  top: 91%;
 }
 
 /* Animation directions */
 .left-move {
-  animation: moveLeft 120s infinite linear;
+  animation: moveLeft 100s infinite linear;
 }
 
 .right-move {
-  animation: moveRight 120s infinite linear;
+  animation: moveRight 100s infinite linear;
 }
 
-/* Individual poster positioning within rows - FIXED SPACING */
-.movie-poster:nth-child(1) { left: -200px; animation-delay: 0s; }
-.movie-poster:nth-child(2) { left: -600px; animation-delay: 0s; }
-.movie-poster:nth-child(3) { left: -1000px; animation-delay: 0s; }
-.movie-poster:nth-child(4) { left: -1400px; animation-delay: 0s; }
-.movie-poster:nth-child(5) { left: -1800px; animation-delay: 0s; }
+/* Individual poster positioning within rows - LESS SPACING, MORE POSTERS */
+.movie-poster:nth-child(1) { left: -180px; animation-delay: 0s; }
+.movie-poster:nth-child(2) { left: -360px; animation-delay: 0s; }
+.movie-poster:nth-child(3) { left: -540px; animation-delay: 0s; }
+.movie-poster:nth-child(4) { left: -720px; animation-delay: 0s; }
+.movie-poster:nth-child(5) { left: -900px; animation-delay: 0s; }
+.movie-poster:nth-child(6) { left: -1080px; animation-delay: 0s; }
+.movie-poster:nth-child(7) { left: -1260px; animation-delay: 0s; }
 
-.movie-poster:nth-child(6) { right: -200px; animation-delay: 0s; }
-.movie-poster:nth-child(7) { right: -600px; animation-delay: 0s; }
-.movie-poster:nth-child(8) { right: -1000px; animation-delay: 0s; }
-.movie-poster:nth-child(9) { right: -1400px; animation-delay: 0s; }
-.movie-poster:nth-child(10) { right: -1800px; animation-delay: 0s; }
+.movie-poster:nth-child(8) { right: -180px; animation-delay: 0s; }
+.movie-poster:nth-child(9) { right: -360px; animation-delay: 0s; }
+.movie-poster:nth-child(10) { right: -540px; animation-delay: 0s; }
+.movie-poster:nth-child(11) { right: -720px; animation-delay: 0s; }
+.movie-poster:nth-child(12) { right: -900px; animation-delay: 0s; }
+.movie-poster:nth-child(13) { right: -1080px; animation-delay: 0s; }
+.movie-poster:nth-child(14) { right: -1260px; animation-delay: 0s; }
 
-.movie-poster:nth-child(11) { left: -200px; animation-delay: 0s; }
-.movie-poster:nth-child(12) { left: -600px; animation-delay: 0s; }
-.movie-poster:nth-child(13) { left: -1000px; animation-delay: 0s; }
-.movie-poster:nth-child(14) { left: -1400px; animation-delay: 0s; }
-.movie-poster:nth-child(15) { left: -1800px; animation-delay: 0s; }
+.movie-poster:nth-child(15) { left: -180px; animation-delay: 0s; }
+.movie-poster:nth-child(16) { left: -360px; animation-delay: 0s; }
+.movie-poster:nth-child(17) { left: -540px; animation-delay: 0s; }
+.movie-poster:nth-child(18) { left: -720px; animation-delay: 0s; }
+.movie-poster:nth-child(19) { left: -900px; animation-delay: 0s; }
+.movie-poster:nth-child(20) { left: -1080px; animation-delay: 0s; }
+.movie-poster:nth-child(21) { left: -1260px; animation-delay: 0s; }
+
+.movie-poster:nth-child(22) { right: -180px; animation-delay: 0s; }
+.movie-poster:nth-child(23) { right: -360px; animation-delay: 0s; }
+.movie-poster:nth-child(24) { right: -540px; animation-delay: 0s; }
+.movie-poster:nth-child(25) { right: -720px; animation-delay: 0s; }
+.movie-poster:nth-child(26) { right: -900px; animation-delay: 0s; }
+.movie-poster:nth-child(27) { right: -1080px; animation-delay: 0s; }
+.movie-poster:nth-child(28) { right: -1260px; animation-delay: 0s; }
+
+.movie-poster:nth-child(29) { left: -180px; animation-delay: 0s; }
+.movie-poster:nth-child(30) { left: -360px; animation-delay: 0s; }
+.movie-poster:nth-child(31) { left: -540px; animation-delay: 0s; }
+.movie-poster:nth-child(32) { left: -720px; animation-delay: 0s; }
+.movie-poster:nth-child(33) { left: -900px; animation-delay: 0s; }
+.movie-poster:nth-child(34) { left: -1080px; animation-delay: 0s; }
+.movie-poster:nth-child(35) { left: -1260px; animation-delay: 0s; }
 
 /* Animation keyframes */
 @keyframes moveLeft {
   0% {
-    transform: translateX(0) rotate(-2deg);
+    transform: translateX(0) rotate(-1deg);
   }
   100% {
-    transform: translateX(calc(100vw + 2000px)) rotate(2deg);
+    transform: translateX(calc(100vw + 1500px)) rotate(1deg);
   }
 }
 
 @keyframes moveRight {
   0% {
-    transform: translateX(0) rotate(2deg);
+    transform: translateX(0) rotate(1deg);
   }
   100% {
-    transform: translateX(calc(-100vw - 2000px)) rotate(-2deg);
+    transform: translateX(calc(-100vw - 1500px)) rotate(-1deg);
   }
 }
 
