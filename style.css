@@ -609,3 +609,88 @@ footer {
 .paypal-submit-btn:hover {
     background: #005ea6;
 }
+
+/* Subscription Options */
+.subscription-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  margin: 40px 0;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.subscription-card {
+  background: var(--card-bg);
+  border-radius: 15px;
+  padding: 30px 25px;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.subscription-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.subscription-card h3 {
+  font-size: 1.4rem;
+  margin-bottom: 15px;
+  color: var(--primary);
+}
+
+.price {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: var(--light);
+  margin-bottom: 10px;
+}
+
+.price span {
+  font-size: 1rem;
+  color: var(--gray);
+}
+
+.subscription-card p {
+  color: var(--gray);
+  margin-bottom: 25px;
+  font-size: 0.9rem;
+}
+
+.subscribe-option-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 25px;
+  border-radius: 25px;
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+  background: var(--accent);
+  width: 100%;
+  justify-content: center;
+}
+
+.subscribe-option-btn:hover {
+  background: #005ea6;
+  color: white;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .subscription-options {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .subscription-card {
+    padding: 25px 20px;
+  }
+  
+  .price {
+    font-size: 2rem;
+  }
+}
