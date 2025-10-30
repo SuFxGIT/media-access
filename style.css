@@ -56,6 +56,14 @@ nav {
   font-size: 1.4rem;
   font-weight: bold;
   color: var(--primary);
+  width: 200px;
+}
+
+.nav-center {
+  display: flex;
+  gap: 25px;
+  justify-content: center;
+  flex: 1;
 }
 
 .nav-links {
@@ -74,6 +82,11 @@ nav {
   color: var(--primary);
 }
 
+.nav-spacer {
+  width: 200px;
+  visibility: hidden;
+}
+
 /* Hero Section */
 .hero {
   height: 100vh;
@@ -83,6 +96,8 @@ nav {
   justify-content: center;
   text-align: center;
   padding-top: 60px;
+  position: relative;
+  overflow: hidden;
 }
 
 .hero-content {
@@ -92,6 +107,8 @@ nav {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  position: relative;
+  z-index: 2;
 }
 
 h1 {
@@ -316,6 +333,31 @@ h1 {
   color: var(--gray);
 }
 
+.discord-section {
+  margin: 25px 0;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  border-left: 3px solid #5865F2;
+}
+
+.discord-note {
+  margin-bottom: 15px;
+  font-size: 0.95rem;
+  color: var(--text);
+}
+
+.discord-btn {
+  display: inline-block;
+  padding: 12px 28px;
+  border-radius: 25px;
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  font-size: 0.95rem;
+  background: #5865F2;
+}
+
 /* Footer */
 footer {
   text-align: center;
@@ -344,20 +386,6 @@ footer {
   color: var(--primary);
 }
 
-.email-section {
-  margin: 25px 0;
-  padding: 20px;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 10px;
-  border-left: 3px solid #5865F2;
-}
-
-.email-note {
-  margin-bottom: 15px;
-  font-size: 0.95rem;
-  color: var(--text);
-}
-
 /* Movie Background */
 .movie-background {
   position: absolute;
@@ -366,48 +394,72 @@ footer {
   width: 100%;
   height: 100%;
   overflow: hidden;
-  z-index: -1;
+  z-index: 1;
 }
 
 .movie-poster {
   position: absolute;
-  opacity: 0.15;
-  filter: blur(8px);
-  width: 300px;
-  height: 450px;
+  opacity: 0.2;
+  filter: blur(10px);
+  width: 280px;
+  height: 420px;
   object-fit: cover;
-  border-radius: 8px;
-  animation: floatPoster 60s infinite linear;
+  border-radius: 10px;
+  animation: floatPoster 80s infinite linear;
 }
 
 /* Different animations for variety */
-.movie-poster:nth-child(1) { animation-duration: 80s; top: 10%; }
-.movie-poster:nth-child(2) { animation-duration: 70s; top: 30%; }
-.movie-poster:nth-child(3) { animation-duration: 90s; top: 60%; }
-.movie-poster:nth-child(4) { animation-duration: 65s; top: 20%; }
-.movie-poster:nth-child(5) { animation-duration: 85s; top: 70%; }
+.movie-poster:nth-child(1) { 
+  animation-duration: 90s; 
+  top: 5%; 
+  left: -100px;
+}
+.movie-poster:nth-child(2) { 
+  animation-duration: 85s; 
+  top: 25%; 
+  left: -100px;
+  animation-delay: 5s;
+}
+.movie-poster:nth-child(3) { 
+  animation-duration: 95s; 
+  top: 55%; 
+  left: -100px;
+  animation-delay: 10s;
+}
+.movie-poster:nth-child(4) { 
+  animation-duration: 80s; 
+  top: 15%; 
+  left: -100px;
+  animation-delay: 15s;
+}
+.movie-poster:nth-child(5) { 
+  animation-duration: 100s; 
+  top: 65%; 
+  left: -100px;
+  animation-delay: 20s;
+}
 
 @keyframes floatPoster {
   0% {
-    transform: translateX(-100px) rotate(-5deg);
-  }
-  50% {
-    transform: translateX(calc(100vw + 100px)) rotate(5deg);
+    transform: translateX(0) rotate(-3deg);
   }
   100% {
-    transform: translateX(-100px) rotate(-5deg);
+    transform: translateX(calc(100vw + 200px)) rotate(3deg);
   }
-}
-
-.hero {
-  position: relative;
-  overflow: hidden;
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  .nav-links {
+  .nav-center {
     display: none;
+  }
+  
+  .nav-spacer {
+    display: none;
+  }
+  
+  .logo {
+    width: auto;
   }
   
   h1 {
@@ -441,6 +493,11 @@ footer {
   .footer-links {
     gap: 15px;
   }
+  
+  .movie-poster {
+    width: 200px;
+    height: 300px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -458,5 +515,10 @@ footer {
   
   h1 {
     font-size: 2rem;
+  }
+  
+  .movie-poster {
+    width: 150px;
+    height: 225px;
   }
 }
