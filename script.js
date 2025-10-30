@@ -22,7 +22,7 @@ window.addEventListener('scroll', () => {
   }
 });
 
-// Movie background animation with TMDB API and alternating rows
+// Movie background animation with TMDB API - PROFESSIONAL VERSION
 async function loadMovieBackground() {
   console.log('Loading movie background from TMDB...');
   
@@ -34,19 +34,22 @@ async function loadMovieBackground() {
   }
 
   try {
-    // TMDB API call to get popular movies
+    // TMDB API call to get popular movies - get 60 movies
     const response = await fetch(`${TMDB_BASE_URL}/movie/popular?api_key=${TMDB_API_KEY}`);
     const data = await response.json();
     
-    // Get 35 movies for 5 rows of 7 posters each
-    const movies = data.results.slice(0, 35);
+    // Get 60 movies for 6 rows of 10 posters each
+    const movies = data.results.slice(0, 60);
     
-    // Create 3 rows with alternating directions
-    createMovieRow(container, movies.slice(0, 5), 'top', 'left', 0);
-    createMovieRow(container, movies.slice(5, 10), 'middle', 'right', 2);
-    createMovieRow(container, movies.slice(10, 15), 'bottom', 'left', 4);
+    // Create 6 dense rows with alternating directions
+    createMovieRow(container, movies.slice(0, 10), 'row-1', 'left');
+    createMovieRow(container, movies.slice(10, 20), 'row-2', 'right');
+    createMovieRow(container, movies.slice(20, 30), 'row-3', 'left');
+    createMovieRow(container, movies.slice(30, 40), 'row-4', 'right');
+    createMovieRow(container, movies.slice(40, 50), 'row-5', 'left');
+    createMovieRow(container, movies.slice(50, 60), 'row-6', 'right');
     
-    console.log('Movie background loaded successfully with TMDB data');
+    console.log('Movie background loaded successfully with 60 TMDB movies');
     
   } catch (error) {
     console.error('TMDB API failed:', error);
@@ -55,13 +58,15 @@ async function loadMovieBackground() {
   }
 }
 
-function createMovieRow(container, movies, rowPosition, direction, delayMultiplier) {
+function createMovieRow(container, movies, rowPosition, direction) {
   movies.forEach((movie, index) => {
+    // Skip if no poster path
+    if (!movie.poster_path) return;
+    
     const img = new Image();
     img.src = TMDB_IMAGE_BASE + movie.poster_path;
     img.alt = movie.title + ' Poster';
-    img.className = `movie-poster ${rowPosition}-row ${direction}-move`;
-    img.style.animationDelay = `${(index + delayMultiplier) * 2}s`;
+    img.className = `movie-poster ${rowPosition} ${direction}-move`;
     
     img.onload = function() {
       console.log(`Loaded: ${movie.title}`);
@@ -69,49 +74,9 @@ function createMovieRow(container, movies, rowPosition, direction, delayMultipli
     
     img.onerror = function() {
       console.error(`Failed to load: ${movie.title}`);
-      // If image fails, use a placeholder or skip
       this.style.display = 'none';
     };
     
-    container.appendChild(img);
-  });
-}
-
-function useFallbackPosters(container) {
-  console.log('Using fallback posters');
-  const fallbackPosters = [
-    'https://image.tmdb.org/t/p/w780/iuFNMS8U5cb6xfzi51Dbkovj7vM.jpg',
-    'https://image.tmdb.org/t/p/w780/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg',
-    'https://image.tmdb.org/t/p/w780/q6y0Go1tsGEsmtFryDOJo3dEmqu.jpg',
-    'https://image.tmdb.org/t/p/w780/7RyHsO4yDXtBv1zUU3mTpHeQ0d5.jpg',
-    'https://image.tmdb.org/t/p/w780/vZloFAK7NmvMGKE7VkF5UHaz0I.jpg',
-    'https://image.tmdb.org/t/p/w780/6oomZYQh4JYLo2C47gV8auMHW42.jpg',
-    'https://image.tmdb.org/t/p/w780/8Vt6mWEReuy4Of61Lnj5Xj704m8.jpg',
-    'https://image.tmdb.org/t/p/w780/7g7JQyZL1gJhdf1QjJzAUXiK4pS.jpg',
-    'https://image.tmdb.org/t/p/w780/gavyCu1UaTaTNPsVaGXT6pe5u24.jpg',
-    'https://image.tmdb.org/t/p/w780/t79ozwSzTn1AU8NkFpHpRPHr3ai.jpg',
-    'https://image.tmdb.org/t/p/w780/8GJZECZfgPlLOfG2bKkfQw6Gtqi.jpg',
-    'https://image.tmdb.org/t/p/w780/8UlWHLMpgZm9bx6QYh0NFoq67TZ.jpg',
-    'https://image.tmdb.org/t/p/w780/v28T5F1IygM8vXWZIycfNEm3xcL.jpg',
-    'https://image.tmdb.org/t/p/w780/9dTO2RygcDT0cQkawABw4QkDegN.jpg',
-    'https://image.tmdb.org/t/p/w780/fiVW06jE7z9YnO4trhaMEdclSiC.jpg'
-  ];
-  
-  // Create 5 rows with alternating directions
-  createMovieRow(container, movies.slice(0, 7), 'top', 'left', 0);
-  createMovieRow(container, movies.slice(7, 14), 'middle-top', 'right', 0);
-  createMovieRow(container, movies.slice(14, 21), 'middle', 'left', 0);
-  createMovieRow(container, movies.slice(21, 28), 'middle-bottom', 'right', 0);
-  createMovieRow(container, movies.slice(28, 35), 'bottom', 'left', 0);
-}
-
-function createFallbackRow(container, posters, rowPosition, direction, delayMultiplier) {
-  posters.forEach((posterUrl, index) => {
-    const img = new Image();
-    img.src = posterUrl;
-    img.alt = 'Movie Poster';
-    img.className = `movie-poster ${rowPosition}-row ${direction}-move`;
-    img.style.animationDelay = `${(index + delayMultiplier) * 2}s`;
     container.appendChild(img);
   });
 }

@@ -384,7 +384,7 @@ footer {
   color: var(--primary);
 }
 
-/* Movie Background - UPDATED FOR TMDB API & ALTERNATING ROWS */
+/* Movie Background - PROFESSIONAL LAYOUT */
 .movie-background {
   position: absolute;
   top: 0;
@@ -397,84 +397,97 @@ footer {
 
 .movie-poster {
   position: absolute;
-  opacity: 0.25;
-  filter: blur(4px) brightness(0.8);
-  width: 180px;
-  height: 270px;
+  opacity: 0.3;
+  filter: blur(3px) brightness(0.85);
+  width: 160px;
+  height: 240px;
   object-fit: cover;
-  border-radius: 6px;
+  border-radius: 4px;
 }
 
-/* Row positioning - Added more rows */
-.top-row {
-  top: 3%;
-}
-
-.middle-top-row {
-  top: 25%;
-}
-
-.middle-row {
-  top: 47%;
-}
-
-.middle-bottom-row {
-  top: 69%;
-}
-
-.bottom-row {
-  top: 91%;
-}
+/* Row positioning - 6 dense rows */
+.row-1 { top: 2%; }
+.row-2 { top: 20%; }
+.row-3 { top: 38%; }
+.row-4 { top: 56%; }
+.row-5 { top: 74%; }
+.row-6 { top: 92%; }
 
 /* Animation directions */
 .left-move {
-  animation: moveLeft 100s infinite linear;
+  animation: moveLeft 90s infinite linear;
 }
 
 .right-move {
-  animation: moveRight 100s infinite linear;
+  animation: moveRight 90s infinite linear;
 }
 
-/* Individual poster positioning within rows - LESS SPACING, MORE POSTERS */
-.movie-poster:nth-child(1) { left: -180px; animation-delay: 0s; }
-.movie-poster:nth-child(2) { left: -360px; animation-delay: 0s; }
-.movie-poster:nth-child(3) { left: -540px; animation-delay: 0s; }
-.movie-poster:nth-child(4) { left: -720px; animation-delay: 0s; }
-.movie-poster:nth-child(5) { left: -900px; animation-delay: 0s; }
-.movie-poster:nth-child(6) { left: -1080px; animation-delay: 0s; }
-.movie-poster:nth-child(7) { left: -1260px; animation-delay: 0s; }
+/* Individual poster positioning - DENSE SPACING */
+.movie-poster:nth-child(1) { left: -160px; }
+.movie-poster:nth-child(2) { left: -320px; }
+.movie-poster:nth-child(3) { left: -480px; }
+.movie-poster:nth-child(4) { left: -640px; }
+.movie-poster:nth-child(5) { left: -800px; }
+.movie-poster:nth-child(6) { left: -960px; }
+.movie-poster:nth-child(7) { left: -1120px; }
+.movie-poster:nth-child(8) { left: -1280px; }
+.movie-poster:nth-child(9) { left: -1440px; }
+.movie-poster:nth-child(10) { left: -1600px; }
 
-.movie-poster:nth-child(8) { right: -180px; animation-delay: 0s; }
-.movie-poster:nth-child(9) { right: -360px; animation-delay: 0s; }
-.movie-poster:nth-child(10) { right: -540px; animation-delay: 0s; }
-.movie-poster:nth-child(11) { right: -720px; animation-delay: 0s; }
-.movie-poster:nth-child(12) { right: -900px; animation-delay: 0s; }
-.movie-poster:nth-child(13) { right: -1080px; animation-delay: 0s; }
-.movie-poster:nth-child(14) { right: -1260px; animation-delay: 0s; }
+.movie-poster:nth-child(11) { right: -160px; }
+.movie-poster:nth-child(12) { right: -320px; }
+.movie-poster:nth-child(13) { right: -480px; }
+.movie-poster:nth-child(14) { right: -640px; }
+.movie-poster:nth-child(15) { right: -800px; }
+.movie-poster:nth-child(16) { right: -960px; }
+.movie-poster:nth-child(17) { right: -1120px; }
+.movie-poster:nth-child(18) { right: -1280px; }
+.movie-poster:nth-child(19) { right: -1440px; }
+.movie-poster:nth-child(20) { right: -1600px; }
 
-.movie-poster:nth-child(15) { left: -180px; animation-delay: 0s; }
-.movie-poster:nth-child(16) { left: -360px; animation-delay: 0s; }
-.movie-poster:nth-child(17) { left: -540px; animation-delay: 0s; }
-.movie-poster:nth-child(18) { left: -720px; animation-delay: 0s; }
-.movie-poster:nth-child(19) { left: -900px; animation-delay: 0s; }
-.movie-poster:nth-child(20) { left: -1080px; animation-delay: 0s; }
-.movie-poster:nth-child(21) { left: -1260px; animation-delay: 0s; }
+.movie-poster:nth-child(21) { left: -160px; }
+.movie-poster:nth-child(22) { left: -320px; }
+.movie-poster:nth-child(23) { left: -480px; }
+.movie-poster:nth-child(24) { left: -640px; }
+.movie-poster:nth-child(25) { left: -800px; }
+.movie-poster:nth-child(26) { left: -960px; }
+.movie-poster:nth-child(27) { left: -1120px; }
+.movie-poster:nth-child(28) { left: -1280px; }
+.movie-poster:nth-child(29) { left: -1440px; }
+.movie-poster:nth-child(30) { left: -1600px; }
 
-.movie-poster:nth-child(22) { right: -180px; animation-delay: 0s; }
-.movie-poster:nth-child(23) { right: -360px; animation-delay: 0s; }
-.movie-poster:nth-child(24) { right: -540px; animation-delay: 0s; }
-.movie-poster:nth-child(25) { right: -720px; animation-delay: 0s; }
-.movie-poster:nth-child(26) { right: -900px; animation-delay: 0s; }
-.movie-poster:nth-child(27) { right: -1080px; animation-delay: 0s; }
-.movie-poster:nth-child(28) { right: -1260px; animation-delay: 0s; }
+.movie-poster:nth-child(31) { right: -160px; }
+.movie-poster:nth-child(32) { right: -320px; }
+.movie-poster:nth-child(33) { right: -480px; }
+.movie-poster:nth-child(34) { right: -640px; }
+.movie-poster:nth-child(35) { right: -800px; }
+.movie-poster:nth-child(36) { right: -960px; }
+.movie-poster:nth-child(37) { right: -1120px; }
+.movie-poster:nth-child(38) { right: -1280px; }
+.movie-poster:nth-child(39) { right: -1440px; }
+.movie-poster:nth-child(40) { right: -1600px; }
 
-.movie-poster:nth-child(29) { left: -180px; animation-delay: 0s; }
-.movie-poster:nth-child(30) { left: -360px; animation-delay: 0s; }
-.movie-poster:nth-child(31) { left: -540px; animation-delay: 0s; }
-.movie-poster:nth-child(32) { left: -720px; animation-delay: 0s; }
-.movie-poster:nth-child(33) { left: -900px; animation-delay: 0s; }
-.movie-poster:nth-child(34) { left: -1080px; animation-delay: 0s; }
-.movie-poster:nth-child(35) { left: -1260px; animation-delay: 0s; }
+.movie-poster:nth-child(41) { left: -160px; }
+.movie-poster:nth-child(42) { left: -320px; }
+.movie-poster:nth-child(43) { left: -480px; }
+.movie-poster:nth-child(44) { left: -640px; }
+.movie-poster:nth-child(45) { left: -800px; }
+.movie-poster:nth-child(46) { left: -960px; }
+.movie-poster:nth-child(47) { left: -1120px; }
+.movie-poster:nth-child(48) { left: -1280px; }
+.movie-poster:nth-child(49) { left: -1440px; }
+.movie-poster:nth-child(50) { left: -1600px; }
+
+.movie-poster:nth-child(51) { right: -160px; }
+.movie-poster:nth-child(52) { right: -320px; }
+.movie-poster:nth-child(53) { right: -480px; }
+.movie-poster:nth-child(54) { right: -640px; }
+.movie-poster:nth-child(55) { right: -800px; }
+.movie-poster:nth-child(56) { right: -960px; }
+.movie-poster:nth-child(57) { right: -1120px; }
+.movie-poster:nth-child(58) { right: -1280px; }
+.movie-poster:nth-child(59) { right: -1440px; }
+.movie-poster:nth-child(60) { right: -1600px; }
 
 /* Animation keyframes */
 @keyframes moveLeft {
@@ -482,7 +495,7 @@ footer {
     transform: translateX(0) rotate(-1deg);
   }
   100% {
-    transform: translateX(calc(100vw + 1500px)) rotate(1deg);
+    transform: translateX(calc(100vw + 1800px)) rotate(1deg);
   }
 }
 
@@ -491,7 +504,7 @@ footer {
     transform: translateX(0) rotate(1deg);
   }
   100% {
-    transform: translateX(calc(-100vw - 1500px)) rotate(-1deg);
+    transform: translateX(calc(-100vw - 1800px)) rotate(-1deg);
   }
 }
 
