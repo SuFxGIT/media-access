@@ -3,44 +3,201 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Media Access - Plex & Overseerr</title>
+  <title>Media Access - Plex & Jellyseerr</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="hero">
-    <div class="overlay">
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <nav>
+        <div class="logo">Media Access</div>
+        <div class="nav-links">
+          <a href="#about">About Plex</a>
+          <a href="#overseerr">Jellyseerr</a>
+          <a href="#clients">Plex Clients</a>
+          <a href="#quality">Quality Tips</a>
+          <a href="#join">Subscribe</a>
+        </div>
+        <div class="mobile-menu">
+          <i class="fas fa-bars"></i>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
       <h1>Welcome to Media Access</h1>
       <p class="subtitle">Your private gateway to movies and shows — powered by <strong>Plex</strong>.</p>
-      <a href="#about" class="scroll-btn">Learn More ↓</a>
+      <div class="hero-buttons">
+        <a href="#about" class="scroll-btn">Learn More</a>
+        <a href="#join" class="subscribe-btn">Subscribe Now</a>
+      </div>
     </div>
-  </div>
+  </section>
 
+  <!-- About Section -->
   <section id="about" class="section">
-    <h2>What is Plex?</h2>
-    <p>Plex is your personal streaming service where you can watch movies, shows, and more — all hosted privately for members only.</p>
+    <div class="container">
+      <h2 class="section-title">What is Plex?</h2>
+      <p class="section-subtitle">Your personal streaming service for movies, shows, and more</p>
+      <div class="section-content">
+        <p>Plex is your personal streaming service where you can watch movies, shows, and more — all hosted privately for members only. With Plex, you get a Netflix-like experience but with content curated specifically for our community.</p>
+        
+        <div class="cards">
+          <div class="card">
+            <div class="card-icon">
+              <i class="fas fa-film"></i>
+            </div>
+            <h3 class="card-title">Extensive Library</h3>
+            <p>Access thousands of movies and TV shows across all genres, constantly updated with new content.</p>
+          </div>
+          
+          <div class="card">
+            <div class="card-icon">
+              <i class="fas fa-play-circle"></i>
+            </div>
+            <h3 class="card-title">Stream Anywhere</h3>
+            <p>Watch your favorite content on any device, anywhere with an internet connection.</p>
+          </div>
+          
+          <div class="card">
+            <div class="card-icon">
+              <i class="fas fa-user-shield"></i>
+            </div>
+            <h3 class="card-title">Private & Secure</h3>
+            <p>Your personal media library accessible only to approved members of our community.</p>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <section id="overseerr" class="section">
-    <h2>What is Jellyseerr?</h2>
-    <p>Jellyseerr lets you request movies and shows you want added to Plex. It’s easy, quick, and directly connected to our media library.</p>
-    <a href="https://request.sufxconnect.cc/" target="_blank" class="btn">Go to Jellyseerr</a>
+  <!-- Jellyseerr Section -->
+  <section id="overseerr" class="section section-alt">
+    <div class="container">
+      <h2 class="section-title">What is Jellyseerr?</h2>
+      <p class="section-subtitle">Request movies and shows to be added to our Plex library</p>
+      <div class="section-content">
+        <p>Jellyseerr lets you request movies and shows you want added to Plex. It's easy, quick, and directly connected to our media library. Simply search for content, make a request, and our team will add it as soon as possible.</p>
+        <a href="https://request.sufxconnect.cc/" target="_blank" class="jellyseerr-btn">
+          <i class="fas fa-external-link-alt"></i> Go to Jellyseerr
+        </a>
+      </div>
+    </div>
   </section>
 
-  <section id="join" class="section">
-    <h2>Join the Server</h2>
-    <p>Subscribe to get access to the full media library and enjoy streaming anytime.</p>
-    <a href="https://www.paypal.com/webapps/billing/plans/subscribe?plan_id=P-7N620619SF510053PND7T7RY"
-       target="_blank" class="paypal-btn">Subscribe with PayPal</a>
+  <!-- Plex Clients Section -->
+  <section id="clients" class="section">
+    <div class="container">
+      <h2 class="section-title">Download Plex Clients</h2>
+      <p class="section-subtitle">Plex has many clients from which you can view our media!</p>
+      
+      <div class="features">
+        <div class="feature">
+          <div class="feature-icon">
+            <i class="fas fa-mobile-alt"></i>
+          </div>
+          <h3 class="feature-title">Mobile</h3>
+          <p>iOS & Android phones/tablets</p>
+        </div>
+        
+        <div class="feature">
+          <div class="feature-icon">
+            <i class="fas fa-desktop"></i>
+          </div>
+          <h3 class="feature-title">Desktop</h3>
+          <p>Windows, macOS, Linux</p>
+        </div>
+        
+        <div class="feature">
+          <div class="feature-icon">
+            <i class="fas fa-tv"></i>
+          </div>
+          <h3 class="feature-title">Smart TVs</h3>
+          <p>Apple TV, Fire TV, Roku, Chromecast</p>
+        </div>
+        
+        <div class="feature">
+          <div class="feature-icon">
+            <i class="fas fa-gamepad"></i>
+          </div>
+          <h3 class="feature-title">Consoles</h3>
+          <p>PlayStation & Xbox</p>
+        </div>
+        
+        <div class="feature">
+          <div class="feature-icon">
+            <i class="fas fa-globe"></i>
+          </div>
+          <h3 class="feature-title">Web App</h3>
+          <p>Watch instantly in your browser</p>
+        </div>
+      </div>
+      
+      <p class="watch-anywhere">
+        <strong>📺 Watch Anywhere</strong> - Plex works almost everywhere — install the app on your favourite devices!
+      </p>
+    </div>
   </section>
 
+  <!-- Quality Tips Section -->
+  <section id="quality" class="section section-alt">
+    <div class="container">
+      <h2 class="section-title">Get the Best Quality</h2>
+      <p class="section-subtitle">Optimize your Plex experience for the best viewing</p>
+      
+      <div class="section-content">
+        <p>Plex sometimes defaults to low quality or shows its own adverts first. Here's how to fix that:</p>
+        
+        <div class="quality-tips">
+          <h3>🎞 Quality Optimization Tips</h3>
+          <ol>
+            <li><strong>Disable trailers & extras</strong> – Settings → Experience → untick "Show cinematic trailers"</li>
+            <li><strong>Force original quality</strong> – Settings → Playback → set "Automatic" to "Original"</li>
+            <li><strong>Use a wired connection</strong> if you're on a smart-TV for stutter-free 4K</li>
+            <li><strong>Adjust remote streaming quality</strong> – Settings → Quality → set to "Maximum"</li>
+          </ol>
+          <p class="happy-viewing">Happy viewing! 🍿</p>
+        </div>
+        
+        <a href="https://app.plex.tv/" target="_blank" class="plex-btn">
+          <i class="fas fa-play-circle"></i> Go to Plex
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section id="join" class="cta">
+    <div class="container">
+      <h2>Join the Server</h2>
+      <p>Subscribe to get access to the full media library and enjoy streaming anytime, anywhere.</p>
+      <a href="https://www.paypal.com/webapps/billing/plans/subscribe?plan_id=P-7N620619SF510053PND7T7RY"
+         target="_blank" class="paypal-btn">
+        <i class="fab fa-paypal"></i> Subscribe with PayPal
+      </a>
+      <p class="subscription-note">Cancel anytime • Secure payment • Instant access</p>
+    </div>
+  </section>
+
+  <!-- Footer -->
   <footer>
-    <p>© 2025 Media Access | Powered by Plex</p>
+    <div class="container">
+      <div class="footer-links">
+        <a href="#about">About</a>
+        <a href="#overseerr">Jellyseerr</a>
+        <a href="#clients">Clients</a>
+        <a href="#quality">Quality Tips</a>
+        <a href="#join">Subscribe</a>
+      </div>
+      <p>© 2025 Media Access | Powered by Plex</p>
+    </div>
   </footer>
 
-  <script>
-    document.querySelector('.scroll-btn').addEventListener('click', () => {
-      document.querySelector('#about').scrollIntoView({ behavior: 'smooth' });
-    });
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
