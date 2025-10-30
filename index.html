@@ -6,8 +6,6 @@
   <title>Media Access - Plex & Jellyseerr</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="style.css">
-  <!-- PayPal SDK -->
-  <script src="https://www.paypal.com/sdk/js?client-id=Aau2Hnpz_AgIB5hL1psZUY6gjLbCs8gzgtbcRxgf95CYWVz3P-ggnkBFPtesiqEiQWmOoJM-BAEMw28o&vault=true&intent=subscription" data-sdk-integration-source="button-factory"></script>
 </head>
 
 <script>
@@ -179,9 +177,26 @@
       <p class="section-subtitle">Subscribe to get access to the full media library</p>
       <p>Enjoy streaming anytime, anywhere with our private Plex server.</p>
       
-      <!-- PayPal Smart Button Container -->
-      <div class="paypal-button-container">
-        <div id="paypal-button-container-P-64300123FU728791NNEB5RSI"></div>
+      <!-- PayPal Subscription Form with Quantity Selection -->
+      <div class="paypal-form-container">
+        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+          <input type="hidden" name="cmd" value="_s-xclick" />
+          <input type="hidden" name="hosted_button_id" value="35E3HGWFPH3XE" />
+          <div class="quantity-selector">
+            <label for="userQuantity">Select how many users:</label>
+            <select name="os0" id="userQuantity" class="quantity-select">
+              <option value="1 user">1 user - 4.99 USD/month</option>
+              <option value="2 users">2 users - 9.98 USD/month</option>
+              <option value="3 users">3 users - 14.97 USD/month</option>
+              <option value="1 user (yearly)">1 user (yearly) - 59.88 USD/year</option>
+              <option value="2 users (yearly)">2 users (yearly) - 119.76 USD/year</option>
+            </select>
+          </div>
+          <input type="hidden" name="currency_code" value="USD" />
+          <button type="submit" class="paypal-submit-btn">
+            <i class="fab fa-paypal"></i> Subscribe Now
+          </button>
+        </form>
       </div>
       
       <div class="email-section">
@@ -192,30 +207,20 @@
     </div>
   </section>
 
-  <!-- Rest of your HTML remains the same -->
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-links">
+        <a href="#about">About</a>
+        <a href="#overseerr">Jellyseerr</a>
+        <a href="#clients">Clients</a>
+        <a href="#quality">Quality Tips</a>
+        <a href="#join">Subscribe</a>
+      </div>
+      <p>© 2025 Media Access | Powered by Plex</p>
+    </div>
+  </footer>
 
   <script src="script.js"></script>
-  
-  <!-- PayPal Button Script -->
-  <script>
-    paypal.Buttons({
-      style: {
-        shape: 'pill',
-        color: 'gold',
-        layout: 'vertical',
-        label: 'subscribe'
-      },
-      createSubscription: function(data, actions) {
-        return actions.subscription.create({
-          plan_id: 'P-64300123FU728791NNEB5RSI'
-        });
-      },
-      onApprove: function(data, actions) {
-        // Optional: Show success message or redirect
-        alert('Subscription successful! ID: ' + data.subscriptionID);
-        // You can also redirect to a thank you page
-      }
-    }).render('#paypal-button-container-P-64300123FU728791NNEB5RSI');
-  </script>
 </body>
 </html>
