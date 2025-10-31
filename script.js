@@ -1,4 +1,9 @@
-// Smooth scrolling for navigation links
+/**
+ * Media Access Website Script
+ * Handles smooth scrolling, header effects, and movie background animation
+ */
+
+// ===== SMOOTH SCROLLING FOR NAVIGATION LINKS =====
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', function (e) {
     e.preventDefault();
@@ -12,7 +17,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   });
 });
 
-// Header background on scroll
+// ===== HEADER BACKGROUND ON SCROLL =====
 window.addEventListener('scroll', () => {
   const header = document.querySelector('header');
   if (window.scrollY > 50) {
@@ -22,7 +27,11 @@ window.addEventListener('scroll', () => {
   }
 });
 
-// Movie background animation - PERFECT SMOOTH VERSION
+// ===== MOVIE BACKGROUND ANIMATION - PERFECT SMOOTH VERSION =====
+
+/**
+ * Loads movie posters from TMDB API and creates smooth scrolling background
+ */
 async function loadMovieBackground() {
   console.log('Loading movie background from TMDB...');
   
@@ -65,6 +74,11 @@ async function loadMovieBackground() {
   }
 }
 
+/**
+ * Creates smooth scrolling movie poster rows for the background
+ * @param {HTMLElement} container - The container element
+ * @param {Array} movies - Array of movie objects with poster_path
+ */
 function createSmoothMovieRows(container, movies) {
   // Clear container
   container.innerHTML = '';
@@ -135,6 +149,10 @@ function createSmoothMovieRows(container, movies) {
   console.log(`Created smooth rows with ${postersPerRow} posters each`);
 }
 
+/**
+ * Fallback function if TMDB API fails
+ * @param {HTMLElement} container - The container element
+ */
 function useSmoothFallback(container) {
   console.log('Using smooth fallback');
   const fallbackPosters = [
@@ -164,5 +182,5 @@ function useSmoothFallback(container) {
   createSmoothMovieRows(container, movies);
 }
 
-// Call when page loads
+// ===== INITIALIZE WHEN PAGE LOADS =====
 document.addEventListener('DOMContentLoaded', loadMovieBackground);
