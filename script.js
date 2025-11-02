@@ -240,3 +240,31 @@ document.addEventListener('DOMContentLoaded', function() {
   // Additional initialization can go here
   console.log('Media Access website initialized');
 });
+
+// ===== BENEFITS DROPDOWN FUNCTIONALITY =====
+document.addEventListener('DOMContentLoaded', function() {
+  const dropdownToggle = document.querySelector('.dropdown-toggle');
+  const dropdownContent = document.querySelector('.dropdown-content');
+  
+  if (dropdownToggle && dropdownContent) {
+    dropdownToggle.addEventListener('click', function() {
+      const isActive = dropdownContent.classList.contains('show');
+      
+      if (isActive) {
+        dropdownContent.classList.remove('show');
+        dropdownToggle.classList.remove('active');
+        dropdownToggle.querySelector('.fa-chevron-down').style.transform = 'rotate(0deg)';
+      } else {
+        dropdownContent.classList.add('show');
+        dropdownToggle.classList.add('active');
+        dropdownToggle.querySelector('.fa-chevron-down').style.transform = 'rotate(180deg)';
+      }
+    });
+    
+    // Add chevron transition
+    const chevron = dropdownToggle.querySelector('.fa-chevron-down');
+    if (chevron) {
+      chevron.style.transition = 'transform 0.3s ease';
+    }
+  }
+});
