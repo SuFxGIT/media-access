@@ -1,7 +1,11 @@
 /**
  * Media Access Website Script
- * Handles smooth scrolling, header effects, and movie background animation
+ * Handles smooth scrolling, header effects, movie background animation, and VIP access
  */
+
+// ===== VIP API CONFIGURATION =====
+// Replace with your actual Cloudflare Worker URL
+const VIP_API_URL = 'https://plex-vip-backend.jazeera21.workers.dev';
 
 // ===== SMOOTH SCROLLING FOR NAVIGATION LINKS =====
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -182,5 +186,94 @@ function useSmoothFallback(container) {
   createSmoothMovieRows(container, movies);
 }
 
+// ===== VIP ACCESS FUNCTIONALITY =====
+document.addEventListener('DOMContentLoaded', function() {
+  const vipCheckBtn = document.getElementById('checkVipBtn');
+  const vipCodeInput = document.getElementById('vipCodeInput');
+  const vipMessage = document.getElementById('vipMessage');
+  const vipPlans = document.getElementById('vipPlans');
+  const regularPlans = document.getElementById('regularPlans');
+
+  // Initialize VIP functionality if elements exist
+  if (vipCheckBtn && vipCodeInput) {
+    vipCheckBtn.addEventListener('click', checkVipAccess);
+    
+    // Also allow Enter key to submit
+    vipCodeInput.addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        checkVipAccess();
+      }
+    });
+  }
+
+  async function checkVipAccess() {
+    const vipCode = vipCodeInput.value.trim();
+    
+    if (!vipCode) {
+      showVipMessage('Please enter a VIP code', 'error');
+      return;
+    }
+
+    // Show loading state
+    vipCheckBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Checking...';
+    vipCheckBtn.disabled = true;
+
+    try {
+      const response = await fetch(VIP_API_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ vipCode })
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        showVipMessage('🎉 VIP Access granted! Special pricing unlocked.', 'success');
+        // Show VIP plans, hide regular plans
+        vipPlans.style.display = 'grid';
+        regularPlans.style.display = 'none';
+        
+        // Scroll to VIP plans
+        vipPlans.scrollIntoView({ behavior: 'smooth' });
+        
+        // Store in session storage so VIP access persists during session
+        sessionStorage.setItem('vipAccess', 'true');
+      } else {
+        showVipMessage(result.message, 'error');
+      }
+    } catch (error) {
+      console.error('VIP check error:', error);
+      showVipMessage('Error checking VIP code. Please try again.', 'error');
+    } finally {
+      // Reset button
+      vipCheckBtn.innerHTML = '<i class="fas fa-star"></i> Check VIP Access';
+      vipCheckBtn.disabled = false;
+    }
+  }
+
+  function showVipMessage(message, type) {
+    if (vipMessage) {
+      vipMessage.textContent = message;
+      vipMessage.className = `vip-message ${type}`;
+      vipMessage.style.display = 'block';
+    }
+  }
+
+  // Check if user already has VIP access in this session
+  if (sessionStorage.getItem('vipAccess') === 'true') {
+    if (vipPlans && regularPlans) {
+      vipPlans.style.display = 'grid';
+      regularPlans.style.display = 'none';
+    }
+  }
+});
+
 // ===== INITIALIZE WHEN PAGE LOADS =====
-document.addEventListener('DOMContentLoaded', loadMovieBackground);
+document.addEventListener('DOMContentLoaded', function() {
+  loadMovieBackground();
+  
+  // Additional initialization can go here
+  console.log('Media Access website initialized');
+});

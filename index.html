@@ -169,41 +169,67 @@
     </div>
   </section>
 
-  <!-- Subscription CTA Section -->
-  <section id="join" class="section cta">
-    <div class="container">
-      <h2 class="section-title">Join the Server</h2>
-      <p class="section-subtitle">Subscribe to get access to the full media library</p>
-      <p>Enjoy streaming anytime, anywhere with our private Plex server.</p>
-      
-      <!-- PayPal Subscription Options -->
-      <div class="subscription-options">
-        <div class="subscription-card">
-          <h3>Single User</h3>
-          <div class="price">$4.99<span>/month</span></div>
-          <p>Perfect for individual viewing</p>
-          <a href="https://www.paypal.com/webapps/billing/plans/subscribe?plan_id=P-7E830573K0060330MNEB7MJI" target="_blank" class="subscribe-option-btn">
-            <i class="fab fa-paypal"></i> Subscribe - 1 User
-          </a>
-        </div>
-        
-        <div class="subscription-card">
-          <h3>Family Plan</h3>
-          <div class="price">$9.98<span>/month</span></div>
-          <p>Great for 2 users</p>
-          <a href="https://www.paypal.com/webapps/billing/plans/subscribe?plan_id=P-6K2296107M638891YNEB7NVI" target="_blank" class="subscribe-option-btn">
-            <i class="fab fa-paypal"></i> Subscribe - 2 Users
-          </a>
-        </div>
+<!-- VIP Access Section -->
+<section id="vip-access" class="section section-alt">
+  <div class="container">
+    <h2 class="section-title">VIP Access</h2>
+    <p class="section-subtitle">Have a VIP code? Get special pricing</p>
+    
+    <div class="vip-form-container">
+      <div class="vip-form">
+        <input type="text" id="vipCodeInput" placeholder="Enter your VIP code" class="vip-input">
+        <button id="checkVipBtn" class="vip-check-btn">
+          <i class="fas fa-star"></i> Check VIP Access
+        </button>
       </div>
-      
-      <div class="email-section">
-        <p class="email-note">After payment, email plex usernames for access: to "sufxlive@gmail.com"</p>
-      </div>
-      
-      <p class="subscription-note">Cancel anytime • Secure payment • Instant access</p>
+      <div id="vipMessage" class="vip-message"></div>
     </div>
-  </section>
+
+    <!-- VIP Plans (Hidden by default) -->
+    <div id="vipPlans" class="subscription-options" style="display: none;">
+      <div class="subscription-card vip-plan">
+        <div class="vip-badge">VIP</div>
+        <h3>Single User VIP</h3>
+        <div class="price">$4.99<span>/month</span></div>
+        <p>Perfect for individual viewing</p>
+        <a href="https://www.paypal.com/webapps/billing/plans/subscribe?plan_id=P-7E830573K0060330MNEB7MJI" target="_blank" class="subscribe-option-btn vip-btn">
+          <i class="fab fa-paypal"></i> Subscribe - 1 User VIP
+        </a>
+      </div>
+      
+      <div class="subscription-card vip-plan">
+        <div class="vip-badge">VIP</div>
+        <h3>Family Plan VIP</h3>
+        <div class="price">$9.98<span>/month</span></div>
+        <p>Great for 2 users</p>
+        <a href="https://www.paypal.com/webapps/billing/plans/subscribe?plan_id=P-6K2296107M638891YNEB7NVI" target="_blank" class="subscribe-option-btn vip-btn">
+          <i class="fab fa-paypal"></i> Subscribe - 2 Users VIP
+        </a>
+      </div>
+    </div>
+
+    <!-- Regular Plans (Visible by default) -->
+    <div id="regularPlans" class="subscription-options">
+      <div class="subscription-card">
+        <h3>Single User</h3>
+        <div class="price">$17.99<span>/month</span></div>
+        <p>Standard individual plan</p>
+        <a href="https://www.paypal.com/webapps/billing/plans/subscribe?plan_id=P-55C31572X4066792SNEDWDOA" target="_blank" class="subscribe-option-btn">
+          <i class="fab fa-paypal"></i> Subscribe - 1 User
+        </a>
+      </div>
+      
+      <div class="subscription-card coming-soon">
+        <h3>Family Plan</h3>
+        <div class="price">$34.99<span>/month</span></div>
+        <p>Standard family plan (Coming Soon)</p>
+        <button class="subscribe-option-btn" disabled>
+          <i class="fab fa-paypal"></i> Coming Soon
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
 
   <!-- Footer -->
   <footer>
