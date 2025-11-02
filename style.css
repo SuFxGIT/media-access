@@ -591,45 +591,40 @@ footer {
 
 /* ===== VIP ACCESS STYLES ===== */
 .vip-form-container {
-  max-width: 500px;
-  margin: 30px auto;
-  padding: 30px;
-  background: var(--card-bg);
-  border-radius: 15px;
-  border: 2px solid var(--primary);
+  max-width: 400px;
+  margin: 20px auto;
+  padding: 20px;
 }
 
 .vip-form {
   display: flex;
-  gap: 15px;
-  margin-bottom: 20px;
-  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 15px;
 }
 
 .vip-input {
   flex: 1;
-  min-width: 200px;
-  padding: 15px 20px;
-  border: 2px solid var(--primary);
-  border-radius: 25px;
-  background: rgba(255, 255, 255, 0.1);
+  padding: 12px 15px;
+  border: 1px solid var(--primary);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.05);
   color: var(--light);
-  font-size: 1rem;
+  font-size: 0.9rem;
+}
+
+.vip-check-btn {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  background: var(--primary);
+  color: #000;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
 }
 
 .vip-input::placeholder {
   color: var(--gray);
-}
-
-.vip-check-btn {
-  padding: 15px 25px;
-  border: none;
-  border-radius: 25px;
-  background: var(--primary);
-  color: #000;
-  font-weight: bold;
-  cursor: pointer;
-  transition: all 0.3s ease;
 }
 
 .vip-check-btn:hover {
@@ -701,4 +696,16 @@ footer {
   .vip-plan {
     transform: none;
   }
+}
+
+/* Remove hover effects from subscription cards */
+.subscription-card {
+  transition: none !important;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+.subscription-card:hover {
+  transform: none !important;
+  box-shadow: none !important;
 }

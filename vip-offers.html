@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VIP Offers - Exclusive Pricing</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .vip-header {
+      background: linear-gradient(45deg, var(--primary), #ffb700);
+      color: #000;
+      padding: 40px 0;
+      text-align: center;
+    }
+    
+    .vip-badge-large {
+      background: linear-gradient(45deg, var(--primary), #ffb700);
+      color: #000;
+      padding: 8px 20px;
+      border-radius: 20px;
+      font-weight: bold;
+      display: inline-block;
+      margin-bottom: 20px;
+    }
+    
+    .exclusive-offers {
+      padding: 50px 0;
+    }
+    
+    .timer {
+      background: var(--card-bg);
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      margin: 20px auto;
+      max-width: 300px;
+      border: 2px solid var(--primary);
+    }
+  </style>
+</head>
+<body>
+  <!-- VIP Header -->
+  <section class="vip-header">
+    <div class="container">
+      <div class="vip-badge-large">
+        <i class="fas fa-crown"></i> EXCLUSIVE VIP ACCESS
+      </div>
+      <h1>Special VIP Pricing</h1>
+      <p>Thank you for your VIP status. Here are your exclusive offers:</p>
+    </div>
+  </section>
+
+  <!-- VIP Offers -->
+  <section class="exclusive-offers">
+    <div class="container">
+      <div class="timer">
+        <i class="fas fa-clock"></i>
+        <h3>Limited Time Offer</h3>
+        <p>These prices are exclusive to VIP members</p>
+      </div>
+      
+      <div class="subscription-options">
+        <div class="subscription-card vip-plan">
+          <div class="vip-badge">VIP EXCLUSIVE</div>
+          <h3>Single User VIP</h3>
+          <div class="price">$4.99<span>/month</span></div>
+          <p><del>$17.99</del> - Save 72%</p>
+          <ul style="text-align: left; margin: 15px 0; padding-left: 20px;">
+            <li>Full HD & 4K Content</li>
+            <li>All Devices Supported</li>
+            <li>Priority Support</li>
+          </ul>
+          <a href="https://www.paypal.com/webapps/billing/plans/subscribe?plan_id=P-7E830573K0060330MNEB7MJI" target="_blank" class="subscribe-option-btn vip-btn">
+            <i class="fab fa-paypal"></i> Get VIP Pricing - $4.99/month
+          </a>
+        </div>
+        
+        <div class="subscription-card vip-plan">
+          <div class="vip-badge">VIP EXCLUSIVE</div>
+          <h3>Family Plan VIP</h3>
+          <div class="price">$9.98<span>/month</span></div>
+          <p><del>$34.99</del> - Save 71%</p>
+          <ul style="text-align: left; margin: 15px 0; padding-left: 20px;">
+            <li>2 Simultaneous Streams</li>
+            <li>Full HD & 4K Content</li>
+            <li>All Devices Supported</li>
+            <li>Priority Support</li>
+          </ul>
+          <a href="https://www.paypal.com/webapps/billing/plans/subscribe?plan_id=P-6K2296107M638891YNEB7NVI" target="_blank" class="subscribe-option-btn vip-btn">
+            <i class="fab fa-paypal"></i> Get VIP Pricing - $9.98/month
+          </a>
+        </div>
+      </div>
+      
+      <div style="text-align: center; margin-top: 30px;">
+        <a href="index.html" class="scroll-btn">
+          <i class="fas fa-arrow-left"></i> Back to Main Site
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Check if user has VIP access
+    if (!sessionStorage.getItem('vipAccess')) {
+      // Redirect back to main site if no VIP access
+      window.location.href = 'index.html';
+    }
+    
+    // Clear VIP access when page is closed/refreshed
+    window.addEventListener('beforeunload', function() {
+      sessionStorage.removeItem('vipAccess');
+    });
+  </script>
+</body>
+</html>

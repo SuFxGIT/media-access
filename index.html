@@ -8,13 +8,6 @@
   <link rel="stylesheet" href="style.css">
 </head>
 
-<script>
-  // TMDB API configuration for movie background
-  const TMDB_API_KEY = '763f72be39eca42c43698dcc48088276';
-  const TMDB_BASE_URL = 'https://api.themoviedb.org/3';
-  const TMDB_IMAGE_BASE = 'https://image.tmdb.org/t/p/w780';
-</script>
-
 <body>
   <!-- Header with navigation -->
   <header>
@@ -173,49 +166,26 @@
 <section id="vip-access" class="section section-alt">
   <div class="container">
     <h2 class="section-title">VIP Access</h2>
-    <p class="section-subtitle">Have a VIP code? Get special pricing</p>
+    <p class="section-subtitle">Enter your VIP code below</p>
     
     <div class="vip-form-container">
       <div class="vip-form">
-        <input type="text" id="vipCodeInput" placeholder="Enter your VIP code" class="vip-input">
+        <input type="text" id="vipCodeInput" placeholder="Enter VIP code" class="vip-input">
         <button id="checkVipBtn" class="vip-check-btn">
-          <i class="fas fa-star"></i> Check VIP Access
+          <i class="fas fa-unlock"></i> Verify Access
         </button>
       </div>
       <div id="vipMessage" class="vip-message"></div>
     </div>
 
-    <!-- VIP Plans (Hidden by default) -->
-    <div id="vipPlans" class="subscription-options" style="display: none;">
-      <div class="subscription-card vip-plan">
-        <div class="vip-badge">VIP</div>
-        <h3>Single User VIP</h3>
-        <div class="price">$4.99<span>/month</span></div>
-        <p>Perfect for individual viewing</p>
-        <a href="https://www.paypal.com/webapps/billing/plans/subscribe?plan_id=P-7E830573K0060330MNEB7MJI" target="_blank" class="subscribe-option-btn vip-btn">
-          <i class="fab fa-paypal"></i> Subscribe - 1 User VIP
-        </a>
-      </div>
-      
-      <div class="subscription-card vip-plan">
-        <div class="vip-badge">VIP</div>
-        <h3>Family Plan VIP</h3>
-        <div class="price">$9.98<span>/month</span></div>
-        <p>Great for 2 users</p>
-        <a href="https://www.paypal.com/webapps/billing/plans/subscribe?plan_id=P-6K2296107M638891YNEB7NVI" target="_blank" class="subscribe-option-btn vip-btn">
-          <i class="fab fa-paypal"></i> Subscribe - 2 Users VIP
-        </a>
-      </div>
-    </div>
-
-    <!-- Regular Plans (Visible by default) -->
+    <!-- Regular Plans -->
     <div id="regularPlans" class="subscription-options">
       <div class="subscription-card">
         <h3>Single User</h3>
         <div class="price">$17.99<span>/month</span></div>
         <p>Standard individual plan</p>
         <a href="https://www.paypal.com/webapps/billing/plans/subscribe?plan_id=P-55C31572X4066792SNEDWDOA" target="_blank" class="subscribe-option-btn">
-          <i class="fab fa-paypal"></i> Subscribe - 1 User
+          <i class="fab fa-paypal"></i> Subscribe Now
         </a>
       </div>
       

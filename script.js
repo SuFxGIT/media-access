@@ -3,9 +3,9 @@
  * Handles smooth scrolling, header effects, movie background animation, and VIP access
  */
 
-// ===== VIP API CONFIGURATION =====
-// Replace with your actual Cloudflare Worker URL
-const VIP_API_URL = 'https://plex-vip-backend.jazeera21.workers.dev';
+// ===== API CONFIGURATION =====
+const WORKER_URL = 'https://plex-vip-backend.jazeera21.workers.dev';
+const TMDB_IMAGE_BASE = 'https://image.tmdb.org/t/p/w780';
 
 // ===== SMOOTH SCROLLING FOR NAVIGATION LINKS =====
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -34,10 +34,10 @@ window.addEventListener('scroll', () => {
 // ===== MOVIE BACKGROUND ANIMATION - PERFECT SMOOTH VERSION =====
 
 /**
- * Loads movie posters from TMDB API and creates smooth scrolling background
+ * Loads movie posters from backend and creates smooth scrolling background
  */
 async function loadMovieBackground() {
-  console.log('Loading movie background from TMDB...');
+  console.log('Loading movie background from backend...');
   
   const container = document.getElementById('movieBackground');
   
@@ -47,33 +47,17 @@ async function loadMovieBackground() {
   }
 
   try {
-    // Fetch multiple pages to get enough movies
-    const pagesToFetch = 4; // Get more movies for variety
-    const fetchPromises = [];
+    const response = await fetch(`${WORKER_URL}/movies`);
+    const result = await response.json();
     
-    for (let i = 1; i <= pagesToFetch; i++) {
-      fetchPromises.push(
-        fetch(`${TMDB_BASE_URL}/movie/popular?api_key=${TMDB_API_KEY}&page=${i}`)
-          .then(response => response.json())
-          .then(data => data.results)
-      );
+    if (result.success && result.movies.length > 0) {
+      console.log(`Loaded ${result.movies.length} movies from backend`);
+      createSmoothMovieRows(container, result.movies);
+    } else {
+      useSmoothFallback(container);
     }
-    
-    const allResults = await Promise.all(fetchPromises);
-    const allMovies = allResults.flat();
-    
-    // Filter movies that have posters
-    const moviesWithPosters = allMovies
-      .filter(movie => movie.poster_path)
-      .slice(0, 100); // Get more movies to avoid duplicates
-    
-    console.log(`Loaded ${moviesWithPosters.length} movies with posters from TMDB`);
-    
-    // Create perfect smooth rows
-    createSmoothMovieRows(container, moviesWithPosters);
-    
   } catch (error) {
-    console.error('TMDB API failed:', error);
+    console.error('Backend movie load failed:', error);
     useSmoothFallback(container);
   }
 }
@@ -154,7 +138,7 @@ function createSmoothMovieRows(container, movies) {
 }
 
 /**
- * Fallback function if TMDB API fails
+ * Fallback function if backend API fails
  * @param {HTMLElement} container - The container element
  */
 function useSmoothFallback(container) {
@@ -191,8 +175,6 @@ document.addEventListener('DOMContentLoaded', function() {
   const vipCheckBtn = document.getElementById('checkVipBtn');
   const vipCodeInput = document.getElementById('vipCodeInput');
   const vipMessage = document.getElementById('vipMessage');
-  const vipPlans = document.getElementById('vipPlans');
-  const regularPlans = document.getElementById('regularPlans');
 
   // Initialize VIP functionality if elements exist
   if (vipCheckBtn && vipCodeInput) {
@@ -214,41 +196,34 @@ document.addEventListener('DOMContentLoaded', function() {
       return;
     }
 
-    // Show loading state
-    vipCheckBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Checking...';
+    vipCheckBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Verifying...';
     vipCheckBtn.disabled = true;
 
     try {
-      const response = await fetch(VIP_API_URL, {
+      const response = await fetch(WORKER_URL, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ vipCode })
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({vipCode})
       });
 
       const result = await response.json();
 
       if (result.success) {
-        showVipMessage('🎉 VIP Access granted! Special pricing unlocked.', 'success');
-        // Show VIP plans, hide regular plans
-        vipPlans.style.display = 'grid';
-        regularPlans.style.display = 'none';
+        showVipMessage('✅ VIP access verified! Redirecting...', 'success');
         
-        // Scroll to VIP plans
-        vipPlans.scrollIntoView({ behavior: 'smooth' });
-        
-        // Store in session storage so VIP access persists during session
+        // Set session storage and redirect
         sessionStorage.setItem('vipAccess', 'true');
+        setTimeout(() => {
+          window.location.href = 'vip-offers.html';
+        }, 1500);
+        
       } else {
-        showVipMessage(result.message, 'error');
+        showVipMessage('Invalid VIP code', 'error');
       }
     } catch (error) {
-      console.error('VIP check error:', error);
-      showVipMessage('Error checking VIP code. Please try again.', 'error');
+      showVipMessage('Error verifying code', 'error');
     } finally {
-      // Reset button
-      vipCheckBtn.innerHTML = '<i class="fas fa-star"></i> Check VIP Access';
+      vipCheckBtn.innerHTML = '<i class="fas fa-unlock"></i> Verify Access';
       vipCheckBtn.disabled = false;
     }
   }
@@ -258,14 +233,6 @@ document.addEventListener('DOMContentLoaded', function() {
       vipMessage.textContent = message;
       vipMessage.className = `vip-message ${type}`;
       vipMessage.style.display = 'block';
-    }
-  }
-
-  // Check if user already has VIP access in this session
-  if (sessionStorage.getItem('vipAccess') === 'true') {
-    if (vipPlans && regularPlans) {
-      vipPlans.style.display = 'grid';
-      regularPlans.style.display = 'none';
     }
   }
 });
