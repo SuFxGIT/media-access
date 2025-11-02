@@ -83,31 +83,26 @@ function createSmoothMovieRows(container, movies) {
     const rowDiv = document.createElement('div');
     rowDiv.className = `movie-row row-${row + 1}`;
     
-    // Create unique sequence for this row to avoid same movies next to each other
+    // Create unique sequence for this row with no adjacent duplicates
     const rowMovies = [];
-    let usedIndices = new Set();
+    let lastMovieId = null;
     
-    // Fill the row with unique movies in random order
+    // Fill the row ensuring no two adjacent movies are the same
     for (let i = 0; i < postersPerRow; i++) {
-      let randomIndex;
+      let randomMovie;
       let attempts = 0;
       
-      // Ensure no duplicate movies next to each other
       do {
-        randomIndex = Math.floor(Math.random() * movies.length);
+        const randomIndex = Math.floor(Math.random() * movies.length);
+        randomMovie = movies[randomIndex];
         attempts++;
         
         // If we can't find a unique movie after many attempts, just use any
-        if (attempts > 50) break;
-      } while (usedIndices.has(randomIndex));
+        if (attempts > 30) break;
+      } while (randomMovie.id === lastMovieId);
       
-      usedIndices.add(randomIndex);
-      rowMovies.push(movies[randomIndex]);
-      
-      // Reset used indices occasionally to allow repeats (but not adjacent)
-      if (usedIndices.size > 20) {
-        usedIndices = new Set();
-      }
+      rowMovies.push(randomMovie);
+      lastMovieId = randomMovie.id;
     }
     
     // Add posters to the row
@@ -116,9 +111,10 @@ function createSmoothMovieRows(container, movies) {
       img.src = TMDB_IMAGE_BASE + movie.poster_path;
       img.alt = movie.title + ' Poster';
       img.className = 'movie-poster';
+      img.loading = 'lazy'; // Better performance
       
       img.onload = function() {
-        if (index < 5) { // Only log first few to avoid console spam
+        if (index < 5) {
           console.log(`Loaded: ${movie.title}`);
         }
       };
@@ -134,7 +130,7 @@ function createSmoothMovieRows(container, movies) {
     container.appendChild(rowDiv);
   }
   
-  console.log(`Created smooth rows with ${postersPerRow} posters each`);
+  console.log(`Created ${postersPerRow} posters per row with no adjacent duplicates`);
 }
 
 /**

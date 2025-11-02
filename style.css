@@ -384,6 +384,7 @@ footer {
   padding: 5% 0;
 }
 
+/* ===== PERFECT SMOOTH MOVIE ANIMATION - NO FLICKER ===== */
 .movie-row {
   display: flex;
   width: 400%; /* Make row 4x screen width for seamless looping */
@@ -406,6 +407,26 @@ footer {
 .row-4 { animation-duration: 160s; }
 .row-5 { animation-duration: 170s; }
 
+/* PERFECT SMOOTH ANIMATION - LEFT MOVING (SEAMLESS) */
+@keyframes slideLeftSmooth {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%); /* Move 50% of row width for perfect loop */
+  }
+}
+
+/* PERFECT SMOOTH ANIMATION - RIGHT MOVING (SEAMLESS) */
+@keyframes slideRightSmooth {
+  0% {
+    transform: translateX(-50%); /* Start from the left */
+  }
+  100% {
+    transform: translateX(0); /* Move to the right */
+  }
+}
+
 .movie-poster {
   width: 140px; /* Fixed size */
   height: 210px; /* Fixed 2:3 ratio */
@@ -415,26 +436,6 @@ footer {
   filter: blur(1px) brightness(0.85);
   flex-shrink: 0;
   margin: 0 15px; /* Fixed spacing */
-}
-
-/* PERFECT SMOOTH ANIMATION - LEFT MOVING */
-@keyframes slideLeftSmooth {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-25%); /* Move only 25% of row width for seamless loop */
-  }
-}
-
-/* PERFECT SMOOTH ANIMATION - RIGHT MOVING */
-@keyframes slideRightSmooth {
-  0% {
-    transform: translateX(-25%); /* Start from the left */
-  }
-  100% {
-    transform: translateX(0); /* Move to the right */
-  }
 }
 
 /* ===== SUBSCRIPTION OPTIONS ===== */
