@@ -567,9 +567,9 @@ footer {
 /* ===== COMPACT VIP LAYOUT ===== */
 .vip-compact-layout {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: 1fr 1fr;
   gap: 40px;
-  align-items: center;
+  align-items: start;
   justify-items: center;
   margin-bottom: 30px;
   text-align: center;
@@ -582,7 +582,6 @@ footer {
   align-items: center;
   justify-content: center;
   width: 100%;
-  max-width: 500px;
 }
 
 .vip-left .section-title,
@@ -595,22 +594,23 @@ footer {
 .vip-right {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: start;
   width: 100%;
 }
 
 .vip-right .subscription-card {
   margin: 0;
-  max-width: 350px;
+  max-width: 300px;
   width: 100%;
 }
 
 /* ===== BENEFITS STYLES ===== */
 .benefits-toggle-container {
-  margin: 0;
+  margin: 30px auto 0 auto;
   text-align: center;
   width: 100%;
   max-width: 800px;
+  grid-column: 1 / -1;
 }
 
 .benefits-toggle-btn {
@@ -764,6 +764,12 @@ footer {
   
   .benefit-item {
     padding: 10px;
+  }
+  
+  /* ADD THIS FOR VIP MOBILE STACKING */
+  .vip-compact-layout {
+    grid-template-columns: 1fr;
+    gap: 30px;
   }
 }
 
