@@ -1019,3 +1019,50 @@ footer {
     gap: 12px;
   }
 }
+
+/* ===== COMPACT VIP LAYOUT ===== */
+.vip-compact-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: start;
+  margin-bottom: 30px;
+}
+
+.vip-left {
+  text-align: left;
+}
+
+.vip-left .section-title,
+.vip-left .section-subtitle {
+  text-align: left;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.vip-right {
+  display: flex;
+  justify-content: center;
+}
+
+.vip-right .subscription-card {
+  margin: 0;
+  max-width: 300px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .vip-compact-layout {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  
+  .vip-left {
+    text-align: center;
+  }
+  
+  .vip-left .section-title,
+  .vip-left .section-subtitle {
+    text-align: center;
+  }
+}

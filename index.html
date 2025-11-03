@@ -166,41 +166,47 @@
   </section>
 
 <!-- VIP Access Section -->
-<section id="vip-access" class="section section-alt">
+<section id="vip-access" class="section">
   <div class="container">
-    <h2 class="section-title">VIP Access</h2>
-    <p class="section-subtitle">Enter your VIP code below</p>
-    
-    <div class="vip-form-container" style="max-width: 400px; margin: 10px auto 20px auto;">
-      <div class="vip-form">
-        <input type="text" id="vipCodeInput" placeholder="Enter VIP code" class="vip-input">
-        <button id="checkVipBtn" class="vip-check-btn">
-          <i class="fas fa-unlock"></i> Verify Access
-        </button>
+    <div class="vip-compact-layout">
+      <!-- Left Side: VIP Form -->
+      <div class="vip-left">
+        <h2 class="section-title">VIP Access</h2>
+        <p class="section-subtitle">Enter your VIP code for exclusive pricing</p>
+        
+        <div class="vip-form-container">
+          <div class="vip-form">
+            <input type="text" id="vipCodeInput" placeholder="Enter VIP code" class="vip-input">
+            <button id="checkVipBtn" class="vip-check-btn">
+              <i class="fas fa-unlock"></i> Verify Access
+            </button>
+          </div>
+          <div id="vipMessage" class="vip-message"></div>
+        </div>
       </div>
-      <div id="vipMessage" class="vip-message"></div>
+
+      <!-- Right Side: Subscription Plan -->
+      <div class="vip-right">
+        <div class="subscription-card">
+          <h3>Premium Access</h3>
+          <div class="price">$17.99<span>/month</span></div>
+          <p>Full media library access</p>
+          <a href="https://www.paypal.com/webapps/billing/plans/subscribe?plan_id=P-55C31572X4066792SNEDWDOA" target="_blank" class="subscribe-option-btn">
+            <i class="fab fa-paypal"></i> Subscribe Now
+          </a>
+        </div>
+      </div>
     </div>
 
-    <!-- Regular Plans -->
-    <div id="regularPlans" class="subscription-options" style="margin: 20px auto; max-width: 400px;">
-      <div class="subscription-card">
-        <h3>Premium Access</h3>
-        <div class="price">$17.99<span>/month</span></div>
-        <p>Full media library access</p>
-        <a href="https://www.paypal.com/webapps/billing/plans/subscribe?plan_id=P-55C31572X4066792SNEDWDOA" target="_blank" class="subscribe-option-btn">
-          <i class="fab fa-paypal"></i> Subscribe Now
-        </a>
-      </div>
-    </div>
-
-    <!-- Compact Benefits Toggle -->
-    <div class="benefits-toggle-container" style="margin: 15px auto;">
+    <!-- Benefits Toggle (Full width below) -->
+    <div class="benefits-toggle-container">
       <button class="benefits-toggle-btn">
         <i class="fas fa-info-circle"></i> View Subscription Benefits
         <i class="fas fa-chevron-down"></i>
       </button>
       <div class="dropdown-content">
         <div class="benefits-grid-horizontal">
+          <!-- Your benefits content here (same as before) -->
           <div class="benefit-row">
             <div class="benefit-item">
               <i class="fas fa-film"></i>
