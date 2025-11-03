@@ -391,18 +391,18 @@ footer {
 }
 
 .row-1, .row-3, .row-5 {
-  animation: slideLeftSmooth 180s linear infinite; /* Changed from 120s to 180s */
+  animation: slideLeftSmooth 360s linear infinite; /* Changed from 120s to 180s */
 }
 
 .row-2, .row-4 {
-  animation: slideRightSmooth 180s linear infinite; /* Changed from 120s to 180s */
+  animation: slideRightSmooth 360s linear infinite; /* Changed from 120s to 180s */
 }
 
-.row-1 { animation-duration: 200s; } /* Changed from 130s */
-.row-2 { animation-duration: 210s; } /* Changed from 140s */
-.row-3 { animation-duration: 220s; } /* Changed from 150s */
-.row-4 { animation-duration: 230s; } /* Changed from 160s */
-.row-5 { animation-duration: 240s; } /* Changed from 170s */
+.row-1 { animation-duration: 400s; } /* Changed from 130s */
+.row-2 { animation-duration: 410s; } /* Changed from 140s */
+.row-3 { animation-duration: 420s; } /* Changed from 150s */
+.row-4 { animation-duration: 430s; } /* Changed from 160s */
+.row-5 { animation-duration: 440s; } /* Changed from 170s */
 
 /* PERFECT SMOOTH ANIMATION - LEFT MOVING (SEAMLESS) */
 @keyframes slideLeftSmooth {
@@ -775,7 +775,7 @@ footer {
   padding: 15px;
   background: rgba(255, 255, 255, 0.05);
   border-radius: 8px;
-  transition: background 0.3s ease;
+  transition: none;
 }
 
 .benefit-item:hover {
