@@ -87,7 +87,7 @@ nav {
 }
 
 .status-nav {
-  background: var(--secondary);
+  background: var(--primary);  /* ← Change this line */
   color: white !important;
   padding: 8px 15px;
   border-radius: 20px;
@@ -796,4 +796,13 @@ footer {
     width: 120px;
     height: 180px;
   }
+}
+
+.logo {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
