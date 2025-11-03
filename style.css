@@ -567,43 +567,50 @@ footer {
 /* ===== COMPACT VIP LAYOUT ===== */
 .vip-compact-layout {
   display: grid;
-  grid-template-columns: 1fr 1fr 200px;
-  gap: 30px;
-  align-items: start;
+  grid-template-columns: 1fr;
+  gap: 40px;
+  align-items: center;
+  justify-items: center;
   margin-bottom: 30px;
+  text-align: center;
 }
 
 .vip-left {
-  text-align: left;
+  text-align: center;
   display: flex;
   flex-direction: column;
+  align-items: center;
   justify-content: center;
+  width: 100%;
+  max-width: 500px;
 }
 
 .vip-left .section-title,
 .vip-left .section-subtitle {
-  text-align: left;
-  margin-left: 0;
-  margin-right: 0;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .vip-right {
   display: flex;
   justify-content: center;
-  align-items: start;
+  align-items: center;
+  width: 100%;
 }
 
 .vip-right .subscription-card {
   margin: 0;
-  max-width: 300px;
+  max-width: 350px;
   width: 100%;
 }
 
 /* ===== BENEFITS STYLES ===== */
 .benefits-toggle-container {
   margin: 0;
-  text-align: left;
-  align-self: start;
+  text-align: center;
+  width: 100%;
+  max-width: 800px;
 }
 
 .benefits-toggle-btn {
@@ -738,9 +745,6 @@ footer {
   .vip-form {
     flex-direction: column;
     align-items: center;
-  }
-  
-  .vip-form {
     max-width: 100%;
   }
   
@@ -749,27 +753,8 @@ footer {
     margin: 0 auto;
   }
   
-  .vip-right {
-    justify-content: center;
-  }
-  
   .vip-right .subscription-card {
     max-width: 400px;
-  }
-  
-  .vip-compact-layout {
-    grid-template-columns: 1fr;
-    gap: 25px;
-  }
-  
-  .vip-left {
-    text-align: center;
-    align-items: center;
-  }
-  
-  .vip-left .section-title,
-  .vip-left .section-subtitle {
-    text-align: center;
   }
   
   .benefit-row {
