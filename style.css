@@ -968,3 +968,54 @@ footer {
 .dropdown-content {
   padding: 20px; /* Reduced from 30px */
 }
+
+/* ===== HORIZONTAL BENEFITS LAYOUT ===== */
+.benefits-grid-horizontal {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.benefit-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.benefit-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.benefit-item i {
+  font-size: 1.2rem;
+  color: var(--primary);
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+.benefit-item h4 {
+  color: var(--light);
+  margin-bottom: 5px;
+  font-size: 1rem;
+}
+
+.benefit-item p {
+  color: var(--gray);
+  margin: 0;
+  font-size: 0.85rem;
+  line-height: 1.4;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .benefit-row {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+}
