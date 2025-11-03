@@ -671,6 +671,8 @@ footer {
   color: var(--primary);
   margin-top: 2px;
   flex-shrink: 0;
+  width: 24px;
+  text-align: center;
 }
 
 .benefit-item h4 {
