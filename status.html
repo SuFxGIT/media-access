@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Server Status - Media Access</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .status-container {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+      padding: 20px;
+    }
+    
+    .status-card {
+      background: var(--card-bg);
+      padding: 50px 40px;
+      border-radius: 20px;
+      text-align: center;
+      max-width: 500px;
+      width: 100%;
+      border: 2px solid var(--primary);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+    
+    .status-icon {
+    font-size: 4rem;
+    margin-bottom: 20px;
+    }
+
+    .online { color: #28a745; }
+    .maintenance { color: #ffc107; } /* Yellow for maintenance */
+    .offline { color: var(--primary); } /* Orange for offline */
+    .checking { color: var(--secondary); }
+    
+    .status-title {
+      font-size: 2.2rem;
+      margin-bottom: 15px;
+      color: var(--light);
+    }
+    
+    .status-message {
+      font-size: 1.1rem;
+      color: var(--gray);
+      margin-bottom: 30px;
+      line-height: 1.6;
+    }
+    
+    .maintenance-info {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 20px;
+      border-radius: 10px;
+      margin: 25px 0;
+      text-align: left;
+    }
+    
+    .maintenance-info h3 {
+      color: var(--primary);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .maintenance-info ul {
+      padding-left: 20px;
+      color: var(--text);
+    }
+    
+    .maintenance-info li {
+      margin-bottom: 8px;
+    }
+    
+    .action-buttons {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 30px;
+    }
+    
+    .refresh-btn, .home-btn {
+      padding: 12px 25px;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+    
+    .refresh-btn {
+      background: var(--primary);
+      color: #000;
+      border: none;
+      cursor: pointer;
+    }
+    
+    .home-btn {
+      background: var(--accent);
+      color: white;
+    }
+    
+    .last-checked {
+      margin-top: 20px;
+      font-size: 0.85rem;
+      color: var(--gray);
+    }
+    
+    .pulse {
+      animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+      0% { opacity: 1; }
+      50% { opacity: 0.6; }
+      100% { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <div class="status-container">
+    <div class="status-card">
+      <div class="status-icon checking pulse" id="statusIcon">
+        <i class="fas fa-sync-alt"></i>
+      </div>
+      
+      <h1 class="status-title" id="statusTitle">Checking Server Status</h1>
+      
+      <p class="status-message" id="statusMessage">
+        Please wait while we check the server status...
+      </p>
+      
+      <div class="maintenance-info" id="maintenanceInfo" style="display: none;">
+        <h3><i class="fas fa-tools"></i> What's Happening?</h3>
+        <ul>
+          <li>Routine maintenance and updates</li>
+          <li>Database backups</li>
+          <li>Performance optimizations</li>
+          <li>Content library updates</li>
+        </ul>
+        <p style="margin-top: 15px; color: var(--primary); font-weight: 500;">
+          <i class="fas fa-clock"></i> Usually back within 30-60 minutes
+        </p>
+      </div>
+      
+      <div class="action-buttons">
+        <button class="refresh-btn" onclick="checkStatus()">
+          <i class="fas fa-redo"></i> Refresh Status
+        </button>
+        <a href="index.html" class="home-btn">
+          <i class="fas fa-home"></i> Back to Home
+        </a>
+      </div>
+      
+      <div class="last-checked" id="lastChecked"></div>
+    </div>
+  </div>
+
+  <script>
+    const WORKER_URL = 'https://plex-vip-backend.jazeera21.workers.dev';
+    
+    async function checkStatus() {
+      const icon = document.getElementById('statusIcon');
+      const title = document.getElementById('statusTitle');
+      const message = document.getElementById('statusMessage');
+      const maintenanceInfo = document.getElementById('maintenanceInfo');
+      const lastChecked = document.getElementById('lastChecked');
+      
+      // Show checking state
+      icon.innerHTML = '<i class="fas fa-sync-alt"></i>';
+      icon.className = 'status-icon checking pulse';
+      title.textContent = 'Checking Server Status';
+      message.textContent = 'Please wait while we check the server status...';
+      maintenanceInfo.style.display = 'none';
+      
+      try {
+        const response = await fetch(`${WORKER_URL}/status`);
+        const data = await response.json();
+        
+        // Remove pulse animation
+        icon.classList.remove('pulse');
+        
+        if (data.status === 'online') {
+          icon.innerHTML = '<i class="fas fa-check-circle"></i>';
+          icon.className = 'status-icon online';
+          title.textContent = 'Server is Online';
+          message.textContent = 'Great news! The server is up and running smoothly.';
+          maintenanceInfo.style.display = 'none';
+        } else {
+          icon.innerHTML = '<i class="fas fa-tools"></i>';
+          icon.className = 'status-icon offline';
+          title.textContent = 'Server Maintenance';
+          message.textContent = data.message || 'The server is currently undergoing maintenance.';
+          maintenanceInfo.style.display = 'block';
+        }
+        
+        lastChecked.textContent = `Last checked: ${new Date().toLocaleString()}`;
+        
+      } catch (error) {
+        icon.innerHTML = '<i class="fas fa-exclamation-triangle"></i>';
+        icon.className = 'status-icon offline';
+        title.textContent = 'Status Check Failed';
+        message.textContent = 'Unable to check server status. Please try again.';
+        maintenanceInfo.style.display = 'block';
+        lastChecked.textContent = `Last checked: ${new Date().toLocaleString()}`;
+      }
+    }
+    
+    // Check status when page loads
+    document.addEventListener('DOMContentLoaded', checkStatus);
+    
+    // Auto-refresh every 2 minutes
+    setInterval(checkStatus, 120000);
+  </script>
+</body>
+</html>
