@@ -241,28 +241,30 @@ document.addEventListener('DOMContentLoaded', function() {
   console.log('Media Access website initialized');
 });
 
-// ===== BENEFITS DROPDOWN FUNCTIONALITY =====
+// ===== COMPACT BENEFITS TOGGLE FUNCTIONALITY =====
 document.addEventListener('DOMContentLoaded', function() {
-  const dropdownToggle = document.querySelector('.dropdown-toggle');
+  const benefitsToggle = document.querySelector('.benefits-toggle-btn');
   const dropdownContent = document.querySelector('.dropdown-content');
   
-  if (dropdownToggle && dropdownContent) {
-    dropdownToggle.addEventListener('click', function() {
+  if (benefitsToggle && dropdownContent) {
+    benefitsToggle.addEventListener('click', function() {
       const isActive = dropdownContent.classList.contains('show');
       
       if (isActive) {
         dropdownContent.classList.remove('show');
-        dropdownToggle.classList.remove('active');
-        dropdownToggle.querySelector('.fa-chevron-down').style.transform = 'rotate(0deg)';
+        benefitsToggle.classList.remove('active');
+        benefitsToggle.querySelector('.fa-chevron-down').style.transform = 'rotate(0deg)';
+        benefitsToggle.innerHTML = '<i class="fas fa-info-circle"></i> View Subscription Benefits <i class="fas fa-chevron-down"></i>';
       } else {
         dropdownContent.classList.add('show');
-        dropdownToggle.classList.add('active');
-        dropdownToggle.querySelector('.fa-chevron-down').style.transform = 'rotate(180deg)';
+        benefitsToggle.classList.add('active');
+        benefitsToggle.querySelector('.fa-chevron-down').style.transform = 'rotate(180deg)';
+        benefitsToggle.innerHTML = '<i class="fas fa-info-circle"></i> Hide Benefits <i class="fas fa-chevron-down"></i>';
       }
     });
     
     // Add chevron transition
-    const chevron = dropdownToggle.querySelector('.fa-chevron-down');
+    const chevron = benefitsToggle.querySelector('.fa-chevron-down');
     if (chevron) {
       chevron.style.transition = 'transform 0.3s ease';
     }

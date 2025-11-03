@@ -456,7 +456,7 @@ footer {
 }
 
 .subscription-card:hover {
-  transform: translateY(-5px);
+  transform: none;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
@@ -627,7 +627,7 @@ footer {
 
 .vip-check-btn:hover {
   background: #ffb700;
-  transform: translateY(-2px);
+  transform: none;
 }
 
 .vip-message {
@@ -735,7 +735,7 @@ footer {
 }
 
 .dropdown-toggle:hover {
-  transform: translateY(-2px);
+  transform: none;
   box-shadow: 0 8px 25px rgba(229, 160, 13, 0.3);
 }
 
@@ -860,7 +860,7 @@ footer {
 
 .benefit-item-compact:hover {
   background: rgba(255, 255, 255, 0.08);
-  transform: translateY(-2px);
+  transform: none;
 }
 
 .benefit-item-compact i {
@@ -905,4 +905,66 @@ footer {
   .benefits-grid {
     grid-template-columns: 1fr;
   }
+}
+
+/* ===== COMPACT BENEFITS TOGGLE STYLES ===== */
+.benefits-toggle-container {
+  max-width: 400px;
+  margin: 30px auto 0 auto;
+}
+
+.benefits-toggle-btn {
+  width: 100%;
+  padding: 12px 20px;
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.benefits-toggle-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--primary);
+}
+
+.benefits-toggle-btn.active {
+  border-color: var(--primary);
+  background: rgba(229, 160, 13, 0.1);
+}
+
+/* Make the original benefits more compact */
+.benefits-list {
+  gap: 12px; /* Reduced from 20px */
+}
+
+.benefit-item {
+  padding: 12px 15px; /* Reduced from 15px */
+  gap: 12px; /* Reduced from 15px */
+}
+
+.benefit-item i {
+  font-size: 1.2rem; /* Reduced from 1.5rem */
+  margin-top: 0;
+}
+
+.benefit-item h4 {
+  font-size: 1rem; /* Reduced from 1.1rem */
+  margin-bottom: 4px; /* Reduced from 5px */
+}
+
+.benefit-item p {
+  font-size: 0.85rem; /* Reduced from 0.9rem */
+  line-height: 1.3; /* Tighter */
+}
+
+/* Make dropdown content more compact */
+.dropdown-content {
+  padding: 20px; /* Reduced from 30px */
 }
