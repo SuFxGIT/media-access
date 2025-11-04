@@ -800,7 +800,7 @@ footer {
     border-radius: 50%;
     align-items: center;
     justify-content: center;
-    transition: background 0.2s ease;
+    transition: 0.2s ease;
   }
 
   .mobile-menu-close:hover {
