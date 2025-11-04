@@ -318,7 +318,6 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 
-// Replace the fetchPlexStats function with this:
 async function fetchPlexStats() {
   try {
     const response = await fetch(`${WORKER_URL}/plex-stats`);
@@ -329,7 +328,6 @@ async function fetchPlexStats() {
       animateCounter('movieCount', stats.movies);
       animateCounter('showCount', stats.shows);
       animateCounter('episodeCount', stats.episodes);
-      animateCounter('recentlyAdded', stats.recentlyAdded);
     }
   } catch (error) {
     console.error('Error fetching Plex stats:', error);
@@ -337,15 +335,13 @@ async function fetchPlexStats() {
     animateCounter('movieCount', 2450);
     animateCounter('showCount', 380);
     animateCounter('episodeCount', 18500);
-    animateCounter('recentlyAdded', 245);
   }
 }
 
-// Keep the animateCounter function the same
 function animateCounter(elementId, target) {
   const element = document.getElementById(elementId);
   let current = 0;
-  const increment = target / 50;
+  const increment = target / 30; // Faster animation
   const timer = setInterval(() => {
     current += increment;
     if (current >= target) {
@@ -354,5 +350,5 @@ function animateCounter(elementId, target) {
     } else {
       element.textContent = Math.floor(current).toLocaleString();
     }
-  }, 30);
+  }, 20);
 }
