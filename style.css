@@ -809,7 +809,7 @@ footer {
 
 /* Mobile Menu Button */
 .mobile-menu-btn {
-  display: none;
+  display: block !important; /* Force show for testing */
   font-size: 1.5rem;
   color: white;
   cursor: pointer;
