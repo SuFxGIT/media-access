@@ -694,15 +694,6 @@ footer {
     display: none;
   }
   
-  .mobile-menu-btn {
-    display: block; /* Show hamburger button */
-  }
-  
-  .mobile-menu.active {
-    display: flex; /* Show menu when active */
-  }
-}
-  
   h1 {
     font-size: 2.2rem;
   }
@@ -782,6 +773,7 @@ footer {
     grid-template-columns: 1fr;
     gap: 30px;
   }
+}
 
 @media (max-width: 480px) {
   .clients-grid {
@@ -813,37 +805,4 @@ footer {
   display: flex;
   align-items: center;
   gap: 8px;
-}
-
-/* Mobile Menu Button */
-.mobile-menu-btn {
-  display: none;
-  font-size: 1.5rem;
-  color: var(--primary);
-  cursor: pointer;
-}
-
-/* Mobile Menu */
-.mobile-menu {
-  display: none;
-  position: fixed;
-  top: 70px;
-  left: 0;
-  width: 100%;
-  background: var(--dark);
-  padding: 20px;
-  flex-direction: column;
-  gap: 15px;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.mobile-menu a {
-  color: var(--text);
-  text-decoration: none;
-  padding: 10px;
-  border-radius: 5px;
-}
-
-.mobile-menu a:hover {
-  background: rgba(255, 255, 255, 0.1);
 }
