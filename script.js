@@ -275,11 +275,17 @@ document.addEventListener('DOMContentLoaded', function() {
 document.addEventListener('DOMContentLoaded', function() {
   const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
   const mobileMenu = document.querySelector('.mobile-menu');
+  const mobileMenuClose = document.querySelector('.mobile-menu-close');
   
   if (mobileMenuBtn && mobileMenu) {
     mobileMenuBtn.addEventListener('click', function() {
-      mobileMenu.classList.toggle('active');
-      console.log('Menu clicked!'); // Debug line
+      mobileMenu.classList.add('active');
+    });
+  }
+  
+  if (mobileMenuClose && mobileMenu) {
+    mobileMenuClose.addEventListener('click', function() {
+      mobileMenu.classList.remove('active');
     });
   }
 });
