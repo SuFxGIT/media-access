@@ -236,6 +236,7 @@ document.addEventListener('DOMContentLoaded', function() {
 // ===== INITIALIZE WHEN PAGE LOADS =====
 document.addEventListener('DOMContentLoaded', function() {
   loadMovieBackground();
+  fetchPlexStats(); // ← ADD THIS LINE
   
   // Additional initialization can go here
   console.log('Media Access website initialized');
@@ -320,14 +321,26 @@ document.addEventListener('DOMContentLoaded', function() {
 
 async function fetchPlexStats() {
   try {
+    console.log('Fetching Plex stats from:', `${WORKER_URL}/plex-stats`);
+    
     const response = await fetch(`${WORKER_URL}/plex-stats`);
+    console.log('Response status:', response.status);
+    
     const result = await response.json();
+    console.log('API Response:', result);
     
     if (result.success) {
       const stats = result.stats;
+      console.log('Stats received:', stats);
       animateCounter('movieCount', stats.movies);
       animateCounter('showCount', stats.shows);
       animateCounter('episodeCount', stats.episodes);
+    } else {
+      console.log('API returned success: false');
+      // Fallback numbers
+      animateCounter('movieCount', 2450);
+      animateCounter('showCount', 380);
+      animateCounter('episodeCount', 18500);
     }
   } catch (error) {
     console.error('Error fetching Plex stats:', error);
