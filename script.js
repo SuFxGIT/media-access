@@ -330,7 +330,7 @@ async function fetchPlexStats() {
     console.log('Full API Response:', result);
     
     if (result.success) {
-      const libraries = result.libraries; // ← Changed from result.stats to result.libraries
+      const libraries = result.libraries;
       console.log('Library stats received:', libraries);
       
       // Only animate if we have real numbers
@@ -340,11 +340,6 @@ async function fetchPlexStats() {
         animateCounter('animeCount', libraries.anime);
         animateCounter('animatedCount', libraries.animatedShows);
         animateCounter('episodeCount', libraries.totalEpisodes);
-        
-        // Display recently added items if the function exists
-        if (typeof displayRecentlyAdded === 'function') {
-          displayRecentlyAdded(libraries.recentlyAdded);
-        }
       } else {
         console.log('No real data received, showing zeros');
       }
@@ -354,29 +349,6 @@ async function fetchPlexStats() {
   } catch (error) {
     console.error('Error fetching Plex stats:', error);
   }
-}
-
-function displayRecentlyAdded(recentlyAdded) {
-  const container = document.getElementById('recentlyAddedContainer');
-  if (!container) {
-    console.log('Recently added container not found');
-    return;
-  }
-  
-  if (!recentlyAdded || recentlyAdded.length === 0) {
-    container.innerHTML = '<p class="no-recent">No recently added items</p>';
-    return;
-  }
-  
-  const html = recentlyAdded.map(item => `
-    <div class="recent-item">
-      <strong>${item.title}</strong> 
-      ${item.year !== 'N/A' ? `(${item.year})` : ''}
-      <span class="item-type">${item.type}</span>
-    </div>
-  `).join('');
-  
-  container.innerHTML = html;
 }
 
 function animateCounter(elementId, target) {
