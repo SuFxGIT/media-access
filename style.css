@@ -696,30 +696,6 @@ footer {
   cursor: pointer;
   background: none;
   border: none;
-}
-
-.mobile-menu {
-  display: none;
-}
-
-.mobile-menu-close {
-  display: none;
-}
-
-/* ===== RESPONSIVE DESIGN ===== */
-@media (max-width: 768px) {
-  .nav-links {
-    display: none;
-  }
-  
- /* ===== MOBILE MENU BUTTON (ALWAYS HIDDEN ON DESKTOP) ===== */
-.mobile-menu-btn {
-  display: none;
-  font-size: 1.5rem;
-  color: white;
-  cursor: pointer;
-  background: none;
-  border: none;
   padding: 10px;
 }
 
@@ -795,7 +771,6 @@ footer {
     cursor: pointer;
   }
 
-  /* Rest of your mobile styles remain the same */
   h1 {
     font-size: 2.2rem;
   }
@@ -874,8 +849,6 @@ footer {
     grid-template-columns: 1fr;
     gap: 30px;
   }
-}
-
 }
 
 @media (max-width: 480px) {
