@@ -606,10 +606,10 @@ footer {
 
 /* ===== BENEFITS STYLES ===== */
 .benefits-toggle-container {
-  margin: 30px auto 0 auto;
+  margin: 40px auto 0 auto;
   text-align: center;
   width: 100%;
-  max-width: 800px;
+  max-width: 900px;
   grid-column: 1 / -1;
 }
 
@@ -647,45 +647,52 @@ footer {
 .benefits-grid-horizontal {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 20px;
 }
 
 .benefit-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 15px;
+  gap: 25px;
+  align-items: start;
 }
 
 .benefit-item {
   display: flex;
-  align-items: center;  /* ← Change to center */
-  gap: 10px;
-  padding: 12px;
+  align-items: flex-start;
+  gap: 15px;
+  padding: 20px;
   background: rgba(255, 255, 255, 0.03);
-  border-radius: 8px;
+  border-radius: 12px;
   border: 1px solid rgba(255, 255, 255, 0.1);
+  height: 100%;
 }
 
 .benefit-item i {
-  font-size: 1.1rem;
+  font-size: 1.4rem;
   color: var(--primary);
   margin-top: 2px;
   flex-shrink: 0;
-  width: 24px;
+  width: 30px;
   text-align: center;
+}
+
+.benefit-item div {
+  flex: 1;
 }
 
 .benefit-item h4 {
   color: var(--light);
-  margin-bottom: 4px;
-  font-size: 0.95rem;
+  margin-bottom: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
 }
 
 .benefit-item p {
   color: var(--gray);
   margin: 0;
-  font-size: 0.8rem;
-  line-height: 1.3;
+  font-size: 0.9rem;
+  line-height: 1.5;
 }
 
 /* ===== RESPONSIVE DESIGN ===== */
@@ -693,6 +700,39 @@ footer {
   .nav-links {
     display: none;
   }
+  
+  .mobile-menu-btn {
+    display: block; /* Show hamburger button */
+  }
+  
+  .mobile-menu.active {
+    display: flex; /* Show menu when active */
+  }
+
+  .benefit-row {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  
+  .benefit-item {
+    padding: 15px;
+    gap: 12px;
+  }
+  
+  .benefit-item i {
+    font-size: 1.2rem;
+    width: 25px;
+  }
+  
+  .benefit-item h4 {
+    font-size: 1rem;
+  }
+  
+  .benefit-item p {
+    font-size: 0.85rem;
+  }
+  
+}
   
   h1 {
     font-size: 2.2rem;
@@ -759,21 +799,11 @@ footer {
     max-width: 400px;
   }
   
-  .benefit-row {
-    grid-template-columns: 1fr;
-    gap: 10px;
-  }
-  
-  .benefit-item {
-    padding: 10px;
-  }
-  
   /* ADD THIS FOR VIP MOBILE STACKING */
   .vip-compact-layout {
     grid-template-columns: 1fr;
     gap: 30px;
   }
-}
 
 @media (max-width: 480px) {
   .clients-grid {
@@ -805,4 +835,37 @@ footer {
   display: flex;
   align-items: center;
   gap: 8px;
+}
+
+/* Mobile Menu Button */
+.mobile-menu-btn {
+  display: none;
+  font-size: 1.5rem;
+  color: var(--primary);
+  cursor: pointer;
+}
+
+/* Mobile Menu */
+.mobile-menu {
+  display: none;
+  position: fixed;
+  top: 70px;
+  left: 0;
+  width: 100%;
+  background: var(--dark);
+  padding: 20px;
+  flex-direction: column;
+  gap: 15px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.mobile-menu a {
+  color: var(--text);
+  text-decoration: none;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.mobile-menu a:hover {
+  background: rgba(255, 255, 255, 0.1);
 }

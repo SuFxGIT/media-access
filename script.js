@@ -270,3 +270,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
 });
+
+// Mobile menu toggle
+document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+  document.querySelector('.mobile-menu').classList.toggle('active');
+});
