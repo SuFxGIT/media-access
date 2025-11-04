@@ -693,81 +693,58 @@ footer {
   .nav-links {
     display: none;
   }
-
   
   .mobile-menu-btn {
     display: block !important;
   }
 
-/* Mobile Menu Button */
-.mobile-menu-btn {
-  display: block !important; /* Force show for testing */
-  font-size: 1.5rem;
-  color: white;
-  cursor: pointer;
-  background: none;
-  border: none;
-}
+  .mobile-menu {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: -300px; /* Start off-screen */
+    width: 280px;
+    height: 100vh;
+    background: var(--dark);
+    padding: 80px 25px 25px 25px;
+    flex-direction: column;
+    gap: 15px;
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+    z-index: 1001;
+    transition: right 0.3s ease;
+    overflow-y: auto;
+  }
 
-/* Side Swipe Mobile Menu */
-.mobile-menu {
-  display: none;
-  position: fixed;
-  top: 0;
-  right: -300px; /* Start off-screen */
-  width: 280px;
-  height: 100vh;
-  background: var(--dark);
-  padding: 80px 25px 25px 25px;
-  flex-direction: column;
-  gap: 15px;
-  border-left: 1px solid rgba(255, 255, 255, 0.1);
-  z-index: 1001;
-  transition: right 0.3s ease;
-  overflow-y: auto;
-}
+  .mobile-menu.active {
+    display: flex;
+    right: 0; /* Slide in from right */
+  }
 
-.mobile-menu.active {
-  display: flex;
-  right: 0; /* Slide in from right */
-}
+  .mobile-menu a {
+    color: var(--text);
+    text-decoration: none;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: left;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: 0.2s ease;
+  }
 
-.mobile-menu a {
-  color: var(--text);
-  text-decoration: none;
-  padding: 15px;
-  border-radius: 8px;
-  text-align: left;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  transition: 0.2s ease;
-}
+  .mobile-menu a:hover {
+    background: rgba(255, 255, 255, 0.05);
+  }
 
-.mobile-menu a:hover {
-  background: rgba(255, 255, 255, 0.05);
-}
-
-.mobile-menu-close {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  background: none;
-  border: none;
-  color: white;
-  font-size: 1.5rem;
-  cursor: pointer;
-}
-
-.mobile-menu-btn {
-  display: block !important;
-  font-size: 2rem !important;
-  color: red !important;
-  background: yellow !important;
-  padding: 10px !important;
-  border: 3px solid blue !important;
-  position: relative !important;
-  z-index: 9999 !important;
-}
-  
+  .mobile-menu-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+    
   h1 {
     font-size: 2.2rem;
   }
