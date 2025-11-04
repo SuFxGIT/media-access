@@ -639,7 +639,7 @@ footer {
 .dropdown-content {
   display: block;
   background: transparent;
-  border: none;
+  border: nothing;
   padding: 0;
   margin-top: 15px;
 }
@@ -658,7 +658,7 @@ footer {
 
 .benefit-item {
   display: flex;
-  align-items: center;  /* ← Change to center */
+  align-items: center;
   gap: 10px;
   padding: 12px;
   background: rgba(255, 255, 255, 0.03);
@@ -669,7 +669,6 @@ footer {
 .benefit-item i {
   font-size: 1.1rem;
   color: var(--primary);
-  margin-top: 2px;
   flex-shrink: 0;
   width: 24px;
   text-align: center;
