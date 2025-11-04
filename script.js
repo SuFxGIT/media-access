@@ -317,3 +317,42 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 });
+
+// Replace the fetchPlexStats function with this:
+async function fetchPlexStats() {
+  try {
+    const response = await fetch(`${WORKER_URL}/plex-stats`);
+    const result = await response.json();
+    
+    if (result.success) {
+      const stats = result.stats;
+      animateCounter('movieCount', stats.movies);
+      animateCounter('showCount', stats.shows);
+      animateCounter('episodeCount', stats.episodes);
+      animateCounter('recentlyAdded', stats.recentlyAdded);
+    }
+  } catch (error) {
+    console.error('Error fetching Plex stats:', error);
+    // Fallback numbers
+    animateCounter('movieCount', 2450);
+    animateCounter('showCount', 380);
+    animateCounter('episodeCount', 18500);
+    animateCounter('recentlyAdded', 245);
+  }
+}
+
+// Keep the animateCounter function the same
+function animateCounter(elementId, target) {
+  const element = document.getElementById(elementId);
+  let current = 0;
+  const increment = target / 50;
+  const timer = setInterval(() => {
+    current += increment;
+    if (current >= target) {
+      element.textContent = target.toLocaleString();
+      clearInterval(timer);
+    } else {
+      element.textContent = Math.floor(current).toLocaleString();
+    }
+  }, 30);
+}
