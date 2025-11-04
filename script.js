@@ -327,27 +327,26 @@ async function fetchPlexStats() {
     console.log('Response status:', response.status);
     
     const result = await response.json();
-    console.log('API Response:', result);
+    console.log('Full API Response:', result);
     
     if (result.success) {
       const stats = result.stats;
       console.log('Stats received:', stats);
-      animateCounter('movieCount', stats.movies);
-      animateCounter('showCount', stats.shows);
-      animateCounter('episodeCount', stats.episodes);
+      
+      // Only animate if we have real numbers
+      if (stats.movies > 0 || stats.shows > 0) {
+        animateCounter('movieCount', stats.movies);
+        animateCounter('showCount', stats.shows);
+        animateCounter('episodeCount', stats.episodes);
+      } else {
+        console.log('No real data received, showing zeros');
+        // Keep the zeros visible
+      }
     } else {
-      console.log('API returned success: false');
-      // Fallback numbers
-      animateCounter('movieCount', 2450);
-      animateCounter('showCount', 380);
-      animateCounter('episodeCount', 18500);
+      console.log('API returned success: false with error:', result.error);
     }
   } catch (error) {
     console.error('Error fetching Plex stats:', error);
-    // Fallback numbers
-    animateCounter('movieCount', 2450);
-    animateCounter('showCount', 380);
-    animateCounter('episodeCount', 18500);
   }
 }
 
