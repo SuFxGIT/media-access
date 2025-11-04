@@ -56,20 +56,7 @@
 </header>
 
   <!-- Hero Section with movie background -->
-  <section class="hero">
-    <div class="movie-background" id="movieBackground"></div>
-    <div class="container">
-      <div class="hero-content">
-        <h1>Welcome to Media Access</h1>
-        <p class="subtitle">Your private gateway to movies and shows — powered by <strong>Plex</strong>.</p>
-        <div class="hero-buttons">
-          <a href="#about" class="scroll-btn">Learn More</a>
-          <a href="#vip-access" class="subscribe-btn">Subscribe Now</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
+<!-- Update your stats section in index.html -->
 <section class="stats-section">
   <div class="container">
     <h2 class="section-title">Current Available Media</h2>
@@ -85,8 +72,26 @@
       </div>
       
       <div class="stat-card">
+        <div class="stat-number" id="animeCount">0</div>
+        <div class="stat-label">TV: Anime</div>
+      </div>
+      
+      <div class="stat-card">
+        <div class="stat-number" id="animatedCount">0</div>
+        <div class="stat-label">TV: Animated Shows</div>
+      </div>
+      
+      <div class="stat-card">
         <div class="stat-number" id="episodeCount">0</div>
-        <div class="stat-label">Episodes</div>
+        <div class="stat-label">Total Episodes</div>
+      </div>
+    </div>
+    
+    <!-- Recently Added Section -->
+    <div class="recently-added">
+      <h3>Recently Added</h3>
+      <div id="recentlyAddedContainer" class="recently-added-container">
+        <!-- Recently added items will appear here -->
       </div>
     </div>
   </div>
