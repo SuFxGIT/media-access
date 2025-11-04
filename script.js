@@ -271,26 +271,22 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 
-// Mobile menu toggle with swipe functionality
+// Mobile menu toggle - simple and functional
 document.addEventListener('DOMContentLoaded', function() {
   const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
   const mobileMenu = document.querySelector('.mobile-menu');
   const mobileMenuClose = document.querySelector('.mobile-menu-close');
   const mobileBackdrop = document.querySelector('.mobile-backdrop');
   
-  let startX = 0;
-  let currentX = 0;
-  let isSwiping = false;
-
   function openMenu() {
     mobileMenu.classList.add('active');
-    mobileBackdrop.classList.add('active');
+    if (mobileBackdrop) mobileBackdrop.classList.add('active');
     document.body.style.overflow = 'hidden';
   }
 
   function closeMenu() {
     mobileMenu.classList.remove('active');
-    mobileBackdrop.classList.remove('active');
+    if (mobileBackdrop) mobileBackdrop.classList.remove('active');
     document.body.style.overflow = '';
   }
 
@@ -299,57 +295,18 @@ document.addEventListener('DOMContentLoaded', function() {
     mobileMenuBtn.addEventListener('click', openMenu);
     
     // Click X to close
-    mobileMenuClose.addEventListener('click', closeMenu);
+    if (mobileMenuClose) {
+      mobileMenuClose.addEventListener('click', closeMenu);
+    }
     
     // Click backdrop to close
-    mobileBackdrop.addEventListener('click', closeMenu);
+    if (mobileBackdrop) {
+      mobileBackdrop.addEventListener('click', closeMenu);
+    }
     
     // Close menu when clicking on links
     mobileMenu.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', closeMenu);
-    });
-
-    // SWIPE TO OPEN FROM LEFT EDGE
-    document.addEventListener('touchstart', function(e) {
-      // Only trigger if touch starts within 20px from left edge and menu is closed
-      if (e.touches[0].clientX <= 20 && !mobileMenu.classList.contains('active')) {
-        startX = e.touches[0].clientX;
-        isSwiping = true;
-      }
-    });
-
-    document.addEventListener('touchmove', function(e) {
-      if (!isSwiping) return;
-      currentX = e.touches[0].clientX;
-    });
-
-    document.addEventListener('touchend', function() {
-      if (!isSwiping) return;
-      
-      const swipeDistance = currentX - startX;
-      // If swiped right more than 50px, open menu
-      if (swipeDistance > 50) {
-        openMenu();
-      }
-      
-      isSwiping = false;
-    });
-
-    // SWIPE TO CLOSE FROM MENU
-    mobileMenu.addEventListener('touchstart', function(e) {
-      startX = e.touches[0].clientX;
-    });
-
-    mobileMenu.addEventListener('touchmove', function(e) {
-      currentX = e.touches[0].clientX;
-    });
-
-    mobileMenu.addEventListener('touchend', function() {
-      const swipeDistance = startX - currentX;
-      // If swiped left more than 50px, close menu
-      if (swipeDistance > 50) {
-        closeMenu();
-      }
     });
 
     // Close with Escape key

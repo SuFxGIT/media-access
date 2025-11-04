@@ -691,18 +691,6 @@ footer {
 /* ===== MOBILE MENU BUTTON (ALWAYS HIDDEN ON DESKTOP) ===== */
 .mobile-menu-btn {
   display: none;
-  font-size: 1.3rem;
-  color: white;
-  cursor: pointer;
-  background: none;
-  border: none;
-  padding: 8px;
-  border-radius: 4px;
-  transition: 0.2s ease;
-}
-
-.mobile-menu-btn:hover {
-  background: rgba(255, 255, 255, 0.1);
 }
 
 .mobile-menu {
@@ -710,6 +698,10 @@ footer {
 }
 
 .mobile-menu-close {
+  display: none;
+}
+
+.mobile-backdrop {
   display: none;
 }
 
@@ -796,8 +788,8 @@ footer {
   .mobile-menu-close {
     display: flex;
     position: absolute;
-    top: 18px; /* Better alignment with hamburger */
-    right: 18px; /* Better alignment with hamburger */
+    top: 18px;
+    right: 18px;
     background: rgba(255, 255, 255, 0.1);
     border: none;
     color: white;
@@ -808,14 +800,13 @@ footer {
     border-radius: 50%;
     align-items: center;
     justify-content: center;
-    transition: 0.2s ease;
+    transition: background 0.2s ease;
   }
 
   .mobile-menu-close:hover {
     background: rgba(255, 255, 255, 0.2);
   }
 
-  /* Backdrop overlay */
   .mobile-backdrop {
     display: none;
     position: fixed;
@@ -833,10 +824,8 @@ footer {
     display: block;
     opacity: 1;
   }
-}
-  
-  /* Rest of your existing mobile styles... */
 
+  /* Rest of your original mobile styles for sections */
   h1 {
     font-size: 2.2rem;
   }
@@ -915,6 +904,7 @@ footer {
     grid-template-columns: 1fr;
     gap: 30px;
   }
+}
 
 @media (max-width: 480px) {
   .clients-grid {
