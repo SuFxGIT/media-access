@@ -813,13 +813,15 @@ footer {
   font-size: 1.5rem;
   color: var(--primary);
   cursor: pointer;
+  background: none;
+  border: none;
 }
 
 /* Mobile Menu */
 .mobile-menu {
   display: none;
-  position: fixed;
-  top: 70px;
+  position: absolute;
+  top: 100%;
   left: 0;
   width: 100%;
   background: var(--dark);
@@ -827,7 +829,7 @@ footer {
   flex-direction: column;
   gap: 15px;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
-  z-index: 999;
+  z-index: 1001;
 }
 
 .mobile-menu a {
@@ -838,21 +840,17 @@ footer {
   text-align: center;
 }
 
-.mobile-menu a:hover {
-  background: rgba(255, 255, 255, 0.1);
-}
-
 /* Update mobile responsive */
 @media (max-width: 768px) {
   .nav-links {
-    display: none;
+    display: none !important; /* Force hide desktop nav */
   }
   
   .mobile-menu-btn {
-    display: block;
+    display: block !important; /* Force show hamburger */
   }
-  
-  .mobile-menu.active {
-    display: flex;
-  }
+}
+
+.mobile-menu.active {
+  display: flex;
 }
