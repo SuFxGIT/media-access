@@ -914,7 +914,6 @@ footer {
     grid-template-columns: 1fr;
     gap: 30px;
   }
-}
 
 @media (max-width: 480px) {
   .clients-grid {
