@@ -866,6 +866,18 @@ footer {
   cursor: pointer;
 }
 
+/* TEMPORARY DEBUG - REMOVE LATER */
+.mobile-menu-btn {
+  display: block !important;
+  font-size: 2rem !important;
+  color: red !important;
+  background: yellow !important;
+  padding: 10px !important;
+  border: 3px solid blue !important;
+  position: relative !important;
+  z-index: 9999 !important;
+}
+
 /* Update mobile responsive */
 @media (max-width: 768px) {
   .nav-links {
