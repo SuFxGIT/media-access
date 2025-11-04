@@ -271,21 +271,61 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 
-// Mobile menu toggle
+// Mobile menu toggle with swipe functionality
 document.addEventListener('DOMContentLoaded', function() {
   const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
   const mobileMenu = document.querySelector('.mobile-menu');
   const mobileMenuClose = document.querySelector('.mobile-menu-close');
   
   if (mobileMenuBtn && mobileMenu) {
+    // Click to open
     mobileMenuBtn.addEventListener('click', function() {
       mobileMenu.classList.add('active');
+      document.body.style.overflow = 'hidden'; // Prevent background scroll
     });
-  }
-  
-  if (mobileMenuClose && mobileMenu) {
+    
+    // Click to close
     mobileMenuClose.addEventListener('click', function() {
       mobileMenu.classList.remove('active');
+      document.body.style.overflow = ''; // Restore scroll
+    });
+    
+    // Close menu when clicking on links
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', function() {
+        mobileMenu.classList.remove('active');
+        document.body.style.overflow = '';
+      });
+    });
+    
+    // Swipe to close functionality
+    let startX = 0;
+    let currentX = 0;
+    
+    mobileMenu.addEventListener('touchstart', function(e) {
+      startX = e.touches[0].clientX;
+    });
+    
+    mobileMenu.addEventListener('touchmove', function(e) {
+      currentX = e.touches[0].clientX;
+    });
+    
+    mobileMenu.addEventListener('touchend', function() {
+      const swipeDistance = startX - currentX;
+      if (swipeDistance > 50) { // Swipe left to close
+        mobileMenu.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    });
+    
+    // Close menu when clicking on backdrop (outside the menu)
+    document.addEventListener('click', function(e) {
+      if (mobileMenu.classList.contains('active') && 
+          !mobileMenu.contains(e.target) && 
+          !mobileMenuBtn.contains(e.target)) {
+        mobileMenu.classList.remove('active');
+        document.body.style.overflow = '';
+      }
     });
   }
 });

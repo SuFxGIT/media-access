@@ -691,12 +691,18 @@ footer {
 /* ===== MOBILE MENU BUTTON (ALWAYS HIDDEN ON DESKTOP) ===== */
 .mobile-menu-btn {
   display: none;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   color: white;
   cursor: pointer;
   background: none;
   border: none;
-  padding: 10px;
+  padding: 8px;
+  border-radius: 4px;
+  transition: background 0.2s ease;
+}
+
+.mobile-menu-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
 }
 
 .mobile-menu {
@@ -714,31 +720,36 @@ footer {
   }
   
   .mobile-menu-btn {
-    display: block !important;
-    font-size: 1.8rem;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
     color: white;
     cursor: pointer;
-    background: none;
-    border: 2px solid white;
-    border-radius: 5px;
-    padding: 8px 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 6px;
+    padding: 8px 10px;
+    width: 44px;
+    height: 44px;
   }
 
   .mobile-menu {
     display: none;
     position: fixed;
     top: 0;
-    right: -300px;
+    right: -280px;
     width: 280px;
     height: 100vh;
     background: var(--dark);
-    padding: 80px 25px 25px 25px;
+    padding: 70px 20px 30px 20px;
     flex-direction: column;
-    gap: 15px;
+    gap: 8px;
     border-left: 1px solid rgba(255, 255, 255, 0.1);
     z-index: 1001;
     transition: right 0.3s ease;
     overflow-y: auto;
+    box-shadow: -5px 0 25px rgba(0, 0, 0, 0.5);
   }
 
   .mobile-menu.active {
@@ -749,27 +760,81 @@ footer {
   .mobile-menu a {
     color: var(--text);
     text-decoration: none;
-    padding: 15px;
-    border-radius: 8px;
+    padding: 12px 15px;
+    border-radius: 6px;
     text-align: left;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    border: none;
+    background: rgba(255, 255, 255, 0.03);
   }
 
   .mobile-menu a:hover {
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.08);
+    transform: translateX(2px);
+  }
+
+  .mobile-menu .status-nav,
+  .mobile-menu .subscribe-nav {
+    margin-top: 10px;
+    text-align: center;
+    font-weight: 600;
+    border: none !important;
+  }
+
+  .mobile-menu .status-nav {
+    background: var(--primary);
+    color: #000 !important;
+  }
+
+  .mobile-menu .subscribe-nav {
+    background: var(--subscribe-color);
+    color: white !important;
   }
 
   .mobile-menu-close {
-    display: block;
+    display: flex;
     position: absolute;
-    top: 20px;
-    right: 20px;
-    background: none;
+    top: 15px;
+    right: 15px;
+    background: rgba(255, 255, 255, 0.1);
     border: none;
     color: white;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     cursor: pointer;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s ease;
   }
+
+  .mobile-menu-close:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  /* Add backdrop when menu is open */
+  .mobile-menu::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .mobile-menu.active::before {
+    opacity: 1;
+  }
+  
+  /* Rest of your existing mobile styles... */
+}
 
   h1 {
     font-size: 2.2rem;
