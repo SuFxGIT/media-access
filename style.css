@@ -1006,3 +1006,74 @@ footer {
     padding: 18px 15px;
   }
 }
+
+/* ===== CONTACT LINKS STYLES ===== */
+.contact-links {
+  margin: 25px 0;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  text-align: center;
+}
+
+.contact-message {
+  color: var(--text);
+  margin-bottom: 15px;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.contact-message i {
+  color: var(--primary);
+}
+
+.contact-buttons {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.contact-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border-radius: 20px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.85rem;
+  transition: all 0.3s ease;
+}
+
+.whatsapp-btn {
+  background: #25D366;
+  color: white;
+}
+
+.discord-btn {
+  background: #5865F2;
+  color: white;
+}
+
+.contact-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .contact-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .contact-btn {
+    width: 200px;
+    justify-content: center;
+  }
+}

@@ -37,6 +37,86 @@
       max-width: 300px;
       border: 2px solid var(--primary);
     }
+
+    /* ===== CONTACT LINKS STYLES ===== */
+    .contact-links {
+      margin: 30px auto;
+      padding: 25px;
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 15px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      text-align: center;
+      max-width: 600px;
+    }
+
+    .contact-message {
+      color: var(--text);
+      margin-bottom: 20px;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .contact-message i {
+      color: var(--primary);
+    }
+
+    .contact-buttons {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .contact-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 25px;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+      min-width: 140px;
+      justify-content: center;
+    }
+
+    .whatsapp-btn {
+      background: #25D366;
+      color: white;
+    }
+
+    .discord-btn {
+      background: #5865F2;
+      color: white;
+    }
+
+    .contact-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      filter: brightness(1.1);
+    }
+
+    /* Mobile responsive */
+    @media (max-width: 768px) {
+      .contact-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .contact-btn {
+        width: 200px;
+      }
+      
+      .contact-message {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
   </style>
 </head>
 <body>
@@ -91,6 +171,25 @@
             <i class="fab fa-paypal"></i> Get VIP Pricing - $9.98/month
           </a>
         </div>
+      </div>
+
+      <!-- ADD CONTACT LINKS SECTION HERE -->
+      <div class="contact-links">
+        <p class="contact-message">
+          <i class="fas fa-comment-alt"></i> 
+          <strong>After subscribing, send your Plex username via:</strong>
+        </p>
+        <div class="contact-buttons">
+          <a href="https://wa.me/98068402" target="_blank" class="contact-btn whatsapp-btn">
+            <i class="fab fa-whatsapp"></i> WhatsApp
+          </a>
+          <a href="https://discord.com/users/260857088085852171" target="_blank" class="contact-btn discord-btn">
+            <i class="fab fa-discord"></i> Discord
+          </a>
+        </div>
+        <p style="margin-top: 15px; color: var(--gray); font-size: 0.85rem;">
+          <i class="fas fa-info-circle"></i> We'll activate your Plex access within 24 hours
+        </p>
       </div>
       
       <div style="text-align: center; margin-top: 30px;">
