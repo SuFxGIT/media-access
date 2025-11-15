@@ -1047,7 +1047,7 @@ footer {
   text-decoration: none;
   font-weight: 600;
   font-size: 0.85rem;
-  transition: all 0.3s ease;
+  transition: none;
 }
 
 .whatsapp-btn {
@@ -1061,7 +1061,6 @@ footer {
 }
 
 .contact-btn:hover {
-  transform: translateY(-2px);
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
