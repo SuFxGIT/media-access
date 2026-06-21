@@ -4,7 +4,7 @@
  */
 
 // ===== API CONFIGURATION =====
-const WORKER_URL = 'https://service-backend.jazeera21.workers.dev';
+const WORKER_URL = 'https://plex-vip-backend.jazeera21.workers.dev';
 const TMDB_IMAGE_BASE = 'https://image.tmdb.org/t/p/w780';
 
 // ===== SMOOTH SCROLLING FOR NAVIGATION LINKS =====

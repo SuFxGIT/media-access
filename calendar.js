@@ -1,5 +1,5 @@
 // ===== MONTHLY CALENDAR — UPCOMING RELEASES FROM RADARR/SONARR =====
-const CAL_API = 'https://service-backend.jazeera21.workers.dev';
+const CAL_API = 'https://plex-vip-backend.jazeera21.workers.dev';
 
 let calCurrentYear = new Date().getFullYear();
 let calCurrentMonth = new Date().getMonth(); // 0-indexed
