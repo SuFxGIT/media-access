@@ -1,5 +1,5 @@
 // ===== MONTHLY CALENDAR — UPCOMING RELEASES FROM RADARR/SONARR =====
-const WORKER_URL = 'https://service-backend.jazeera21.workers.dev';
+const CAL_API = 'https://service-backend.jazeera21.workers.dev';
 
 let calCurrentYear = new Date().getFullYear();
 let calCurrentMonth = new Date().getMonth(); // 0-indexed
@@ -17,7 +17,7 @@ async function loadCalendarEvents() {
   container.innerHTML = '<p style="text-align:center;padding:40px;color:var(--gray);"><i class="fas fa-spinner fa-spin"></i> Loading calendar...</p>';
 
   try {
-    const response = await fetch(`${WORKER_URL}/calendar`);
+    const response = await fetch(`${CAL_API}/calendar`);
 
     if (!response.ok) {
       throw new Error(`Server error: ${response.status}`);

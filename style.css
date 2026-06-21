@@ -63,10 +63,10 @@ nav {
 
 .nav-links {
   display: flex;
-  gap: 5px;
+  gap: 10px;
   align-items: center;
   flex: 1;
-  justify-content: center;
+  justify-content: flex-end;
 }
 
 .nav-links a {
