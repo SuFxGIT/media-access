@@ -1439,6 +1439,83 @@ footer {
   }
 }
 
+/* ===== CALENDAR PIN GATE ===== */
+.pin-gate {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.pin-gate-icon {
+  font-size: 2.5rem;
+  color: var(--primary);
+  margin-bottom: 16px;
+}
+
+.pin-gate-title {
+  font-size: 1.4rem;
+  color: var(--light);
+  margin-bottom: 8px;
+}
+
+.pin-gate-sub {
+  font-size: 0.9rem;
+  color: var(--gray);
+  margin-bottom: 20px;
+}
+
+.pin-gate-error {
+  font-size: 0.85rem;
+  color: #e05c5c;
+  margin-bottom: 14px;
+}
+
+.pin-gate-form {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.pin-gate-input {
+  padding: 10px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--light);
+  font-size: 1rem;
+  width: 140px;
+  text-align: center;
+  letter-spacing: 0.15em;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.pin-gate-input:focus {
+  border-color: var(--primary);
+}
+
+.pin-gate-btn {
+  padding: 10px 18px;
+  border: none;
+  border-radius: 8px;
+  background: var(--primary);
+  color: #000;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: filter 0.2s ease;
+}
+
+.pin-gate-btn:hover {
+  filter: brightness(1.12);
+}
+
 /* ===== CALENDAR DAY POPUP ===== */
 .cal-event-more {
   font-size: 0.62rem;

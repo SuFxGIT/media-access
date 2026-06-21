@@ -14,10 +14,25 @@ async function loadCalendarEvents() {
   const container = document.getElementById('calendarContainer');
   if (!container) return;
 
+  // PIN gate — ask every session
+  const storedPin = sessionStorage.getItem('calendarPin');
+  if (!storedPin) {
+    showPinGate(container);
+    return;
+  }
+
   container.innerHTML = '<p style="text-align:center;padding:40px;color:var(--gray);"><i class="fas fa-spinner fa-spin"></i> Loading calendar...</p>';
 
   try {
-    const response = await fetch(`${CAL_API}/calendar`);
+    const response = await fetch(`${CAL_API}/calendar`, {
+      headers: { 'X-Calendar-Pin': storedPin }
+    });
+
+    if (response.status === 401) {
+      sessionStorage.removeItem('calendarPin');
+      showPinGate(container, true);
+      return;
+    }
 
     if (!response.ok) {
       throw new Error(`Server error: ${response.status}`);
@@ -41,6 +56,34 @@ async function loadCalendarEvents() {
   }
 
   renderCalendar(container);
+}
+
+function showPinGate(container, wrongPin = false) {
+  container.innerHTML = `
+    <div class="pin-gate">
+      <div class="pin-gate-icon"><i class="fas fa-lock"></i></div>
+      <h3 class="pin-gate-title">Calendar Access</h3>
+      <p class="pin-gate-sub">Enter your PIN to view the release calendar</p>
+      ${wrongPin ? '<p class="pin-gate-error"><i class="fas fa-times-circle"></i> Incorrect PIN — try again</p>' : ''}
+      <div class="pin-gate-form">
+        <input type="password" id="calPinInput" class="pin-gate-input" placeholder="PIN" maxlength="20" autocomplete="off">
+        <button id="calPinSubmit" class="pin-gate-btn"><i class="fas fa-unlock"></i> Unlock</button>
+      </div>
+    </div>`;
+
+  const input = document.getElementById('calPinInput');
+  const btn   = document.getElementById('calPinSubmit');
+
+  function submit() {
+    const pin = input.value.trim();
+    if (!pin) return;
+    sessionStorage.setItem('calendarPin', pin);
+    loadCalendarEvents();
+  }
+
+  btn.addEventListener('click', submit);
+  input.addEventListener('keypress', (e) => { if (e.key === 'Enter') submit(); });
+  input.focus();
 }
 
 function buildEventMap(events) {
