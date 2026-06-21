@@ -50,9 +50,8 @@ header {
 
 nav {
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
-  gap: 40px;
 }
 
 .logo {
@@ -65,8 +64,6 @@ nav {
   display: flex;
   gap: 10px;
   align-items: center;
-  flex: 1;
-  justify-content: flex-end;
 }
 
 .nav-links a {
@@ -104,11 +101,10 @@ nav {
 .subscribe-nav {
   background: var(--subscribe-color);
   color: white !important;
-  padding: 8px 20px;
+  padding: 8px 16px;
   border-radius: 20px;
   font-weight: 600;
   transition: all 0.3s ease;
-  margin-left: 10px;
 }
 
 .subscribe-nav:hover {
@@ -119,7 +115,7 @@ nav {
 .status-nav {
   background: var(--primary);
   color: white !important;
-  padding: 8px 15px;
+  padding: 8px 16px;
   border-radius: 20px;
   font-weight: 600;
   display: flex;
@@ -141,7 +137,7 @@ nav {
 .calendar-nav {
   background: var(--accent);
   color: white !important;
-  padding: 8px 15px;
+  padding: 8px 16px;
   border-radius: 20px;
   font-weight: 600;
   display: flex;
