@@ -108,8 +108,7 @@ nav {
 }
 
 .subscribe-nav:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
+  filter: brightness(1.15);
 }
 
 .status-nav {
@@ -126,8 +125,7 @@ nav {
 }
 
 .status-nav:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(229, 160, 13, 0.3);
+  filter: brightness(1.15);
 }
 
 .status-nav::after {
@@ -148,8 +146,7 @@ nav {
 }
 
 .calendar-nav:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 112, 186, 0.3);
+  filter: brightness(1.15);
 }
 
 .calendar-nav::after {
@@ -281,8 +278,7 @@ h1 {
 }
 
 .scroll-btn:hover {
-  background: #ffb700;
-  transform: translateY(-2px);
+  filter: brightness(1.12);
 }
 
 .subscribe-btn {
@@ -291,8 +287,7 @@ h1 {
 }
 
 .subscribe-btn:hover {
-  background: #20c997;
-  transform: translateY(-2px);
+  filter: brightness(1.12);
 }
 
 /* ===== SECTION STYLES ===== */
@@ -387,9 +382,7 @@ h1 {
 }
 
 .seerr-btn:hover {
-  background: #7a24cc;
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(138, 43, 226, 0.3);
+  filter: brightness(1.15);
 }
 
 .service-btn {
@@ -397,7 +390,7 @@ h1 {
 }
 
 .service-btn:hover {
-  background: #ffb700;
+  filter: brightness(1.12);
 }
 
 /* ===== CLIENTS GRID ===== */
@@ -631,10 +624,7 @@ footer {
 }
 
 .subscribe-option-btn:hover {
-  background: #005ea6;
-  color: white;
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(0, 112, 186, 0.3);
+  filter: brightness(1.15);
 }
 }
 
@@ -685,7 +675,7 @@ footer {
 }
 
 .vip-check-btn:hover {
-  background: #ffb700;
+  filter: brightness(1.12);
 }
 
 .vip-message {
