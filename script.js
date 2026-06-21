@@ -31,6 +31,63 @@ window.addEventListener('scroll', () => {
   }
 });
 
+// ===== PARTICLE GENERATION =====
+/**
+ * Creates animated particles in hero sections with theme-matching colors
+ */
+function generateParticles() {
+  const particlesContainer = document.getElementById('particlesContainer');
+  
+  if (!particlesContainer) {
+    return;
+  }
+  
+  // Theme color palette for particles
+  const particleColors = [
+    'rgba(6, 190, 182, 0.5)',    // Secondary - cyan/teal
+    'rgba(0, 112, 186, 0.5)',    // Accent - blue
+    'rgba(26, 58, 82, 0.6)',     // Dark blue from gradient
+    'rgba(45, 27, 78, 0.5)',     // Dark purple from gradient
+    'rgba(229, 160, 13, 0.3)',   // Primary - gold
+    'rgba(6, 190, 182, 0.4)',    // Cyan lighter
+    'rgba(0, 112, 186, 0.4)',    // Blue lighter
+  ];
+  
+  // Create 8 particles
+  for (let i = 0; i < 8; i++) {
+    const particle = document.createElement('div');
+    particle.className = `particle particle-${i + 1}`;
+    
+    // Random size between 4px and 16px
+    const size = Math.random() * 12 + 4;
+    
+    // Random position across the width
+    const xPos = Math.random() * 100;
+    
+    // Random delay for staggered animation
+    const delay = Math.random() * 4;
+    
+    // Random color from palette
+    const color = particleColors[Math.floor(Math.random() * particleColors.length)];
+    
+    // Apply styles
+    particle.style.width = size + 'px';
+    particle.style.height = size + 'px';
+    particle.style.left = xPos + '%';
+    particle.style.bottom = '-20px';
+    particle.style.backgroundColor = color;
+    particle.style.boxShadow = `0 0 ${size * 1.5}px ${color}`;
+    particle.style.animationDelay = delay + 's';
+    
+    particlesContainer.appendChild(particle);
+  }
+}
+
+// Initialize particles when page loads
+document.addEventListener('DOMContentLoaded', function() {
+  generateParticles();
+});
+
 // ===== BACKGROUND ANIMATION - PERFECT SMOOTH VERSION =====
 
 /**
