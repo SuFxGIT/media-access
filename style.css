@@ -138,6 +138,28 @@ nav {
   display: none;
 }
 
+.calendar-nav {
+  background: var(--accent);
+  color: white !important;
+  padding: 8px 15px;
+  border-radius: 20px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: all 0.3s ease;
+  position: static;
+}
+
+.calendar-nav:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 112, 186, 0.3);
+}
+
+.calendar-nav::after {
+  display: none;
+}
+
 /* ===== HERO SECTION ===== */
 .hero {
   height: 100vh;
@@ -923,6 +945,7 @@ footer {
   }
 
   .mobile-menu .status-nav,
+  .mobile-menu .calendar-nav,
   .mobile-menu .subscribe-nav {
     margin-top: 10px;
     text-align: center;
@@ -933,6 +956,11 @@ footer {
   .mobile-menu .status-nav {
     background: var(--primary);
     color: #000 !important;
+  }
+
+  .mobile-menu .calendar-nav {
+    background: var(--accent);
+    color: #fff !important;
   }
 
   .mobile-menu .subscribe-nav {
@@ -1279,41 +1307,4 @@ footer {
   color: var(--gray);
   font-size: 0.85rem;
   margin: 4px 0;
-}
-
-/* ===== STATS ACTIONS ===== */
-.stats-actions {
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-  margin-top: 25px;
-}
-
-.calendar-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding: 14px 32px;
-  border-radius: 25px;
-  text-decoration: none;
-  color: white;
-  font-weight: 600;
-  font-size: 0.95rem;
-  background: var(--accent);
-  border: 2px solid #0056a3;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(0, 112, 186, 0.25);
-}
-
-.calendar-btn:hover {
-  background: #005fa3;
-  border-color: #003d7a;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0, 112, 186, 0.4);
-}
-
-.calendar-btn i {
-  font-size: 1rem;
 }
