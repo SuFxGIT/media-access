@@ -1,4 +1,6 @@
 // ===== CALENDAR FUNCTIONALITY - UPCOMING RELEASES FROM RADARR/SONARR =====
+const WORKER_URL = 'https://service-backend.jazeera21.workers.dev';
+
 async function loadCalendarEvents() {
   const container = document.getElementById('calendarContainer');
   
@@ -8,23 +10,35 @@ async function loadCalendarEvents() {
   }
 
   try {
-    // Fetch upcoming releases from backend
-    const WORKER_URL = 'https://service-backend.jazeera21.workers.dev';
+    // Fetch upcoming releases from backend /calendar endpoint
     const response = await fetch(`${WORKER_URL}/calendar`);
+    
+    if (!response.ok) {
+      throw new Error(`Backend error: ${response.status} ${response.statusText}`);
+    }
+    
     const result = await response.json();
 
     if (result.success && result.upcoming && result.upcoming.length > 0) {
-      const upcoming = result.upcoming.slice(0, 6); // Show top 6 upcoming
+      const upcoming = result.upcoming.slice(0, 12); // Show up to 12 upcoming items
       
       let calendarHTML = '<div class="calendar-grid">';
       
       upcoming.forEach(item => {
+        const date = new Date(item.releaseDate);
+        const formattedDate = date.toLocaleDateString('en-US', { 
+          weekday: 'short', 
+          year: 'numeric', 
+          month: 'short', 
+          day: 'numeric' 
+        });
+        
         calendarHTML += `
           <div class="calendar-item">
             <h4>${item.title || 'Untitled'}</h4>
-            <p><strong>Date:</strong> ${new Date(item.releaseDate).toLocaleDateString()}</p>
-            <p><strong>Type:</strong> ${item.type || 'Unknown'}</p>
-            ${item.year ? `<p><strong>Year:</strong> ${item.year}</p>` : ''}
+            <p><i class="fas fa-calendar"></i> ${formattedDate}</p>
+            <p><i class="fas fa-tag"></i> ${item.type || 'Unknown'}</p>
+            ${item.year ? `<p><i class="fas fa-cog"></i> ${item.year}</p>` : ''}
           </div>
         `;
       });
@@ -32,11 +46,29 @@ async function loadCalendarEvents() {
       calendarHTML += '</div>';
       container.innerHTML = calendarHTML;
     } else {
-      container.innerHTML = '<p style="text-align: center; color: var(--gray);">No upcoming releases available</p>';
+      container.innerHTML = `
+        <div style="text-align: center; padding: 40px 20px;">
+          <p style="color: var(--gray); font-size: 1.1rem;">
+            <i class="fas fa-inbox"></i> No upcoming releases available yet
+          </p>
+          <p style="color: var(--gray); font-size: 0.9rem; margin-top: 10px;">
+            Check back soon for new content
+          </p>
+        </div>
+      `;
     }
   } catch (error) {
     console.error('Error loading calendar:', error);
-    container.innerHTML = '<p style="text-align: center; color: var(--gray);">Loading calendar...</p>';
+    container.innerHTML = `
+      <div style="text-align: center; padding: 40px 20px;">
+        <p style="color: var(--gray); font-size: 1.1rem;">
+          <i class="fas fa-exclamation-circle"></i> Unable to load upcoming releases
+        </p>
+        <p style="color: var(--gray); font-size: 0.9rem; margin-top: 10px;">
+          ${error.message}
+        </p>
+      </div>
+    `;
   }
 }
 

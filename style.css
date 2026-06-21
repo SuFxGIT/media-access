@@ -1221,3 +1221,33 @@ footer {
   font-size: 0.85rem;
   margin: 4px 0;
 }
+
+/* ===== STATS ACTIONS ===== */
+.stats-actions {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 25px;
+}
+
+.calendar-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 28px;
+  border-radius: 25px;
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  font-size: 0.95rem;
+  background: var(--accent);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.calendar-btn:hover {
+  background: #005fa3;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 112, 186, 0.3);
+}

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Upcoming Releases - Calendar</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/x-icon" href="icon2.png">
+</head>
+
+<body>
+<!-- Header with navigation -->
+<header>
+  <div class="container">
+    <nav>
+      <div class="logo">
+        <img src="icon2.png" alt="" class="logo-icon">
+        SUFX'S SERVER
+      </div>
+      <div class="nav-links">
+        <a href="index.html#about">About the Service</a>
+        <a href="index.html#clients">Supported Devices</a>
+        
+        <a href="status.html" class="status-nav">
+          <i class="fas fa-heartbeat"></i> Server Status
+        </a>
+        <a href="index.html#vip-access" class="subscribe-nav">Subscribe</a>
+      </div>
+      
+      <!-- Mobile Menu Button -->
+      <div class="mobile-menu-btn">
+        <i class="fas fa-bars"></i>
+      </div>
+    </nav>
+    
+    <!-- Mobile Menu -->
+    <div class="mobile-menu">
+      <button class="mobile-menu-close">
+        <i class="fas fa-times"></i>
+      </button>
+      <a href="index.html#about">About the Service</a>
+      <a href="index.html#clients">Supported Devices</a>
+      
+      <a href="status.html" class="status-nav">
+        <i class="fas fa-heartbeat"></i> Server Status
+      </a>
+      <a href="index.html#vip-access" class="subscribe-nav">Subscribe</a>
+    </div>
+  </div>
+  
+  <!-- Add this backdrop element -->
+  <div class="mobile-backdrop"></div>
+</header>
+
+  <!-- Hero Section with animated background -->
+  <section class="hero">
+    <div class="visual-background" id="visualBackground"></div>
+    <div class="container">
+      <div class="hero-content">
+        <h1>Upcoming Releases</h1>
+        <p class="subtitle">See what's coming soon to the server.</p>
+      </div>
+    </div>
+  </section>
+
+<!-- Calendar Section -->
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">Upcoming Content</h2>
+    <p class="section-subtitle">New releases scheduled for the server</p>
+    <div id="calendarContainer" class="calendar-container">
+      <p style="text-align: center; color: var(--gray);"><i class="fas fa-spinner fa-spin"></i> Loading upcoming releases...</p>
+    </div>
+    <div style="text-align: center; margin-top: 30px;">
+      <a href="index.html" class="scroll-btn">
+        <i class="fas fa-arrow-left"></i> Back to Home
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <p>&copy; 2024 Server Access. All rights reserved.</p>
+</footer>
+
+<script src="calendar.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
