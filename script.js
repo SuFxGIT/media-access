@@ -395,7 +395,6 @@ async function fetchServiceStats() {
         animateCounter('showCount', stats.series || 0);
         animateCounter('animeCount', stats.anime || 0);
         animateCounter('animatedCount', stats.animated || 0);
-        animateCounter('episodeCount', stats.totalItems || stats.totalEpisodes || 0);
       } else {
         console.log('No real data received, showing zeros');
       }
@@ -409,6 +408,7 @@ async function fetchServiceStats() {
 
 function animateCounter(elementId, target) {
   const element = document.getElementById(elementId);
+  if (!element) return;
   let current = 0;
   const increment = target / 30; // Faster animation
   const timer = setInterval(() => {
