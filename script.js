@@ -234,7 +234,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // ===== INITIALIZE WHEN PAGE LOADS =====
 document.addEventListener('DOMContentLoaded', function() {
-  loadBackground();
+  // loadBackground(); // TMDB poster background disabled
   fetchServiceStats(); // ← ADD THIS LINE
   
   // Additional initialization can go here
