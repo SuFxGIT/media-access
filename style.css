@@ -50,8 +50,9 @@ header {
 
 nav {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
+  gap: 40px;
 }
 
 .logo {
@@ -62,8 +63,9 @@ nav {
 
 .nav-links {
   display: flex;
-  gap: 30px;
+  gap: 5px;
   align-items: center;
+  flex: 1;
   justify-content: center;
 }
 
@@ -72,11 +74,31 @@ nav {
   text-decoration: none;
   font-weight: 500;
   font-size: 0.9rem;
-  transition: color 0.3s ease;
+  padding: 8px 16px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  position: relative;
 }
 
 .nav-links a:hover {
   color: var(--primary);
+  background: rgba(229, 160, 13, 0.1);
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: var(--primary);
+  transform: translateX(-50%);
+  transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after {
+  width: 70%;
 }
 
 .subscribe-nav {
@@ -85,10 +107,17 @@ nav {
   padding: 8px 20px;
   border-radius: 20px;
   font-weight: 600;
+  transition: all 0.3s ease;
+  margin-left: 10px;
+}
+
+.subscribe-nav:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
 }
 
 .status-nav {
-  background: var(--primary);  /* ← Change this line */
+  background: var(--primary);
   color: white !important;
   padding: 8px 15px;
   border-radius: 20px;
@@ -96,6 +125,17 @@ nav {
   display: flex;
   align-items: center;
   gap: 5px;
+  transition: all 0.3s ease;
+  position: static;
+}
+
+.status-nav:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(229, 160, 13, 0.3);
+}
+
+.status-nav::after {
+  display: none;
 }
 
 /* ===== HERO SECTION ===== */
