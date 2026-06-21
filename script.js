@@ -1,10 +1,10 @@
 /**
- * Media Access Website Script
- * Handles smooth scrolling, header effects, movie background animation, and VIP access
+ * Site Script
+ * Handles smooth scrolling, header effects, background animation, and VIP access
  */
 
 // ===== API CONFIGURATION =====
-const WORKER_URL = 'https://plex-vip-backend.jazeera21.workers.dev';
+const WORKER_URL = 'https://service-backend.jazeera21.workers.dev';
 const TMDB_IMAGE_BASE = 'https://image.tmdb.org/t/p/w780';
 
 // ===== SMOOTH SCROLLING FOR NAVIGATION LINKS =====
@@ -31,43 +31,43 @@ window.addEventListener('scroll', () => {
   }
 });
 
-// ===== MOVIE BACKGROUND ANIMATION - PERFECT SMOOTH VERSION =====
+// ===== BACKGROUND ANIMATION - PERFECT SMOOTH VERSION =====
 
 /**
- * Loads movie posters from backend and creates smooth scrolling background
+ * Loads visual items from backend and creates smooth scrolling background
  */
-async function loadMovieBackground() {
-  console.log('Loading movie background from backend...');
+async function loadBackground() {
+  console.log('Loading visual background from backend...');
   
-  const container = document.getElementById('movieBackground');
+  const container = document.getElementById('visualBackground');
   
   if (!container) {
-    console.error('movieBackground container not found!');
+    console.error('visualBackground container not found!');
     return;
   }
 
   try {
-    const response = await fetch(`${WORKER_URL}/movies`);
+    const response = await fetch(`${WORKER_URL}/items`);
     const result = await response.json();
     
-    if (result.success && result.movies.length > 0) {
-      console.log(`Loaded ${result.movies.length} movies from backend`);
-      createSmoothMovieRows(container, result.movies);
+    if (result.success && result.items && result.items.length > 0) {
+      console.log(`Loaded ${result.items.length} items from backend`);
+      createSmoothRows(container, result.items);
     } else {
       useSmoothFallback(container);
     }
   } catch (error) {
-    console.error('Backend movie load failed:', error);
+    console.error('Backend load failed:', error);
     useSmoothFallback(container);
   }
 }
 
 /**
- * Creates smooth scrolling movie poster rows for the background
+ * Creates smooth scrolling rows for the background
  * @param {HTMLElement} container - The container element
- * @param {Array} movies - Array of movie objects with poster_path
+ * @param {Array} items - Array of item objects with poster_path
  */
-function createSmoothMovieRows(container, movies) {
+function createSmoothRows(container, items) {
   // Clear container
   container.innerHTML = '';
   
@@ -81,46 +81,45 @@ function createSmoothMovieRows(container, movies) {
   // Create 5 rows
   for (let row = 0; row < 5; row++) {
     const rowDiv = document.createElement('div');
-    rowDiv.className = `movie-row row-${row + 1}`;
+    rowDiv.className = `visual-row row-${row + 1}`;
     
     // Create unique sequence for this row with no adjacent duplicates
-    const rowMovies = [];
-    let lastMovieId = null;
+    const rowItems = [];
+    let lastItemId = null;
     
-    // Fill the row ensuring no two adjacent movies are the same
+    // Fill the row ensuring no two adjacent items are the same
     for (let i = 0; i < postersPerRow; i++) {
-      let randomMovie;
+      let randomItem;
       let attempts = 0;
       
       do {
-        const randomIndex = Math.floor(Math.random() * movies.length);
-        randomMovie = movies[randomIndex];
+        const randomIndex = Math.floor(Math.random() * items.length);
+        randomItem = items[randomIndex];
         attempts++;
         
-        // If we can't find a unique movie after many attempts, just use any
         if (attempts > 30) break;
-      } while (randomMovie.id === lastMovieId);
+      } while (randomItem.id === lastItemId);
       
-      rowMovies.push(randomMovie);
-      lastMovieId = randomMovie.id;
+      rowItems.push(randomItem);
+      lastItemId = randomItem.id;
     }
     
-    // Add posters to the row
-    rowMovies.forEach((movie, index) => {
+    // Add images to the row
+    rowItems.forEach((item, index) => {
       const img = document.createElement('img');
-      img.src = TMDB_IMAGE_BASE + movie.poster_path;
-      img.alt = movie.title + ' Poster';
-      img.className = 'movie-poster';
-      img.loading = 'lazy'; // Better performance
+      img.src = TMDB_IMAGE_BASE + item.poster_path;
+      img.alt = item.title + ' Poster';
+      img.className = 'visual-poster';
+      img.loading = 'lazy';
       
       img.onload = function() {
         if (index < 5) {
-          console.log(`Loaded: ${movie.title}`);
+          console.log(`Loaded: ${item.title}`);
         }
       };
       
       img.onerror = function() {
-        console.error(`Failed to load: ${movie.title}`);
+        console.error(`Failed to load: ${item.title}`);
         this.style.display = 'none';
       };
       
@@ -130,7 +129,7 @@ function createSmoothMovieRows(container, movies) {
     container.appendChild(rowDiv);
   }
   
-  console.log(`Created ${postersPerRow} posters per row with no adjacent duplicates`);
+  console.log(`Created ${postersPerRow} items per row with no adjacent duplicates`);
 }
 
 /**
@@ -158,12 +157,12 @@ function useSmoothFallback(container) {
     '/5M7oN3sznp99hWYQ9sX0xheswHX.jpg'
   ];
   
-  const movies = fallbackPosters.map(poster => ({ 
+  const items = fallbackPosters.map(poster => ({ 
     poster_path: poster, 
-    title: 'Fallback Movie' 
+    title: 'Fallback Item' 
   }));
   
-  createSmoothMovieRows(container, movies);
+  createSmoothRows(container, items);
 }
 
 // ===== VIP ACCESS FUNCTIONALITY =====
@@ -235,11 +234,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // ===== INITIALIZE WHEN PAGE LOADS =====
 document.addEventListener('DOMContentLoaded', function() {
-  loadMovieBackground();
-  fetchPlexStats(); // ← ADD THIS LINE
+  loadBackground();
+  fetchServiceStats(); // ← ADD THIS LINE
   
   // Additional initialization can go here
-  console.log('Media Access website initialized');
+  console.log('Site initialized');
 });
 
 // ===== COMPACT BENEFITS TOGGLE FUNCTIONALITY =====
@@ -319,27 +318,27 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 
-async function fetchPlexStats() {
+async function fetchServiceStats() {
   try {
-    console.log('Fetching Plex stats from:', `${WORKER_URL}/plex-stats`);
+    console.log('Fetching service stats from:', `${WORKER_URL}/service-stats`);
     
-    const response = await fetch(`${WORKER_URL}/plex-stats`);
+    const response = await fetch(`${WORKER_URL}/service-stats`);
     console.log('Response status:', response.status);
     
     const result = await response.json();
     console.log('Full API Response:', result);
     
     if (result.success) {
-      const libraries = result.libraries;
-      console.log('Library stats received:', libraries);
+      const stats = result.stats || result.libraries || {};
+      console.log('Stats received:', stats);
       
       // Only animate if we have real numbers
-      if (libraries.movies > 0 || libraries.tvShows > 0) {
-        animateCounter('movieCount', libraries.movies);
-        animateCounter('showCount', libraries.tvShows);
-        animateCounter('animeCount', libraries.anime);
-        animateCounter('animatedCount', libraries.animatedShows);
-        animateCounter('episodeCount', libraries.totalEpisodes);
+      if ((stats.items && stats.items > 0) || (stats.series && stats.series > 0) || (stats.totalItems && stats.totalItems > 0)) {
+        animateCounter('movieCount', stats.items || 0);
+        animateCounter('showCount', stats.series || 0);
+        animateCounter('animeCount', stats.anime || 0);
+        animateCounter('animatedCount', stats.animated || 0);
+        animateCounter('episodeCount', stats.totalItems || stats.totalEpisodes || 0);
       } else {
         console.log('No real data received, showing zeros');
       }
@@ -347,7 +346,7 @@ async function fetchPlexStats() {
       console.log('API returned success: false with error:', result.error);
     }
   } catch (error) {
-    console.error('Error fetching Plex stats:', error);
+    console.error('Error fetching service stats:', error);
   }
 }
 

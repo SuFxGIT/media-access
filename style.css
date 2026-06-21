@@ -7,7 +7,7 @@
   --light: #ffffff;
   --gray: #888888;
   --text: #e0e0e0;
-  --jellyseerr-color: #8a2be2;
+  --seerr-color: #8a2be2;
   --subscribe-color: #28a745;
   --bg-color: #111111;
   --section-bg: #1a1a1a;
@@ -229,7 +229,7 @@ h1 {
 }
 
 /* ===== BUTTON STYLES ===== */
-.jellyseerr-btn, .plex-btn {
+.seerr-btn, .service-btn {
   display: inline-block;
   padding: 12px 28px;
   border-radius: 25px;
@@ -240,15 +240,15 @@ h1 {
   margin-top: 10px;
 }
 
-.jellyseerr-btn {
-  background: var(--jellyseerr-color);
+.seerr-btn {
+  background: var(--seerr-color);
 }
 
-.plex-btn {
+.service-btn {
   background: var(--primary);
 }
 
-/* ===== PLEX CLIENTS GRID ===== */
+/* ===== CLIENTS GRID ===== */
 .clients-grid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
@@ -352,8 +352,8 @@ footer {
   color: var(--primary);
 }
 
-/* ===== MOVIE BACKGROUND ANIMATION ===== */
-.movie-background {
+/* ===== BACKGROUND ANIMATION ===== */
+.visual-background {
   position: absolute;
   top: 0;
   left: 0;
@@ -367,8 +367,8 @@ footer {
   padding: 5% 0;
 }
 
-/* ===== PERFECT SMOOTH MOVIE ANIMATION - NO FLICKER ===== */
-.movie-row {
+/* ===== PERFECT SMOOTH BACKGROUND ANIMATION - NO FLICKER ===== */
+.visual-row {
   display: flex;
   width: 400%;
 }
@@ -405,7 +405,7 @@ footer {
   }
 }
 
-.movie-poster {
+.visual-poster {
   width: 140px;
   height: 210px;
   object-fit: cover;
@@ -857,7 +857,7 @@ footer {
     gap: 15px;
   }
   
-  .movie-poster {
+  .visual-poster {
     width: 150px;
     height: 225px;
   }
@@ -922,7 +922,7 @@ footer {
     font-size: 2rem;
   }
   
-  .movie-poster {
+  .visual-poster {
     width: 120px;
     height: 180px;
   }

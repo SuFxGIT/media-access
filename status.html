@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Server Status - Media Access</title>
+  <title>Server Status - Server Access</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="style.css">
   <style>
@@ -139,7 +139,7 @@
           <li>Routine maintenance and updates</li>
           <li>Database backups</li>
           <li>Performance optimizations</li>
-          <li>Content library updates</li>
+          <li>Content updates</li>
         </ul>
         <p style="margin-top: 15px; color: var(--primary); font-weight: 500;">
           <i class="fas fa-clock"></i> Usually back within 30-60 minutes
@@ -160,7 +160,7 @@
   </div>
 
   <script>
-    const WORKER_URL = 'https://plex-vip-backend.jazeera21.workers.dev';
+    const WORKER_URL = 'https://service-backend.jazeera21.workers.dev';
     
     async function checkStatus() {
       const icon = document.getElementById('statusIcon');
