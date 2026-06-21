@@ -1376,15 +1376,15 @@ footer {
 }
 
 .cal-event-pill.movie {
-  background: rgba(0, 112, 186, 0.2);
-  color: #7dc3f5;
-  border: 1px solid rgba(0, 112, 186, 0.25);
+  background: rgba(229, 160, 13, 0.18);
+  color: #f0b429;
+  border: 1px solid rgba(229, 160, 13, 0.3);
 }
 
 .cal-event-pill.show {
-  background: rgba(229, 160, 13, 0.15);
-  color: var(--primary);
-  border: 1px solid rgba(229, 160, 13, 0.2);
+  background: rgba(0, 112, 186, 0.2);
+  color: #7dc3f5;
+  border: 1px solid rgba(0, 112, 186, 0.25);
 }
 
 .cal-event-more {
@@ -1437,4 +1437,128 @@ footer {
   .cal-event-more {
     display: none;
   }
+}
+
+/* ===== CALENDAR DAY POPUP ===== */
+.cal-event-more {
+  font-size: 0.62rem;
+  color: #aaa;
+  padding: 2px 4px;
+  margin-top: 2px;
+  cursor: pointer;
+  border-radius: 3px;
+  display: inline-block;
+  transition: color 0.15s ease, background 0.15s ease;
+}
+
+.cal-event-more:hover {
+  color: var(--light);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.cal-day-popup-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 2000;
+  align-items: center;
+  justify-content: center;
+}
+
+.cal-day-popup-overlay.active {
+  display: flex;
+}
+
+.cal-day-popup {
+  background: var(--card-bg);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  padding: 20px;
+  width: 90%;
+  max-width: 360px;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.cal-day-popup-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.cal-day-popup-date {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.cal-day-popup-close {
+  background: rgba(255, 255, 255, 0.07);
+  border: none;
+  color: var(--text);
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s ease;
+}
+
+.cal-day-popup-close:hover {
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.cal-day-popup-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.cal-day-popup-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 10px;
+  border-radius: 6px;
+  font-size: 0.82rem;
+}
+
+.cal-day-popup-item.movie {
+  background: rgba(229, 160, 13, 0.1);
+  border: 1px solid rgba(229, 160, 13, 0.2);
+  color: #f0b429;
+}
+
+.cal-day-popup-item.show {
+  background: rgba(0, 112, 186, 0.12);
+  border: 1px solid rgba(0, 112, 186, 0.2);
+  color: #7dc3f5;
+}
+
+.cal-day-popup-item .popup-type-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.cal-day-popup-item.movie .popup-type-dot { background: #f0b429; }
+.cal-day-popup-item.show  .popup-type-dot { background: #7dc3f5; }
+
+.cal-day-popup-item .popup-title {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cal-day-popup-item .popup-episode {
+  font-size: 0.72rem;
+  opacity: 0.7;
+  flex-shrink: 0;
 }

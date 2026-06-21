@@ -109,17 +109,34 @@ function renderCalendar(container) {
     }).join('');
 
     const moreLabel = events.length > 2
-      ? `<div class="cal-event-more">+${events.length - 2} more</div>`
+      ? `<div class="cal-event-more" data-date="${dateStr}">+${events.length - 2} more</div>`
+      : '';
+
+    // Store events as JSON on the cell for the popup
+    const eventsAttr = events.length > 0
+      ? ` data-events='${JSON.stringify(events).replace(/'/g, '&#39;')}'`
       : '';
 
     html += `
-      <div class="${cls}">
+      <div class="${cls}"${eventsAttr}>
         <span class="cal-day-num">${day}</span>
         ${events.length > 0 ? `<div class="cal-events">${pills}${moreLabel}</div>` : ''}
       </div>`;
   }
 
   html += '</div></div>'; // close cal-grid + calendar-wrapper
+
+  // Popup overlay (appended once, reused)
+  html += `
+    <div class="cal-day-popup-overlay" id="calPopupOverlay">
+      <div class="cal-day-popup">
+        <div class="cal-day-popup-header">
+          <span class="cal-day-popup-date" id="calPopupDate"></span>
+          <button class="cal-day-popup-close" id="calPopupClose">&#x2715;</button>
+        </div>
+        <div class="cal-day-popup-list" id="calPopupList"></div>
+      </div>
+    </div>`;
 
   container.innerHTML = html;
 
@@ -135,7 +152,46 @@ function renderCalendar(container) {
     if (calCurrentMonth > 11) { calCurrentMonth = 0; calCurrentYear++; }
     renderCalendar(container);
   });
-}
 
-document.addEventListener('DOMContentLoaded', loadCalendarEvents);
+  // Popup: open on "+N more" click
+  container.addEventListener('click', (e) => {
+    const moreBtn = e.target.closest('.cal-event-more');
+    if (!moreBtn) return;
+
+    const cell = moreBtn.closest('.cal-cell');
+    const dateStr = moreBtn.dataset.date;
+    const events = JSON.parse(cell.dataset.events || '[]');
+
+    // Format date label
+    const [y, m, d] = dateStr.split('-').map(Number);
+    const dateLabel = new Date(y, m - 1, d).toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
+
+    document.getElementById('calPopupDate').textContent = dateLabel;
+    document.getElementById('calPopupList').innerHTML = events.map(ev => {
+      const type = ev.type === 'movie' ? 'movie' : 'show';
+      const episode = ev.episode ? `<span class="popup-episode">${ev.episode}</span>` : '';
+      return `<div class="cal-day-popup-item ${type}">
+        <span class="popup-type-dot"></span>
+        <span class="popup-title">${ev.title || 'Untitled'}</span>
+        ${episode}
+      </div>`;
+    }).join('');
+
+    document.getElementById('calPopupOverlay').classList.add('active');
+  });
+
+  // Popup: close
+  document.getElementById('calPopupClose').addEventListener('click', closePopup);
+  document.getElementById('calPopupOverlay').addEventListener('click', (e) => {
+    if (e.target === document.getElementById('calPopupOverlay')) closePopup();
+  });
+  document.addEventListener('keydown', function escClose(e) {
+    if (e.key === 'Escape') { closePopup(); document.removeEventListener('keydown', escClose); }
+  });
+
+  function closePopup() {
+    const overlay = document.getElementById('calPopupOverlay');
+    if (overlay) overlay.classList.remove('active');
+  }
+}
 
