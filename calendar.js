@@ -238,3 +238,5 @@ function renderCalendar(container) {
   }
 }
 
+document.addEventListener('DOMContentLoaded', loadCalendarEvents);
+
