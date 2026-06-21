@@ -20,7 +20,7 @@
       </div>
       <div class="nav-links">
         <a href="#about">About the Service</a>
-        <a href="#seerr">Seerr</a>
+        <a href="#calendar">Calendar</a>
         <a href="#clients">Supported Devices</a>
         
         <a href="status.html" class="status-nav">
@@ -41,7 +41,7 @@
         <i class="fas fa-times"></i>
       </button>
       <a href="#about">About the Service</a>
-      <a href="#seerr">Seerr</a>
+      <a href="#calendar">Calendar</a>
       <a href="#clients">Supported Devices</a>
       
       <a href="status.html" class="status-nav">
@@ -137,14 +137,16 @@
     </div>
   </section>
 
-  <!-- Seerr Section -->
-  <section id="seerr" class="section section-alt">
+  <!-- Calendar Section -->
+  <section id="calendar" class="section section-alt">
     <div class="container">
-      <h2 class="section-title">What is Seerr?</h2>
-      <p class="section-subtitle">Request server additions or features</p>
-      <p>Seerr lets you request additions or features for the server. It's easy, quick, and directly connected to our management system.</p>
+      <h2 class="section-title">Upcoming Releases</h2>
+      <p class="section-subtitle">See what's coming soon</p>
+      <div id="calendarContainer" class="calendar-container">
+        <p style="text-align: center; color: var(--gray);">Loading calendar...</p>
+      </div>
       <a href="https://request.sufxconnect.cc/" target="_blank" class="seerr-btn">
-        <i class="fas fa-external-link-alt"></i> Go to Seerr
+        <i class="fas fa-external-link-alt"></i> Go here
       </a>
     </div>
   </section>
@@ -261,7 +263,7 @@
               <i class="fas fa-server"></i>
               <div>
                 <h4>Request Server Additions</h4>
-                <p>Request additions or features through Seerr, we'll evaluate and apply them.</p>
+                <p>Request additions or features, we'll evaluate and apply them.</p>
               </div>
             </div>
             
@@ -320,7 +322,7 @@
     <div class="container">
       <div class="footer-links">
         <a href="#about">About</a>
-        <a href="#seerr">Seerr</a>
+        <a href="#calendar">Calendar</a>
         <a href="#clients">Clients</a>
         <a href="#join">Subscribe</a>
       </div>
@@ -329,5 +331,6 @@
   </footer>
 
   <script src="script.js"></script>
+  <script src="calendar.js"></script>
 </body>
 </html>

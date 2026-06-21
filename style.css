@@ -141,7 +141,9 @@ nav {
 /* ===== HERO SECTION ===== */
 .hero {
   height: 100vh;
-  background: var(--dark);
+  background: linear-gradient(-45deg, #0a0a0a, #1a3a52, #2d1b4e, #0a0a0a);
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -149,6 +151,18 @@ nav {
   padding-top: 60px;
   position: relative;
   overflow: hidden;
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 .hero-content {
@@ -1164,4 +1178,46 @@ footer {
     width: 200px;
     justify-content: center;
   }
+}
+/* ===== CALENDAR STYLES ===== */
+.calendar-container {
+  background: var(--card-bg);
+  border-radius: 15px;
+  padding: 30px;
+  max-width: 900px;
+  margin: 30px auto;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.calendar-item {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 10px;
+  padding: 15px;
+  border-left: 4px solid var(--primary);
+  transition: all 0.3s ease;
+}
+
+.calendar-item:hover {
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateY(-2px);
+  border-left-color: var(--secondary);
+}
+
+.calendar-item h4 {
+  color: var(--primary);
+  margin-bottom: 8px;
+  font-size: 0.95rem;
+}
+
+.calendar-item p {
+  color: var(--gray);
+  font-size: 0.85rem;
+  margin: 4px 0;
 }
