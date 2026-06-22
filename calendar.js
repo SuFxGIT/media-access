@@ -196,7 +196,7 @@ function renderCalendar(container) {
       : '';
 
     const eventsAttr = events.length > 0
-      ? ` data-events='${JSON.stringify(events).replace(/'/g, '&#39;')}'`
+      ? ` data-date="${dateStr}" data-events='${JSON.stringify(events).replace(/'/g, '&#39;')}'`
       : '';
 
     html += `
@@ -224,11 +224,11 @@ function renderCalendar(container) {
   setupViewToggle(container);
 
   container.addEventListener('click', (e) => {
-    const moreBtn = e.target.closest('.cal-event-more');
-    if (!moreBtn) return;
+    // Open popup on click of any pill, +more, or anywhere on a has-events cell
+    const cell = e.target.closest('.cal-cell.has-events');
+    if (!cell) return;
 
-    const cell = moreBtn.closest('.cal-cell');
-    const dateStr = moreBtn.dataset.date;
+    const dateStr = cell.dataset.date;
     const events = JSON.parse(cell.dataset.events || '[]');
     const [y, m, d] = dateStr.split('-').map(Number);
     const dateLabel = new Date(y, m - 1, d).toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
@@ -297,8 +297,7 @@ function renderAgenda(container) {
         const type = ev.type === 'movie' ? 'movie' : 'show';
         const safeTitle = (ev.title || '').replace(/"/g, '&quot;');
         const posterHtml = ev.poster
-          ? `<img class="agenda-poster" src="${ev.poster}" alt="${safeTitle}" loading="lazy"
-               onerror="this.outerHTML='<div class=\\"agenda-poster-placeholder\\"><i class=\\"fas fa-${type === 'movie' ? 'film' : 'tv'}\\"></i></div>'">`
+          ? `<img class="agenda-poster" src="${ev.poster}" alt="${safeTitle}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="agenda-poster-placeholder" style="display:none"><i class="fas fa-${type === 'movie' ? 'film' : 'tv'}"></i></div>`
           : `<div class="agenda-poster-placeholder"><i class="fas fa-${type === 'movie' ? 'film' : 'tv'}"></i></div>`;
 
         const metaParts = [ev.year || null, ev.episode || null].filter(Boolean);
