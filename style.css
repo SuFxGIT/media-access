@@ -978,7 +978,8 @@ footer {
 
   .mobile-menu .status-nav,
   .mobile-menu .calendar-nav,
-  .mobile-menu .subscribe-nav {
+  .mobile-menu .subscribe-nav,
+  .mobile-menu .requests-nav {
     margin-top: 10px;
     text-align: center;
     font-weight: 600;
@@ -998,6 +999,13 @@ footer {
   .mobile-menu .subscribe-nav {
     background: var(--subscribe-color);
     color: white !important;
+  }
+
+  .mobile-menu .requests-nav {
+    background: var(--seerr-color);
+    color: white !important;
+    padding: 12px 15px;
+    border-radius: 6px;
   }
 
   .mobile-menu-close {
