@@ -250,7 +250,6 @@ function renderCalendar(container) {
     const [y, m, d] = dateStr.split('-').map(Number);
     const dateLabel = new Date(y, m - 1, d).toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
     const timeInfo = timeLeftLabel(dateStr);
-    const shortDate = fmtDate(dateStr);
 
     document.getElementById('calPopupDate').textContent = dateLabel;
     document.getElementById('calPopupList').innerHTML = events.map(ev => {
@@ -260,21 +259,17 @@ function renderCalendar(container) {
       const posterHtml = ev.poster
         ? `<img class="popup-poster" src="${ev.poster}" alt="" loading="lazy" onerror="this.style.display='none'">`
         : `<div class="popup-poster-placeholder"><i class="fas fa-${icon}"></i></div>`;
-      const yearStr = ev.year ? ` <span class="popup-year">(${ev.year})</span>` : '';
       const epInfo = [ev.episode, ev.episodeTitle ? `"${ev.episodeTitle}"` : null].filter(Boolean).join(' · ');
       return `<div class="cal-day-popup-item ${type}">
         ${posterHtml}
         <div class="popup-info">
           <div class="popup-row-1">
-            <span class="popup-title">${ev.title || 'Untitled'}${yearStr}</span>
+            <span class="popup-title">${ev.title || 'Untitled'}</span>
             <span class="popup-type-badge ${type}"><i class="fas fa-${icon}"></i> ${typeName}</span>
           </div>
           <div class="popup-row-2">
             <span class="popup-ep-info">${epInfo}</span>
-            <div class="popup-row-2-right">
-              <span class="agenda-time-badge ${timeInfo.cls}">${timeInfo.text}</span>
-              <span class="popup-date-label">${shortDate}</span>
-            </div>
+            <span class="agenda-time-badge ${timeInfo.cls}">${timeInfo.text}</span>
           </div>
         </div>
       </div>`;
@@ -326,7 +321,6 @@ function renderAgenda(container) {
       const isPast  = dateStr < todayStr;
       const isReleased = dateStr <= todayStr;
       const timeInfo  = timeLeftLabel(dateStr);
-      const shortDate = fmtDate(dateStr);
 
       const cards = eventMap[dateStr].map(ev => {
         const type = ev.type === 'movie' ? 'movie' : 'show';
@@ -337,23 +331,19 @@ function renderAgenda(container) {
           ? `<img class="agenda-poster" src="${ev.poster}" alt="${safeTitle}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="agenda-poster-placeholder" style="display:none"><i class="fas fa-${icon}"></i></div>`
           : `<div class="agenda-poster-placeholder"><i class="fas fa-${icon}"></i></div>`;
 
-        const yearStr = ev.year ? ` <span class="agenda-year">(${ev.year})</span>` : '';
-        const epInfo  = [ev.episode, ev.episodeTitle ? `"${ev.episodeTitle}"` : null].filter(Boolean).join(' · ');
+        const epInfo = [ev.episode, ev.episodeTitle ? `"${ev.episodeTitle}"` : null].filter(Boolean).join(' · ');
 
         return `
           <div class="agenda-card ${type}${isReleased ? ' released' : ''}">
             <div class="agenda-poster-wrap">${posterHtml}</div>
             <div class="agenda-card-info">
               <div class="agenda-row-1">
-                <div class="agenda-card-title">${ev.title || 'Untitled'}${yearStr}</div>
+                <div class="agenda-card-title">${ev.title || 'Untitled'}</div>
                 <span class="agenda-type-badge ${type}"><i class="fas fa-${icon}"></i> ${typeName}</span>
               </div>
               <div class="agenda-row-2">
                 <span class="agenda-ep-info">${epInfo}</span>
-                <div class="agenda-row-2-right">
-                  <span class="agenda-time-badge ${timeInfo.cls}">${timeInfo.text}</span>
-                  <span class="agenda-date-label">${shortDate}</span>
-                </div>
+                <span class="agenda-time-badge ${timeInfo.cls}">${timeInfo.text}</span>
               </div>
             </div>
           </div>`;
