@@ -153,6 +153,56 @@ nav {
   display: none;
 }
 
+.requests-nav {
+  background: var(--seerr-color);
+  color: white !important;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: all 0.3s ease;
+  position: static;
+}
+
+.requests-nav:hover {
+  filter: brightness(1.15);
+}
+
+.requests-nav::after {
+  display: none;
+}
+
+/* ===== CALENDAR TINY STATS BAR ===== */
+.calendar-stats-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  padding: 8px 0 6px;
+  background: transparent;
+  opacity: 0.45;
+  transition: opacity 0.2s ease;
+}
+
+.calendar-stats-bar:hover {
+  opacity: 0.75;
+}
+
+.calendar-stat-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.68rem;
+  color: var(--gray);
+}
+
+.calendar-stat-item i {
+  font-size: 0.7rem;
+  color: var(--gray);
+}
+
 /* ===== HERO SECTION ===== */
 .hero {
   background: var(--bg-color);
