@@ -1699,3 +1699,329 @@ footer {
   opacity: 0.7;
   flex-shrink: 0;
 }
+
+/* ===== CALENDAR VIEW TOGGLE ===== */
+.cal-view-toggle {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 16px;
+  justify-content: flex-end;
+}
+
+.cal-view-btn {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.04);
+  color: var(--gray);
+  font-size: 0.82rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.cal-view-btn:hover {
+  background: rgba(255,255,255,0.08);
+  color: var(--text);
+}
+
+.cal-view-btn.active {
+  background: rgba(0,112,186,0.2);
+  border-color: rgba(0,112,186,0.5);
+  color: #7dc3f5;
+}
+
+/* ===== GRID PILL THUMBNAIL ===== */
+.pill-thumb {
+  width: 18px;
+  height: 26px;
+  object-fit: cover;
+  border-radius: 2px;
+  flex-shrink: 0;
+  display: block;
+}
+
+.cal-event-pill {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.pill-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.pill-dot.movie { background: #f0b429; }
+.pill-dot.show  { background: #7dc3f5; }
+
+/* ===== GRID POPUP POSTER ===== */
+.popup-poster {
+  width: 40px;
+  height: 58px;
+  object-fit: cover;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.popup-poster-placeholder {
+  width: 40px;
+  height: 58px;
+  border-radius: 4px;
+  background: rgba(255,255,255,0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  color: var(--gray);
+  flex-shrink: 0;
+}
+
+.popup-info {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  overflow: hidden;
+}
+
+.popup-sub {
+  font-size: 0.72rem;
+  color: var(--gray);
+}
+
+/* Override popup item layout to use poster */
+.cal-day-popup-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  border-radius: 6px;
+  font-size: 0.82rem;
+}
+
+.cal-day-popup-item .popup-type-dot { display: none; }
+
+/* ===== AGENDA VIEW ===== */
+.cal-agenda {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  min-height: 200px;
+}
+
+.cal-agenda-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cal-agenda-group.past .cal-agenda-date-header {
+  color: var(--gray);
+  opacity: 0.6;
+}
+
+.cal-agenda-date-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--text);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding-bottom: 6px;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+
+.cal-agenda-group.today .cal-agenda-date-header {
+  color: var(--primary);
+  border-bottom-color: rgba(229,160,13,0.3);
+}
+
+.today-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--primary);
+  flex-shrink: 0;
+}
+
+.cal-agenda-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.agenda-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  background: rgba(255,255,255,0.03);
+  border-radius: 10px;
+  padding: 12px;
+  border: 1px solid rgba(255,255,255,0.06);
+  transition: background 0.15s ease;
+}
+
+.agenda-card:hover {
+  background: rgba(255,255,255,0.06);
+}
+
+.agenda-card.movie {
+  border-left: 3px solid rgba(229,160,13,0.5);
+}
+
+.agenda-card.show {
+  border-left: 3px solid rgba(0,112,186,0.5);
+}
+
+.agenda-poster-wrap {
+  flex-shrink: 0;
+}
+
+.agenda-poster {
+  width: 54px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 6px;
+  display: block;
+}
+
+.agenda-poster-placeholder {
+  width: 54px;
+  height: 80px;
+  border-radius: 6px;
+  background: rgba(255,255,255,0.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  color: var(--gray);
+}
+
+.agenda-card-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  overflow: hidden;
+  padding-top: 2px;
+  min-width: 0;
+}
+
+.agenda-card-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--light);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.agenda-card-meta {
+  font-size: 0.78rem;
+  color: var(--gray);
+}
+
+.agenda-ep-title {
+  font-size: 0.78rem;
+  color: var(--gray);
+  font-style: italic;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.agenda-type-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.68rem;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 20px;
+  margin-top: 2px;
+  width: fit-content;
+}
+
+.agenda-type-badge.movie {
+  background: rgba(229,160,13,0.15);
+  color: #f0b429;
+  border: 1px solid rgba(229,160,13,0.25);
+}
+
+.agenda-type-badge.show {
+  background: rgba(0,112,186,0.15);
+  color: #7dc3f5;
+  border: 1px solid rgba(0,112,186,0.25);
+}
+
+.cal-agenda-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 60px 20px;
+  color: var(--gray);
+  font-size: 0.9rem;
+}
+
+.cal-agenda-empty i {
+  font-size: 2.5rem;
+  opacity: 0.4;
+}
+
+/* ===== MOBILE: AGENDA ===== */
+@media (max-width: 768px) {
+  .cal-view-toggle {
+    justify-content: center;
+    margin-bottom: 14px;
+  }
+
+  .agenda-card {
+    gap: 10px;
+    padding: 10px;
+  }
+
+  .agenda-poster {
+    width: 46px;
+    height: 68px;
+  }
+
+  .agenda-poster-placeholder {
+    width: 46px;
+    height: 68px;
+    font-size: 1.1rem;
+  }
+
+  .agenda-card-title {
+    font-size: 0.88rem;
+    white-space: normal;
+    word-break: break-word;
+  }
+
+  .pill-thumb {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .cal-agenda {
+    gap: 18px;
+  }
+
+  .agenda-poster {
+    width: 40px;
+    height: 60px;
+  }
+
+  .agenda-poster-placeholder {
+    width: 40px;
+    height: 60px;
+  }
+}
