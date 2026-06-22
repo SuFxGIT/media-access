@@ -8,10 +8,9 @@
   <link rel="stylesheet" href="style.css">
   <link rel="icon" type="image/x-icon" href="icon2.png">
 </head>
-<body>
+<body style="min-height:100vh;display:flex;align-items:center;justify-content:center;margin:0;background:var(--bg-color);">
 
-<div class="site-pin-overlay" style="display:flex;">
-  <div class="pin-gate">
+<div class="pin-gate">
     <div class="pin-gate-icon"><i class="fas fa-lock"></i></div>
     <h3 class="pin-gate-title">Server Access</h3>
     <p class="pin-gate-sub">Enter your PIN to continue</p>
@@ -21,7 +20,6 @@
       <button id="sitePinSubmit" class="pin-gate-btn"><i class="fas fa-unlock"></i> Unlock</button>
     </div>
   </div>
-</div>
 
 <script>
 (function () {
