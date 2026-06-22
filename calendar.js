@@ -227,6 +227,7 @@ function renderCalendar(container) {
     // Open popup on click of any pill, +more, or anywhere on a has-events cell
     const cell = e.target.closest('.cal-cell.has-events');
     if (!cell) return;
+    const todayStr = new Date().toISOString().split('T')[0];
 
     const dateStr = cell.dataset.date;
     const events = JSON.parse(cell.dataset.events || '[]');
@@ -239,11 +240,14 @@ function renderCalendar(container) {
       const posterHtml = ev.poster
         ? `<img class="popup-poster" src="${ev.poster}" alt="" loading="lazy" onerror="this.style.display='none'">`
         : `<div class="popup-poster-placeholder"><i class="fas fa-${type === 'movie' ? 'film' : 'tv'}"></i></div>`;
-      return `<div class="cal-day-popup-item ${type}">
+      const isDateReleased = dateStr <= todayStr;
+      const relIcon = isDateReleased ? '<span class="popup-released"><i class="fas fa-check-circle"></i> Released</span>' : '';
+      return `<div class="cal-day-popup-item ${type}${isDateReleased ? ' released' : ''}">
         ${posterHtml}
         <div class="popup-info">
           <span class="popup-title">${ev.title || 'Untitled'}</span>
           <span class="popup-sub">${[ev.year, ev.episode].filter(Boolean).join(' · ')}</span>
+          ${relIcon}
         </div>
       </div>`;
     }).join('');
@@ -293,6 +297,8 @@ function renderAgenda(container) {
       const isToday = dateStr === todayStr;
       const isPast  = dateStr < todayStr;
 
+      const isReleased = dateStr <= todayStr;
+
       const cards = eventMap[dateStr].map(ev => {
         const type = ev.type === 'movie' ? 'movie' : 'show';
         const safeTitle = (ev.title || '').replace(/"/g, '&quot;');
@@ -301,21 +307,26 @@ function renderAgenda(container) {
           : `<div class="agenda-poster-placeholder"><i class="fas fa-${type === 'movie' ? 'film' : 'tv'}"></i></div>`;
 
         const metaParts = [ev.year || null, ev.episode || null].filter(Boolean);
-        const epTitle = ev.episodeTitle && ev.type === 'show'
+        const epTitleHtml = ev.episodeTitle && ev.type === 'show'
           ? `<div class="agenda-ep-title">"${ev.episodeTitle}"</div>`
+          : '';
+        const releasedHtml = isReleased
+          ? `<div class="agenda-released"><i class="fas fa-check-circle"></i> Released</div>`
           : '';
 
         return `
-          <div class="agenda-card ${type}">
+          <div class="agenda-card ${type}${isReleased ? ' released' : ''}">
             <div class="agenda-poster-wrap">${posterHtml}</div>
             <div class="agenda-card-info">
               <div class="agenda-card-title">${ev.title || 'Untitled'}</div>
-              ${metaParts.length ? `<div class="agenda-card-meta">${metaParts.join(' · ')}</div>` : ''}
-              ${epTitle}
-              <span class="agenda-type-badge ${type}">
-                <i class="fas fa-${type === 'movie' ? 'film' : 'tv'}"></i>
-                ${type === 'movie' ? 'Movie' : 'Episode'}
-              </span>
+              <div class="agenda-card-row">
+                <span class="agenda-type-badge ${type}">
+                  <i class="fas fa-${type === 'movie' ? 'film' : 'tv'}"></i> ${type === 'movie' ? 'Movie' : 'Episode'}
+                </span>
+                ${metaParts.length ? `<span class="agenda-meta-text">${metaParts.join(' · ')}</span>` : ''}
+              </div>
+              ${epTitleHtml}
+              ${releasedHtml}
             </div>
           </div>`;
       }).join('');
