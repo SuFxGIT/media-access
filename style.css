@@ -1774,7 +1774,7 @@ footer {
 .cal-day-popup-item {
   display: flex;
   align-items: flex-start;
-  gap: 8px;
+  gap: 0;
   padding: 7px 8px;
   border-radius: 6px;
   font-size: 0.82rem;
@@ -1789,6 +1789,7 @@ footer {
   overflow: hidden;
   min-width: 0;
   flex: 1;
+  padding-left: 6px;
 }
 
 .popup-row-1 {
@@ -1906,7 +1907,7 @@ footer {
 .agenda-card {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 0;
   background: #1a1a1a;
   border-radius: 8px;
   padding: 8px 10px;
@@ -1964,7 +1965,7 @@ footer {
   overflow: hidden;
   min-width: 0;
   flex: 1;
-  padding: 0;
+  padding: 0 0 0 6px;
 }
 
 /* Row 1: title (left) + type badge (right) */
@@ -2089,7 +2090,6 @@ footer {
   }
 
   .agenda-card {
-    gap: 7px;
     padding: 7px 9px;
   }
 
@@ -2169,7 +2169,6 @@ footer {
   }
 
   .agenda-card {
-    gap: 6px;
     padding: 6px 8px;
   }
 
