@@ -1490,6 +1490,16 @@ footer {
 }
 
 /* ===== CALENDAR PIN GATE ===== */
+.site-pin-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: var(--bg-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .pin-gate {
   display: flex;
   flex-direction: column;

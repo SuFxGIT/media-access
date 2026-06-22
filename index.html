@@ -298,5 +298,67 @@
 
   <script src="script.js"></script>
   <script src="calendar.js"></script>
+
+<!-- Site PIN Gate -->
+<div id="sitePinOverlay" class="site-pin-overlay" style="display:none;">
+  <div class="pin-gate">
+    <div class="pin-gate-icon"><i class="fas fa-lock"></i></div>
+    <h3 class="pin-gate-title">Server Access</h3>
+    <p class="pin-gate-sub">Enter your PIN to continue</p>
+    <p id="sitePinError" class="pin-gate-error" style="display:none;"><i class="fas fa-times-circle"></i> Incorrect PIN — try again</p>
+    <div class="pin-gate-form">
+      <input type="password" id="sitePinInput" class="pin-gate-input" placeholder="PIN" maxlength="20" autocomplete="off">
+      <button id="sitePinSubmit" class="pin-gate-btn"><i class="fas fa-unlock"></i> Unlock</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  const CAL_API = 'https://plex-vip-backend.jazeera21.workers.dev';
+  const overlay = document.getElementById('sitePinOverlay');
+  const input   = document.getElementById('sitePinInput');
+  const btn     = document.getElementById('sitePinSubmit');
+  const errMsg  = document.getElementById('sitePinError');
+
+  const stored = sessionStorage.getItem('calendarPin');
+  if (stored) return; // already unlocked this session
+
+  overlay.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+  setTimeout(() => input && input.focus(), 50);
+
+  async function submit() {
+    const pin = input.value.trim();
+    if (!pin) return;
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Checking...';
+    try {
+      const res = await fetch(`${CAL_API}/calendar`, {
+        headers: { 'X-Calendar-Pin': pin }
+      });
+      if (res.status === 401) {
+        errMsg.style.display = 'block';
+        input.value = '';
+        input.focus();
+      } else {
+        sessionStorage.setItem('calendarPin', pin);
+        overlay.style.display = 'none';
+        document.body.style.overflow = '';
+      }
+    } catch (e) {
+      // Network error — allow through to not hard-block
+      sessionStorage.setItem('calendarPin', pin);
+      overlay.style.display = 'none';
+      document.body.style.overflow = '';
+    }
+    btn.disabled = false;
+    btn.innerHTML = '<i class="fas fa-unlock"></i> Unlock';
+  }
+
+  btn.addEventListener('click', submit);
+  input.addEventListener('keypress', (e) => { if (e.key === 'Enter') submit(); });
+}());
+</script>
 </body>
 </html>
