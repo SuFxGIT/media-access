@@ -102,6 +102,22 @@ function buildEventMap(events) {
   return map;
 }
 
+function timeLeftLabel(dateStr) {
+  const today = new Date(); today.setHours(0,0,0,0);
+  const [y,m,d] = dateStr.split('-').map(Number);
+  const rel = new Date(y, m-1, d);
+  const diff = Math.round((rel - today) / 86400000);
+  if (diff < 0)  return { text: '✓ Released', cls: 'released' };
+  if (diff === 0) return { text: '✓ Today',   cls: 'today' };
+  if (diff === 1) return { text: 'Tomorrow',  cls: 'soon' };
+  return { text: `In ${diff}d`, cls: diff <= 7 ? 'soon' : 'upcoming' };
+}
+
+function fmtDate(dateStr) {
+  const [y,m,d] = dateStr.split('-').map(Number);
+  return new Date(y, m-1, d).toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+}
+
 function viewToggleHtml() {
   return `
     <div class="cal-view-toggle">
@@ -233,21 +249,33 @@ function renderCalendar(container) {
     const events = JSON.parse(cell.dataset.events || '[]');
     const [y, m, d] = dateStr.split('-').map(Number);
     const dateLabel = new Date(y, m - 1, d).toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
+    const timeInfo = timeLeftLabel(dateStr);
+    const shortDate = fmtDate(dateStr);
 
     document.getElementById('calPopupDate').textContent = dateLabel;
     document.getElementById('calPopupList').innerHTML = events.map(ev => {
       const type = ev.type === 'movie' ? 'movie' : 'show';
+      const icon = type === 'movie' ? 'film' : 'tv';
+      const typeName = type === 'movie' ? 'Movie' : 'Episode';
       const posterHtml = ev.poster
         ? `<img class="popup-poster" src="${ev.poster}" alt="" loading="lazy" onerror="this.style.display='none'">`
-        : `<div class="popup-poster-placeholder"><i class="fas fa-${type === 'movie' ? 'film' : 'tv'}"></i></div>`;
-      const isDateReleased = dateStr <= todayStr;
-      const relIcon = isDateReleased ? '<span class="popup-released"><i class="fas fa-check-circle"></i> Released</span>' : '';
-      return `<div class="cal-day-popup-item ${type}${isDateReleased ? ' released' : ''}">
+        : `<div class="popup-poster-placeholder"><i class="fas fa-${icon}"></i></div>`;
+      const yearStr = ev.year ? ` <span class="popup-year">(${ev.year})</span>` : '';
+      const epInfo = [ev.episode, ev.episodeTitle ? `"${ev.episodeTitle}"` : null].filter(Boolean).join(' · ');
+      return `<div class="cal-day-popup-item ${type}">
         ${posterHtml}
         <div class="popup-info">
-          <span class="popup-title">${ev.title || 'Untitled'}</span>
-          <span class="popup-sub">${[ev.year, ev.episode].filter(Boolean).join(' · ')}</span>
-          ${relIcon}
+          <div class="popup-row-1">
+            <span class="popup-title">${ev.title || 'Untitled'}${yearStr}</span>
+            <span class="popup-type-badge ${type}"><i class="fas fa-${icon}"></i> ${typeName}</span>
+          </div>
+          <div class="popup-row-2">
+            <span class="popup-ep-info">${epInfo}</span>
+            <div class="popup-row-2-right">
+              <span class="agenda-time-badge ${timeInfo.cls}">${timeInfo.text}</span>
+              <span class="popup-date-label">${shortDate}</span>
+            </div>
+          </div>
         </div>
       </div>`;
     }).join('');
@@ -296,37 +324,37 @@ function renderAgenda(container) {
       });
       const isToday = dateStr === todayStr;
       const isPast  = dateStr < todayStr;
-
       const isReleased = dateStr <= todayStr;
+      const timeInfo  = timeLeftLabel(dateStr);
+      const shortDate = fmtDate(dateStr);
 
       const cards = eventMap[dateStr].map(ev => {
         const type = ev.type === 'movie' ? 'movie' : 'show';
+        const icon = type === 'movie' ? 'film' : 'tv';
+        const typeName = type === 'movie' ? 'Movie' : 'Episode';
         const safeTitle = (ev.title || '').replace(/"/g, '&quot;');
         const posterHtml = ev.poster
-          ? `<img class="agenda-poster" src="${ev.poster}" alt="${safeTitle}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="agenda-poster-placeholder" style="display:none"><i class="fas fa-${type === 'movie' ? 'film' : 'tv'}"></i></div>`
-          : `<div class="agenda-poster-placeholder"><i class="fas fa-${type === 'movie' ? 'film' : 'tv'}"></i></div>`;
+          ? `<img class="agenda-poster" src="${ev.poster}" alt="${safeTitle}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="agenda-poster-placeholder" style="display:none"><i class="fas fa-${icon}"></i></div>`
+          : `<div class="agenda-poster-placeholder"><i class="fas fa-${icon}"></i></div>`;
 
-        const metaParts = [ev.year || null, ev.episode || null].filter(Boolean);
-        const epTitleHtml = ev.episodeTitle && ev.type === 'show'
-          ? `<div class="agenda-ep-title">"${ev.episodeTitle}"</div>`
-          : '';
-        const releasedHtml = isReleased
-          ? `<div class="agenda-released"><i class="fas fa-check-circle"></i> Released</div>`
-          : '';
+        const yearStr = ev.year ? ` <span class="agenda-year">(${ev.year})</span>` : '';
+        const epInfo  = [ev.episode, ev.episodeTitle ? `"${ev.episodeTitle}"` : null].filter(Boolean).join(' · ');
 
         return `
           <div class="agenda-card ${type}${isReleased ? ' released' : ''}">
             <div class="agenda-poster-wrap">${posterHtml}</div>
             <div class="agenda-card-info">
-              <div class="agenda-card-title">${ev.title || 'Untitled'}</div>
-              <div class="agenda-card-row">
-                <span class="agenda-type-badge ${type}">
-                  <i class="fas fa-${type === 'movie' ? 'film' : 'tv'}"></i> ${type === 'movie' ? 'Movie' : 'Episode'}
-                </span>
-                ${metaParts.length ? `<span class="agenda-meta-text">${metaParts.join(' · ')}</span>` : ''}
+              <div class="agenda-row-1">
+                <div class="agenda-card-title">${ev.title || 'Untitled'}${yearStr}</div>
+                <span class="agenda-type-badge ${type}"><i class="fas fa-${icon}"></i> ${typeName}</span>
               </div>
-              ${epTitleHtml}
-              ${releasedHtml}
+              <div class="agenda-row-2">
+                <span class="agenda-ep-info">${epInfo}</span>
+                <div class="agenda-row-2-right">
+                  <span class="agenda-time-badge ${timeInfo.cls}">${timeInfo.text}</span>
+                  <span class="agenda-date-label">${shortDate}</span>
+                </div>
+              </div>
             </div>
           </div>`;
       }).join('');
