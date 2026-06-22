@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Server Access</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/x-icon" href="icon2.png">
+</head>
+<body>
+
+<div class="site-pin-overlay" style="display:flex;">
+  <div class="pin-gate">
+    <div class="pin-gate-icon"><i class="fas fa-lock"></i></div>
+    <h3 class="pin-gate-title">Server Access</h3>
+    <p class="pin-gate-sub">Enter your PIN to continue</p>
+    <p id="sitePinError" class="pin-gate-error" style="display:none;"><i class="fas fa-times-circle"></i> Incorrect PIN — try again</p>
+    <div class="pin-gate-form">
+      <input type="password" id="sitePinInput" class="pin-gate-input" placeholder="PIN" maxlength="20" autocomplete="off">
+      <button id="sitePinSubmit" class="pin-gate-btn"><i class="fas fa-unlock"></i> Unlock</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  const CAL_API = 'https://plex-vip-backend.jazeera21.workers.dev';
+  const input  = document.getElementById('sitePinInput');
+  const btn    = document.getElementById('sitePinSubmit');
+  const errMsg = document.getElementById('sitePinError');
+
+  // Already unlocked — go straight home
+  if (sessionStorage.getItem('calendarPin')) {
+    window.location.replace('index.html');
+    return;
+  }
+
+  setTimeout(() => input && input.focus(), 50);
+
+  async function submit() {
+    const pin = input.value.trim();
+    if (!pin) return;
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Checking...';
+    try {
+      const res = await fetch(`${CAL_API}/calendar`, {
+        headers: { 'X-Calendar-Pin': pin }
+      });
+      if (res.status === 401) {
+        errMsg.style.display = 'block';
+        input.value = '';
+        input.focus();
+      } else {
+        sessionStorage.setItem('calendarPin', pin);
+        window.location.replace('index.html');
+        return;
+      }
+    } catch (e) {
+      // Network error — allow through
+      sessionStorage.setItem('calendarPin', pin);
+      window.location.replace('index.html');
+      return;
+    }
+    btn.disabled = false;
+    btn.innerHTML = '<i class="fas fa-unlock"></i> Unlock';
+  }
+
+  btn.addEventListener('click', submit);
+  input.addEventListener('keypress', (e) => { if (e.key === 'Enter') submit(); });
+}());
+</script>
+
+</body>
+</html>
