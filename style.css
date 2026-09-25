@@ -76,27 +76,6 @@ nav {
   position: relative;
 }
 
-.nav-links a:hover {
-  color: var(--primary);
-  background: rgba(229, 160, 13, 0.1);
-}
-
-.nav-links a::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  width: 0;
-  height: 2px;
-  background: var(--primary);
-  transform: translateX(-50%);
-  transition: width 0.3s ease;
-}
-
-.nav-links a:hover::after {
-  width: 70%;
-}
-
 .status-nav {
   background: var(--primary);
   color: white !important;
@@ -108,14 +87,6 @@ nav {
   gap: 5px;
   transition: all 0.3s ease;
   position: static;
-}
-
-.status-nav:hover {
-  filter: brightness(1.08);
-}
-
-.status-nav::after {
-  display: none;
 }
 
 .calendar-nav {
@@ -131,14 +102,6 @@ nav {
   position: static;
 }
 
-.calendar-nav:hover {
-  filter: brightness(1.08);
-}
-
-.calendar-nav::after {
-  display: none;
-}
-
 .requests-nav {
   background: var(--seerr-color);
   color: white !important;
@@ -150,14 +113,6 @@ nav {
   gap: 5px;
   transition: all 0.3s ease;
   position: static;
-}
-
-.requests-nav:hover {
-  filter: brightness(1.08);
-}
-
-.requests-nav::after {
-  display: none;
 }
 
 .projects-nav {
@@ -173,12 +128,11 @@ nav {
   position: static;
 }
 
+.status-nav:hover,
+.calendar-nav:hover,
+.requests-nav:hover,
 .projects-nav:hover {
-  filter: brightness(1.08);
-}
-
-.projects-nav::after {
-  display: none;
+  opacity: 0.85;
 }
 
 /* ===== CALENDAR TINY STATS BAR ===== */
@@ -428,23 +382,24 @@ h1 {
 
 .shooting-star {
   position: absolute;
-  width: 110px;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.75));
+  width: 130px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.9));
   border-radius: 999px;
   opacity: 0;
-  animation: shoot 14s linear infinite;
+  box-shadow: 0 0 6px rgba(255, 255, 255, 0.4);
+  animation: shoot 12s linear infinite;
 }
 
 .shooting-star-1 {
-  top: 15%;
+  top: 12%;
   left: 55%;
 }
 
 .shooting-star-2 {
-  top: 45%;
-  left: 15%;
-  animation-delay: 7s;
+  top: 40%;
+  left: 12%;
+  animation-delay: 6s;
 }
 
 @keyframes shoot {
@@ -453,15 +408,15 @@ h1 {
     transform: rotate(35deg) translateX(0);
   }
   1% {
-    opacity: 0.8;
+    opacity: 1;
   }
-  4% {
+  7% {
     opacity: 0;
-    transform: rotate(35deg) translateX(340px);
+    transform: rotate(35deg) translateX(380px);
   }
   100% {
     opacity: 0;
-    transform: rotate(35deg) translateX(340px);
+    transform: rotate(35deg) translateX(380px);
   }
 }
 
@@ -861,7 +816,7 @@ footer {
   }
 
   .mobile-menu a:hover {
-    background: rgba(255, 255, 255, 0.08);
+    opacity: 0.85;
   }
 
   .mobile-menu .status-nav,
