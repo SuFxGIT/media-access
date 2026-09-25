@@ -346,6 +346,11 @@ h1 {
   text-align: center;
 }
 
+/* First section under the fixed header needs extra top space */
+.first-section {
+  padding-top: 120px;
+}
+
 .section-alt {
   background: var(--section-bg);
 }
@@ -1141,7 +1146,11 @@ footer {
   .hero {
     padding-top: 100px;
   }
-  
+
+  .first-section {
+    padding-top: 100px;
+  }
+
   h1 {
     font-size: 2rem;
   }
