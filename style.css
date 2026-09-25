@@ -23,9 +23,14 @@
 body, html {
   font-family: 'Inter', sans-serif;
   color: var(--light);
-  background: var(--bg-color);
   scroll-behavior: smooth;
   line-height: 1.5;
+}
+
+/* Page color lives on html only: a body background would paint over
+   the fixed z-index:-1 starfield */
+html {
+  background: var(--bg-color);
 }
 
 /* Sticky footer: page always fills the viewport */
