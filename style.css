@@ -354,7 +354,21 @@ h1 {
   max-width: 280px;
 }
 
-/* ===== AFTER-SUBSCRIBE STEPS ===== */
+.manage-link {
+  display: inline-block;
+  margin-top: 12px;
+  font-size: 0.78rem;
+  color: var(--gray);
+  text-decoration: none;
+  border-bottom: 1px dotted rgba(255, 255, 255, 0.25);
+  transition: color 0.2s ease;
+}
+
+.manage-link:hover {
+  color: var(--text);
+}
+
+/* ===== AFTER-SUBSCRIBE PANEL ===== */
 .after-subscribe {
   max-width: 850px;
   margin: 25px auto 0;
@@ -362,12 +376,13 @@ h1 {
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 15px;
   padding: 30px;
+  text-align: center;
 }
 
 .after-subscribe-title {
   font-size: 1.05rem;
   color: var(--light);
-  margin-bottom: 25px;
+  margin-bottom: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -378,48 +393,108 @@ h1 {
   color: var(--primary);
 }
 
-.steps-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 25px;
-}
-
-.step {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: 10px;
-}
-
-.step-num {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  background: var(--primary);
-  color: #000;
-  font-weight: 700;
-  font-size: 0.9rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.step h4 {
-  color: var(--light);
-  font-size: 1rem;
-}
-
-.step p {
+.after-subscribe p.after-subscribe-text {
   color: var(--gray);
-  font-size: 0.85rem;
-  max-width: 300px;
-  margin: 0;
+  font-size: 0.9rem;
+  margin: 0 auto 20px;
+  max-width: 460px;
 }
 
-.paypal-btn {
-  background: #003087;
-  color: white;
+/* ===== ANIMATED BACKGROUND ===== */
+.bg-glow {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0.22;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.bg-glow-1 {
+  width: 420px;
+  height: 420px;
+  background: var(--primary);
+  top: -120px;
+  left: -100px;
+  animation: glowDrift1 18s ease-in-out infinite alternate;
+}
+
+.bg-glow-2 {
+  width: 360px;
+  height: 360px;
+  background: var(--secondary);
+  bottom: -100px;
+  right: -80px;
+  animation: glowDrift2 22s ease-in-out infinite alternate;
+}
+
+.bg-glow-3 {
+  width: 300px;
+  height: 300px;
+  background: var(--seerr-color);
+  top: 40%;
+  left: 55%;
+  animation: glowDrift3 26s ease-in-out infinite alternate;
+}
+
+@keyframes glowDrift1 {
+  to {
+    transform: translate(120px, 80px) scale(1.15);
+  }
+}
+
+@keyframes glowDrift2 {
+  to {
+    transform: translate(-100px, -70px) scale(1.1);
+  }
+}
+
+@keyframes glowDrift3 {
+  to {
+    transform: translate(-80px, 60px) scale(0.9);
+  }
+}
+
+/* ===== ENTRANCE & HOVER MOTION ===== */
+.access-card,
+.after-subscribe {
+  animation: fadeUp 0.6s ease both;
+}
+
+.access-grid .access-card:nth-child(2) {
+  animation-delay: 0.12s;
+}
+
+.after-subscribe {
+  animation-delay: 0.24s;
+}
+
+.access-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.access-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bg-glow,
+  .access-card,
+  .after-subscribe {
+    animation: none;
+  }
+
+  .access-card:hover {
+    transform: none;
+  }
 }
 
 /* ===== QUALITY TIPS SECTION ===== */
@@ -890,11 +965,6 @@ footer {
   .access-grid {
     grid-template-columns: 1fr;
     max-width: 420px;
-  }
-
-  .steps-grid {
-    grid-template-columns: 1fr;
-    gap: 30px;
   }
 }
 
