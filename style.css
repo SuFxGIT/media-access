@@ -399,45 +399,6 @@ h1 {
   }
 }
 
-.shooting-star {
-  position: absolute;
-  width: 140px;
-  height: 1.5px;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3) 60%, rgba(255, 255, 255, 0.9));
-  border-radius: 999px;
-  opacity: 0;
-  animation: shoot 12s linear infinite;
-}
-
-.shooting-star-1 {
-  top: 12%;
-  left: 55%;
-}
-
-.shooting-star-2 {
-  top: 40%;
-  left: 12%;
-  animation-delay: 6s;
-}
-
-@keyframes shoot {
-  0% {
-    opacity: 0;
-    transform: rotate(35deg) translateX(0);
-  }
-  1% {
-    opacity: 1;
-  }
-  7% {
-    opacity: 0;
-    transform: rotate(35deg) translateX(380px);
-  }
-  100% {
-    opacity: 0;
-    transform: rotate(35deg) translateX(380px);
-  }
-}
-
 
 /* ===== ENTRANCE & HOVER MOTION ===== */
 .access-card,
@@ -474,7 +435,6 @@ h1 {
 
 @media (prefers-reduced-motion: reduce) {
   .star,
-  .shooting-star,
   .access-card,
   .after-subscribe {
     animation: none;
