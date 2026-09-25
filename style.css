@@ -194,21 +194,22 @@ h1 {
 .services-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
-  max-width: 1000px;
-  margin: 40px auto 0;
+  gap: 14px;
+  max-width: 900px;
+  margin: 35px auto 0;
 }
 
 .service-tile {
   background: var(--card-bg);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 15px;
-  padding: 28px 20px;
+  border-radius: 12px;
+  padding: 18px 12px;
   text-decoration: none;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 6px;
+  justify-content: center;
+  gap: 3px;
   transition: border-color 0.3s ease;
 }
 
@@ -217,27 +218,32 @@ h1 {
 }
 
 .service-tile-icon {
-  width: 48px;
-  height: 48px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.15rem;
-  margin-bottom: 8px;
+  font-size: 1rem;
+  margin-bottom: 6px;
   color: var(--tile-color, var(--primary));
   background: var(--tile-bg, rgba(255, 255, 255, 0.06));
 }
 
 .service-tile h3 {
-  font-size: 1.05rem;
+  font-size: 0.95rem;
   color: var(--light);
+  white-space: nowrap;
 }
 
 .service-tile p {
-  font-size: 0.8rem;
+  font-size: 0.72rem;
   color: var(--gray);
   margin: 0;
+  white-space: nowrap;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .tile-plex {
@@ -846,7 +852,7 @@ footer {
   }
 
   .service-tile {
-    padding: 20px 12px;
+    padding: 14px 8px;
   }
 }
 
