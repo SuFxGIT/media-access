@@ -147,10 +147,38 @@ nav {
   position: static;
 }
 
+.plex-nav {
+  background: #e5a00d;
+  color: #000 !important;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: all 0.3s ease;
+  position: static;
+}
+
+.jellyfin-nav {
+  background: #00a4dc;
+  color: white !important;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: all 0.3s ease;
+  position: static;
+}
+
 .status-nav:hover,
 .calendar-nav:hover,
 .requests-nav:hover,
-.projects-nav:hover {
+.projects-nav:hover,
+.plex-nav:hover,
+.jellyfin-nav:hover {
   opacity: 0.85;
 }
 
@@ -802,6 +830,8 @@ footer {
   .mobile-menu .status-nav,
   .mobile-menu .calendar-nav,
   .mobile-menu .projects-nav,
+  .mobile-menu .plex-nav,
+  .mobile-menu .jellyfin-nav,
   .mobile-menu .requests-nav {
     margin-top: 10px;
     text-align: center;
@@ -828,6 +858,16 @@ footer {
 
   .mobile-menu .projects-nav {
     background: var(--secondary);
+    color: white !important;
+  }
+
+  .mobile-menu .plex-nav {
+    background: #e5a00d;
+    color: #000 !important;
+  }
+
+  .mobile-menu .jellyfin-nav {
+    background: #00a4dc;
     color: white !important;
   }
 
