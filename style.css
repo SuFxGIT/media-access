@@ -38,6 +38,13 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+input, textarea {
+  -webkit-user-select: text;
+  user-select: text;
 }
 
 .container {
@@ -431,29 +438,6 @@ h1 {
   }
 }
 
-/* One-shot shooting star spawned where the user clicks */
-.click-star {
-  transform-origin: 100% 50%;
-  animation: shootOnce 0.7s ease-out forwards;
-}
-
-@keyframes shootOnce {
-  0% {
-    opacity: 0;
-    transform: rotate(var(--angle, 35deg)) translateX(0) scaleX(0.4);
-  }
-  15% {
-    opacity: 0.85;
-  }
-  60% {
-    opacity: 0.6;
-    transform: rotate(var(--angle, 35deg)) translateX(220px) scaleX(1);
-  }
-  100% {
-    opacity: 0;
-    transform: rotate(var(--angle, 35deg)) translateX(360px) scaleX(0.4);
-  }
-}
 
 /* ===== ENTRANCE & HOVER MOTION ===== */
 .access-card,

@@ -53,32 +53,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     starField.appendChild(star);
   }
-
-  // Click anywhere on the background to launch a shooting star
-  document.addEventListener('click', function(e) {
-    if (e.target.closest('a, button, input, select, textarea, label, nav, .mobile-menu')) {
-      return;
-    }
-
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      return;
-    }
-
-    const shootingStar = document.createElement('div');
-    shootingStar.className = 'shooting-star click-star';
-    shootingStar.style.left = e.clientX + 'px';
-    shootingStar.style.top = e.clientY + 'px';
-    shootingStar.style.setProperty('--angle', (Math.random() * 30 + 20) + 'deg');
-
-    shootingStar.addEventListener('animationend', function() {
-      shootingStar.remove();
-    });
-    setTimeout(function() {
-      shootingStar.remove();
-    }, 1500);
-
-    starField.appendChild(shootingStar);
-  });
 });
 
 // ===== BACKGROUND ANIMATION - PERFECT SMOOTH VERSION =====
