@@ -259,55 +259,5 @@ document.addEventListener('DOMContentLoaded', function() {
 // ===== INITIALIZE WHEN PAGE LOADS =====
 document.addEventListener('DOMContentLoaded', function() {
   // loadBackground(); // TMDB poster background disabled
-  fetchServiceStats(); // ← ADD THIS LINE
-  
-  // Additional initialization can go here
   console.log('Site initialized');
 });
-
-async function fetchServiceStats() {
-  try {
-    console.log('Fetching service stats from:', `${WORKER_URL}/service-stats`);
-    
-    const response = await fetch(`${WORKER_URL}/service-stats`);
-    console.log('Response status:', response.status);
-    
-    const result = await response.json();
-    console.log('Full API Response:', result);
-    
-    if (result.success) {
-      const stats = result.stats || result.libraries || {};
-      console.log('Stats received:', stats);
-      
-      // Only animate if we have real numbers
-      if ((stats.items && stats.items > 0) || (stats.series && stats.series > 0) || (stats.totalItems && stats.totalItems > 0)) {
-        animateCounter('movieCount', stats.items || 0);
-        animateCounter('showCount', stats.series || 0);
-        animateCounter('animeCount', stats.anime || 0);
-        animateCounter('animatedCount', stats.animated || 0);
-      } else {
-        console.log('No real data received, showing zeros');
-      }
-    } else {
-      console.log('API returned success: false with error:', result.error);
-    }
-  } catch (error) {
-    console.error('Error fetching service stats:', error);
-  }
-}
-
-function animateCounter(elementId, target) {
-  const element = document.getElementById(elementId);
-  if (!element) return;
-  let current = 0;
-  const increment = target / 30; // Faster animation
-  const timer = setInterval(() => {
-    current += increment;
-    if (current >= target) {
-      element.textContent = target.toLocaleString();
-      clearInterval(timer);
-    } else {
-      element.textContent = Math.floor(current).toLocaleString();
-    }
-  }, 20);
-}
