@@ -265,53 +265,6 @@ document.addEventListener('DOMContentLoaded', function() {
   console.log('Site initialized');
 });
 
-// Mobile menu toggle - simple and functional
-document.addEventListener('DOMContentLoaded', function() {
-  const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-  const mobileMenu = document.querySelector('.mobile-menu');
-  const mobileMenuClose = document.querySelector('.mobile-menu-close');
-  const mobileBackdrop = document.querySelector('.mobile-backdrop');
-  
-  function openMenu() {
-    mobileMenu.classList.add('active');
-    if (mobileBackdrop) mobileBackdrop.classList.add('active');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closeMenu() {
-    mobileMenu.classList.remove('active');
-    if (mobileBackdrop) mobileBackdrop.classList.remove('active');
-    document.body.style.overflow = '';
-  }
-
-  if (mobileMenuBtn && mobileMenu) {
-    // Click hamburger to open
-    mobileMenuBtn.addEventListener('click', openMenu);
-    
-    // Click X to close
-    if (mobileMenuClose) {
-      mobileMenuClose.addEventListener('click', closeMenu);
-    }
-    
-    // Click backdrop to close
-    if (mobileBackdrop) {
-      mobileBackdrop.addEventListener('click', closeMenu);
-    }
-    
-    // Close menu when clicking on links
-    mobileMenu.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', closeMenu);
-    });
-
-    // Close with Escape key
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
-        closeMenu();
-      }
-    });
-  }
-});
-
 async function fetchServiceStats() {
   try {
     console.log('Fetching service stats from:', `${WORKER_URL}/service-stats`);
