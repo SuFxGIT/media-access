@@ -28,6 +28,13 @@ body, html {
   line-height: 1.5;
 }
 
+/* Sticky footer: page always fills the viewport */
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
 .container {
   width: 100%;
   max-width: 1100px;
@@ -382,12 +389,11 @@ h1 {
 
 .shooting-star {
   position: absolute;
-  width: 130px;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.9));
+  width: 140px;
+  height: 1.5px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3) 60%, rgba(255, 255, 255, 0.9));
   border-radius: 999px;
   opacity: 0;
-  box-shadow: 0 0 6px rgba(255, 255, 255, 0.4);
   animation: shoot 12s linear infinite;
 }
 
@@ -422,33 +428,25 @@ h1 {
 
 /* One-shot shooting star spawned where the user clicks */
 .click-star {
-  animation: shootOnce 0.9s ease-out forwards;
-}
-
-.click-star::after {
-  content: '';
-  position: absolute;
-  right: -2px;
-  top: 50%;
-  width: 4px;
-  height: 4px;
-  margin-top: -2px;
-  border-radius: 50%;
-  background: #fff;
-  box-shadow: 0 0 8px 2px rgba(255, 255, 255, 0.8);
+  transform-origin: 100% 50%;
+  animation: shootOnce 0.7s ease-out forwards;
 }
 
 @keyframes shootOnce {
   0% {
-    opacity: 1;
-    transform: rotate(var(--angle, 35deg)) translateX(0);
+    opacity: 0;
+    transform: rotate(var(--angle, 35deg)) translateX(0) scaleX(0.4);
   }
-  65% {
-    opacity: 1;
+  15% {
+    opacity: 0.85;
+  }
+  60% {
+    opacity: 0.6;
+    transform: rotate(var(--angle, 35deg)) translateX(220px) scaleX(1);
   }
   100% {
     opacity: 0;
-    transform: rotate(var(--angle, 35deg)) translateX(340px);
+    transform: rotate(var(--angle, 35deg)) translateX(360px) scaleX(0.4);
   }
 }
 
@@ -533,6 +531,7 @@ h1 {
 footer {
   text-align: center;
   padding: 40px 20px;
+  margin-top: auto;
   background: var(--dark);
   font-size: 0.9rem;
   color: var(--gray);
