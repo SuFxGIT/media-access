@@ -25,6 +25,9 @@
         <a href="https://request.sufxconnect.cc/" target="_blank" class="requests-nav">
           <i class="fas fa-paper-plane"></i> Requests
         </a>
+        <a href="https://sufxgit.github.io/" target="_blank" class="projects-nav">
+          <i class="fas fa-code"></i> Other Projects
+        </a>
         <a href="status.html" class="status-nav">
           <i class="fas fa-heartbeat"></i> Server Status
         </a>
@@ -47,6 +50,9 @@
       <a href="https://request.sufxconnect.cc/" target="_blank" class="requests-nav">
         <i class="fas fa-paper-plane"></i> Requests
       </a>
+      <a href="https://sufxgit.github.io/" target="_blank" class="projects-nav">
+        <i class="fas fa-code"></i> Other Projects
+      </a>
       <a href="status.html" class="status-nav">
         <i class="fas fa-heartbeat"></i> Server Status
       </a>
@@ -57,16 +63,21 @@
   <div class="mobile-backdrop"></div>
 </header>
 
-  <!-- VIP Access Section -->
-<section id="vip-access" class="section first-section">
-  <div class="container">
-    <div class="vip-compact-layout">
-      <!-- Left Side: VIP Form -->
-      <div class="vip-left">
-        <h2 class="section-title">Server Subscription</h2>
-        <p class="section-subtitle">Enter your subscription code for server access</p>
-        
-        <div class="vip-form-container">
+  <!-- Subscription Section -->
+  <section id="vip-access" class="section first-section">
+    <div class="container">
+      <span class="section-eyebrow">Members Only</span>
+      <h1>Server Subscription</h1>
+      <p class="section-subtitle">Subscribe for full access, or verify your subscription code if you already have one.</p>
+
+      <div class="access-grid">
+        <!-- Verify Access Card -->
+        <div class="access-card">
+          <div class="access-card-icon">
+            <i class="fas fa-key"></i>
+          </div>
+          <h3>Verify Access</h3>
+          <p class="access-card-text">Already subscribed? Enter your subscription code to unlock your access.</p>
           <div class="vip-form">
             <input type="text" id="vipCodeInput" placeholder="Enter subscription code" class="vip-input">
             <button id="checkVipBtn" class="vip-check-btn">
@@ -75,51 +86,48 @@
           </div>
           <div id="vipMessage" class="vip-message"></div>
         </div>
-      </div>
 
-      <!-- Right Side: Subscription Plan -->
-      <div class="vip-right">
-        <div class="subscription-card">
+        <!-- Subscription Plan Card -->
+        <div class="access-card featured">
+          <div class="access-card-icon">
+            <i class="fas fa-crown"></i>
+          </div>
           <h3>Premium Access</h3>
           <div class="price">$17.99<span>/month</span></div>
+          <p class="access-card-text">Full server access on all your devices — mobile, desktop, TV, and console.</p>
           <a href="https://www.paypal.com/webapps/billing/plans/subscribe?plan_id=P-55C31572X4066792SNEDWDOA" target="_blank" class="subscribe-option-btn">
             <i class="fab fa-paypal"></i> Subscribe Now
           </a>
         </div>
       </div>
-    </div>
 
-    <!-- Add this right after the VIP form or in the subscription card -->
-  <div class="contact-links">
-    <p class="contact-message">
-      <i class="fas fa-comment-alt"></i>
-      Send your username after subscribing via:
-    </p>
-    <div class="contact-buttons">
-      <a href="https://wa.me/98068402" target="_blank" class="contact-btn whatsapp-btn">
-        <i class="fab fa-whatsapp"></i> WhatsApp
-      </a>
-      <a href="https://discord.com/users/260857088085852171" target="_blank" class="contact-btn discord-btn">
-        <i class="fab fa-discord"></i> Discord
-      </a>
-    </div>
-    <hr style="border-color: rgba(255,255,255,0.08); margin: 20px 0;">
-    <p class="contact-message" style="margin-bottom: 10px;">
-      <i class="fas fa-cog"></i> <strong>Already subscribed?</strong> Manage, pause, or cancel your subscription directly on PayPal.
-    </p>
-    <a href="https://www.paypal.com/myaccount/autopay/" target="_blank" class="contact-btn" style="background:#003087;color:white;margin:0 auto;pointer-events:auto;" onmouseover="this.style.transform='none'" onmouseout="this.style.transform='none'">
-      <i class="fab fa-paypal"></i> Manage Subscription on PayPal
-    </a>
-  </div>
-  </div>
-</section>
-
-  <!-- Other Projects -->
-  <section class="section other-projects-section">
-    <div class="container">
-      <a href="https://sufxgit.github.io/" target="_blank" class="other-projects-btn">
-        <i class="fas fa-folder-open"></i> Other Projects
-      </a>
+      <!-- After Subscribing Steps -->
+      <div class="after-subscribe">
+        <h3 class="after-subscribe-title"><i class="fas fa-list-check"></i> After you subscribe</h3>
+        <div class="steps-grid">
+          <div class="step">
+            <span class="step-num">1</span>
+            <h4>Send your username</h4>
+            <p>Message us your username so we can activate your access.</p>
+            <div class="contact-buttons">
+              <a href="https://wa.me/98068402" target="_blank" class="contact-btn whatsapp-btn">
+                <i class="fab fa-whatsapp"></i> WhatsApp
+              </a>
+              <a href="https://discord.com/users/260857088085852171" target="_blank" class="contact-btn discord-btn">
+                <i class="fab fa-discord"></i> Discord
+              </a>
+            </div>
+          </div>
+          <div class="step">
+            <span class="step-num">2</span>
+            <h4>Manage anytime</h4>
+            <p>Pause or cancel your subscription directly on PayPal whenever you like.</p>
+            <a href="https://www.paypal.com/myaccount/autopay/" target="_blank" class="contact-btn paypal-btn">
+              <i class="fab fa-paypal"></i> Manage on PayPal
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
