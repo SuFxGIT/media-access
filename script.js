@@ -31,6 +31,30 @@ window.addEventListener('scroll', () => {
   }
 });
 
+// ===== STARFIELD BACKGROUND =====
+document.addEventListener('DOMContentLoaded', function() {
+  const starField = document.querySelector('.star-field');
+
+  if (!starField) {
+    return;
+  }
+
+  for (let i = 0; i < 70; i++) {
+    const star = document.createElement('div');
+    star.className = 'star';
+
+    const size = Math.random() * 1.6 + 0.6;
+    star.style.width = size + 'px';
+    star.style.height = size + 'px';
+    star.style.left = Math.random() * 100 + '%';
+    star.style.top = Math.random() * 100 + '%';
+    star.style.setProperty('--twinkle-duration', (Math.random() * 6 + 4) + 's');
+    star.style.animationDelay = (Math.random() * 8) + 's';
+
+    starField.appendChild(star);
+  }
+});
+
 // ===== BACKGROUND ANIMATION - PERFECT SMOOTH VERSION =====
 
 /**

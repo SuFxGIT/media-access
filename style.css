@@ -111,7 +111,7 @@ nav {
 }
 
 .status-nav:hover {
-  filter: brightness(1.15);
+  filter: brightness(1.08);
 }
 
 .status-nav::after {
@@ -132,7 +132,7 @@ nav {
 }
 
 .calendar-nav:hover {
-  filter: brightness(1.15);
+  filter: brightness(1.08);
 }
 
 .calendar-nav::after {
@@ -153,7 +153,7 @@ nav {
 }
 
 .requests-nav:hover {
-  filter: brightness(1.15);
+  filter: brightness(1.08);
 }
 
 .requests-nav::after {
@@ -174,7 +174,7 @@ nav {
 }
 
 .projects-nav:hover {
-  filter: brightness(1.15);
+  filter: brightness(1.08);
 }
 
 .projects-nav::after {
@@ -234,7 +234,7 @@ h1 {
 }
 
 .scroll-btn:hover {
-  filter: brightness(1.12);
+  filter: brightness(1.08);
 }
 
 /* ===== SECTION STYLES ===== */
@@ -400,58 +400,68 @@ h1 {
   max-width: 460px;
 }
 
-/* ===== ANIMATED BACKGROUND ===== */
-.bg-glow {
+/* ===== STARFIELD BACKGROUND ===== */
+.star-field {
   position: fixed;
-  border-radius: 50%;
-  filter: blur(90px);
-  opacity: 0.22;
+  inset: 0;
   z-index: -1;
   pointer-events: none;
+  overflow: hidden;
 }
 
-.bg-glow-1 {
-  width: 420px;
-  height: 420px;
-  background: var(--primary);
-  top: -120px;
-  left: -100px;
-  animation: glowDrift1 18s ease-in-out infinite alternate;
+.star {
+  position: absolute;
+  background: #fff;
+  border-radius: 50%;
+  opacity: 0.2;
+  animation: twinkle var(--twinkle-duration, 6s) ease-in-out infinite;
 }
 
-.bg-glow-2 {
-  width: 360px;
-  height: 360px;
-  background: var(--secondary);
-  bottom: -100px;
-  right: -80px;
-  animation: glowDrift2 22s ease-in-out infinite alternate;
+@keyframes twinkle {
+  0%, 100% {
+    opacity: 0.12;
+  }
+  50% {
+    opacity: 0.55;
+  }
 }
 
-.bg-glow-3 {
-  width: 300px;
-  height: 300px;
-  background: var(--seerr-color);
-  top: 40%;
+.shooting-star {
+  position: absolute;
+  width: 110px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.75));
+  border-radius: 999px;
+  opacity: 0;
+  animation: shoot 14s linear infinite;
+}
+
+.shooting-star-1 {
+  top: 15%;
   left: 55%;
-  animation: glowDrift3 26s ease-in-out infinite alternate;
 }
 
-@keyframes glowDrift1 {
-  to {
-    transform: translate(120px, 80px) scale(1.15);
+.shooting-star-2 {
+  top: 45%;
+  left: 15%;
+  animation-delay: 7s;
+}
+
+@keyframes shoot {
+  0% {
+    opacity: 0;
+    transform: rotate(35deg) translateX(0);
   }
-}
-
-@keyframes glowDrift2 {
-  to {
-    transform: translate(-100px, -70px) scale(1.1);
+  1% {
+    opacity: 0.8;
   }
-}
-
-@keyframes glowDrift3 {
-  to {
-    transform: translate(-80px, 60px) scale(0.9);
+  4% {
+    opacity: 0;
+    transform: rotate(35deg) translateX(340px);
+  }
+  100% {
+    opacity: 0;
+    transform: rotate(35deg) translateX(340px);
   }
 }
 
@@ -470,12 +480,15 @@ h1 {
 }
 
 .access-card {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: border-color 0.3s ease;
 }
 
 .access-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+  border-color: rgba(255, 255, 255, 0.22);
+}
+
+.access-card.featured:hover {
+  border-color: rgba(229, 160, 13, 0.65);
 }
 
 @keyframes fadeUp {
@@ -486,14 +499,11 @@ h1 {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .bg-glow,
+  .star,
+  .shooting-star,
   .access-card,
   .after-subscribe {
     animation: none;
-  }
-
-  .access-card:hover {
-    transform: none;
   }
 }
 
@@ -686,7 +696,7 @@ footer {
 }
 
 .subscribe-option-btn:hover {
-  filter: brightness(1.15);
+  filter: brightness(1.08);
 }
 
 /* ===== VIP ACCESS STYLES ===== */
@@ -727,7 +737,7 @@ footer {
 }
 
 .vip-check-btn:hover {
-  filter: brightness(1.12);
+  filter: brightness(1.08);
 }
 
 .vip-message {
@@ -852,7 +862,6 @@ footer {
 
   .mobile-menu a:hover {
     background: rgba(255, 255, 255, 0.08);
-    transform: translateX(2px);
   }
 
   .mobile-menu .status-nav,
@@ -1114,7 +1123,7 @@ footer {
   text-decoration: none;
   font-weight: 600;
   font-size: 0.85rem;
-  transition: none;
+  transition: filter 0.2s ease;
 }
 
 .whatsapp-btn {
@@ -1128,7 +1137,7 @@ footer {
 }
 
 .contact-btn:hover {
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  filter: brightness(1.08);
 }
 
 /* Mobile responsive */
@@ -1418,7 +1427,7 @@ footer {
 }
 
 .pin-gate-btn:hover {
-  filter: brightness(1.12);
+  filter: brightness(1.08);
 }
 
 /* ===== CALENDAR DAY POPUP ===== */
